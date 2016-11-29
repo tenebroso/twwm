@@ -1,0 +1,28 @@
+﻿.dateTimeModule {
+    background-color:rgb(46,166,199);
+    font-size:20px;
+    color:white;
+    span {
+        color:$black;
+    }
+}
+
+.dateTimeModule-toggle {
+    font-size: 18px;
+    font-weight: 200;
+    float: right;
+    color: white;
+    padding: 12px 10px 0;
+    &:hover {
+        color:white;
+        text-decoration:none;
+    }
+}
+
+.dateTimeModule-details {
+    clear: both;
+    padding: 0 16px;
+    position: relative;
+    top: -9px;
+    font-size:18px;
+}

@@ -1,0 +1,37 @@
+﻿// Core variables and mixins
+@import "Vendor/bootstrap/variables";
+@import "Vendor/bootstrap/mixins";
+@import "Sections/profile";
+@import "Sections/profile";
+
+// Reset and dependencies
+@import "Vendor/bootstrap/normalize";
+@import "Vendor/bootstrap/print";
+
+// Core CSS
+@import "Vendor/bootstrap/scaffolding";
+@import "Vendor/bootstrap/grid";
+
+@import "Vendor/bootstrap/forms";
+
+@import "Common/variables.scss";
+@import "Common/utilities.scss";
+@import "Common/globals.scss";
+@import "Common/typography.scss";
+@import "Common/icons.scss";
+@import "Common/header.scss";
+@import "Common/footer.scss";
+@import "Common/btn.scss";
+@import "Common/inputs.scss";
+@import "Common/margin.scss";
+@import "Common/padding.scss";
+
+@import "Sections/leftSidebar";
+@import "Sections/rightSidebar";
+@import "Sections/blogPosts";
+@import "Sections/events";
+@import "Sections/dateTimeModule";
+@import "Sections/home";
+@import "Sections/pages";
+@import "Sections/dashboard";
+@import "Sections/profile";

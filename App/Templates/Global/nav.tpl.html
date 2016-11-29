@@ -1,0 +1,13 @@
+﻿<ul class="nav navbar-nav navbar-icons">
+	<li class="nav-icon" ui-sref-active="active"><a ui-sref="dashboard" ><span class="dn-icon-dashboard"></span></a></li>
+	<li class="nav-icon" ui-sref-active="active"><a ui-sref="participate" ><span class="dn-icon-map"></span></a></li>
+	<li class="nav-icon" ui-sref-active="active"><a ui-sref="myaccount" ><span class="dn-icon-my-account"></span></a></li>
+</ul>
+<ul class="nav navbar-nav" id="nav-primary">
+	<!--<li ui-sref-active="active"><a ui-sref="participate" ng-click="toggleMobileNav()">Participate</a></li>-->
+	<li ui-sref-active="active"><a ui-sref="blog" ng-click="toggleMobileNav()">Blog</a></li>
+	<li ui-sref-active="active"><a ui-sref="events" ng-click="toggleMobileNav()">Events</a></li>
+	<li ui-sref-active="active"><a ui-sref="about({pageName:'aboutUs'})" ng-click="toggleMobileNav()">About</a></li>
+	<li ui-sref-active="active"><a ui-sref="contact({pageName:'contactUs'})" ng-click="toggleMobileNav()">Contact</a></li>
+</ul>
+<i class="dn-icon-other nav-toggle" ng-click="toggleMobileNav()"></i>

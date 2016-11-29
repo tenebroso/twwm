@@ -1,0 +1,105 @@
+﻿<!DOCTYPE html>
+
+<html ng-app="app">
+<head>
+	<title>The Whole World Mobilising</title>
+	<meta name="description" content="" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="apple-itunes-app" content="app-id=649549244">
+	<meta name="google-play-app" content="app-id=org.satruck.familystore">
+	<link rel="apple-touch-icon" sizes="57x57" href="/Content/Images/apple-touch-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="/Content/Images/apple-touch-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="/Content/Images/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="/Content/Images/apple-touch-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="/Content/Images/apple-touch-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="/Content/Images/apple-touch-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="/Content/Images/apple-touch-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="/Content/Images/apple-touch-icon-152x152.png">
+	<link rel="icon" type="image/png" href="/Content/Images/favicon-32x32.png" sizes="32x32">
+	<link rel="icon" type="image/png" href="/Content/Images/favicon-96x96.png" sizes="96x96">
+	<link rel="icon" type="image/png" href="/Content/Images/favicon-16x16.png" sizes="16x16">
+	<link rel="manifest" href="/Content/Images/manifest.json">
+	<link rel="shortcut icon" href="/Content/Images/favicon.ico">
+	<meta name="msapplication-TileColor" content="#e51d2e">
+	<meta name="msapplication-TileImage" content="/Content/Images/mstile-144x144.png">
+	<meta name="msapplication-config" content="/Content/Images/browserconfig.xml">
+	<meta name="theme-color" content="#ffffff">
+
+	<link rel="dns-prefetch" href="//use.typekit.net">
+	<link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+	<link rel="dns-prefetch" href="//youtube.com">
+
+	<link type="text/css" rel="stylesheet" href="Content/Styles/main.css" />
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css" />
+	
+	<script src="Content/Scripts/modernizr-3.3.1.js"></script>
+	<script src="https://use.typekit.net/fmq2hmx.js"></script>
+	<script>try { Typekit.load({ async: true }); } catch (e) { }</script>
+
+
+</head>
+<body ui-sref-active="home">
+
+	<header class="header" class-when-sticky="fixed">
+		<nav class="navbar navbar-default">
+			<div class="navbar-header">
+				<a class="navbar-brand" ui-sref="home">
+					<img src="Content/Images/shield.png" class="navbar-logo" />
+					<span class="navbar-tagline">THE WHOLE WORLD <em>MOBILISING</em></span>
+				</a>
+			</div>
+
+			<navigation></navigation>
+		</nav>
+	</header>
+
+	<div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
+
+
+	<div ui-view autoscroll="true"></div>
+
+	<twwm-footer></twwm-footer>
+
+	<script src="Content/Scripts/jquery-1.8.3.min.js"></script>
+	<script src="Content/Scripts/lazySizes.min.js"></script>
+	<script src="Content/Scripts/angular.js"></script>
+	<script src="Content/Scripts/angular-ui-router.js"></script>
+	<script src="Content/Scripts/angular-animate.js"></script>
+	<script src="Content/Scripts/angular-cookies.js"></script>
+	<script src="Content/Scripts/moment.js"></script>
+	<script src="Content/Scripts/angular-moment.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.js"></script>
+	<script src="Content/Scripts/angular.slick.js"></script>
+	<script src="//www.youtube.com/player_api"></script>
+	<script src="Content/Scripts/angular-youtube-embed.js"></script>
+	<script src="App/app.js"></script>
+
+
+
+	<script src="App/Directives/Global/navigation.js"></script>
+	<script src="App/Directives/Global/footer.js"></script>
+	<script src="App/Directives/Dashboard/navigation.js"></script>
+	<script src="App/Directives/Dashboard/leaderBoard.js"></script>
+	<script src="App/Directives/Home/homePanelOne.js"></script>
+	<script src="App/Directives/Home/homePanelTwo.js"></script>
+	<script src="App/Directives/Home/homePanelThree.js"></script>
+	<script src="App/Directives/Home/homePanelFour.js"></script>
+
+	<script src="App/Services/auth.fct.js"></script>
+	<script src="App/Services/user.fct.js"></script>
+	<script src="App/Services/flash.fct.js"></script>
+
+	<!--<script src="App/Controllers/Account/account.ctrl.js"></script>
+	<script src="App/Controllers/Account/login.ctrl.js"></script>-->
+
+	<script src="App/Controllers/Events/events.ctrl.js"></script>
+	<script src="App/Controllers/Home/home.ctrl.js"></script>
+	<script src="App/Controllers/Global/page.ctrl.js"></script>
+	<script src="App/Controllers/Global/timeCtrl.ctrl.js"></script>
+
+	<script src="App/Controllers/Blog/blog.ctrl.js"></script>
+	<script src="App/Controllers/Account/register.ctrl.js"></script>
+	<script src="App/Controllers/Dashboard/dashboard.ctrl.js"></script>
+	
+</body>
+</html>

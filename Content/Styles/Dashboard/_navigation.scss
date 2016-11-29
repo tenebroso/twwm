@@ -1,0 +1,95 @@
+﻿.dashboard-nav {
+    @include listReset;
+}
+
+.dashboard-navItem {
+    display:block;
+}
+
+.dashboard-navLink {
+    color:#4B3F4E;
+    position:relative;
+    font-size:20px;
+    font-family:$sans-serif-alt;
+    display:block;
+    padding:30px 17px;
+    cursor:pointer;
+    transition:all .35s;
+    overflow:hidden;
+    &:visited {
+        color:#4B3F4E;
+    }
+}
+
+.dashboard-navLink:before,
+.dashboard-navLink:after {
+    content:"";
+    display:block;
+    position:absolute;
+    left:0;
+    top:32px;
+    height:22px;
+    width:3px;
+    background-color:#00B1FF;
+}
+
+.dashboard-navLink:before {
+    transition: all .35s ease 0s;
+}
+
+.dashboard-navLink:after {
+    top: 31px;
+    left:-13px;
+    width:2px;
+    overflow:hidden;
+    transition:all 0s ease 0s;
+    transform:rotate(90deg);
+}
+
+.dashboard-navLink:hover, .dashboard-navItem.active .dashboard-navLink {
+    color:#00B1FF;
+    text-decoration:none;
+}
+
+.dashboard-navItem span {
+    width:0;
+    transition:width .35s ease .35s;
+    transform:translate3d(0,0,0);
+    -webkit-transform:translate3d(0,0,0);
+    -moz-transform:translate3d(0,0,0);
+}
+
+.dashboard-navItem.active, .dashboard-navItem:hover {
+
+    .dashboard-navLink {
+        padding-left:35px;
+    }
+
+    .dashboard-navLink:before,
+    .dashboard-navLink:after {
+        -webkit-transform: rotate(90deg);
+        -moz-transform: rotate(90deg);
+        transform: rotate(90deg);
+        width:2px;
+        left:9px;
+    }
+
+    .dashboard-navLink:before {
+        top: 25px;
+    }
+
+    .dashboard-navLink:after {
+        max-height:22px;
+         transition:left .35s ease .15s;
+    }
+
+    span {
+        width: 13px;
+        height: 2px;
+        background-color: #00B1FF;
+        display: block;
+        position: absolute;
+        left: -1px;
+        top: 47px;
+    }
+}

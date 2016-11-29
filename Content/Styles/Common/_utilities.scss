@@ -1,0 +1,152 @@
+﻿.u-serif {
+    font-family: $serif;
+}
+.u-sansserif {
+    font-family: $sans-serif;
+}
+
+.u-sansSerif {
+	@extend .u-sansserif;
+}
+
+.u-inlineBlock {
+	display:inline-block;
+	vertical-align: middle;
+	margin:0;
+}
+.u-block {
+    display: block;
+}
+
+.u-hidden {
+    display:none !important;
+}
+
+.u-floatLeft {
+	float:left !important;
+}
+.u-floatRight {
+	float:right !important;
+}
+.u-floatNone {
+	float:none !important;
+}
+.u-clear {
+	clear: both;
+}
+
+.u-flipH {
+	-moz-transform: scaleX(-1);
+	-o-transform: scaleX(-1);
+	-webkit-transform: scaleX(-1);
+	transform: scaleX(-1);
+	filter: FlipH;
+	-ms-filter: "FlipH";
+}
+.u-flipV {
+	-moz-transform: scaleY(-1);
+	-o-transform: scaleY(-1);
+	-webkit-transform: scaleY(-1);
+	transform: scaleY(-1);
+	filter: FlipV;
+	-ms-filter: "FlipV";
+}
+
+.u-flexBox {
+	display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+	display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+	display: -ms-flexbox;      /* TWEENER - IE 10 */
+	display: -webkit-flex;     /* NEW - Chrome */
+	display: flex;             /* NEW, Spec - Opera 12.1, Firefox 20+ */
+	align-items:center;
+}
+.u-flexBox-stretch {
+	align-items:stretch;
+}
+.u-flexBox-column {
+	flex-direction: column;
+}
+.u-flexBox-center {
+	justify-content: center;
+}
+.u-flexChild {
+	-webkit-box-flex: 1;      /* OLD - iOS 6-, Safari 3.1-6 */
+	-moz-box-flex: 1;         /* OLD - Firefox 19- */
+	width: 20%;               /* For old syntax, otherwise collapses. */
+	-webkit-flex: 1;          /* Chrome */
+	-ms-flex: 1;              /* IE 10 */
+	flex: 1;                  /* NEW, Spec - Opera 12.1, Firefox 20+ */
+	& + & {
+		//padding-left:25px;
+	}
+	> *:first-child {
+		margin-top: 0;
+	}
+	> *:last-child {
+		margin-bottom:0;
+	}
+}
+
+.u-textCenter {
+	text-align: center;
+}
+.u-textRight {
+	text-align: right;
+}
+.u-textLeft {
+	text-align: left;
+}
+
+.u-textXs {
+	font-size: 50% !important;
+}
+.u-textSm {
+	font-size: 75% !important;
+}
+.u-textMd {
+	font-size: 100% !important;
+}
+.u-textLg {
+	font-size: 125% !important;
+}
+.u-textXl {
+	font-size: 150% !important;
+}
+.u-textXxl {
+	font-size: 200% !important;
+}
+
+.u-uppercase {
+	text-transform: uppercase;
+}
+.u-standardCase {
+	text-transform: none;
+}
+.u-capitalizeCase {
+	text-transform:capitalize;
+}
+
+.u-positionAbsolute {
+	position: absolute;
+}
+.u-positionRelative {
+	position: relative;
+}
+.u-positionStatic {
+    position: static;
+}
+
+.u-strike {
+	text-decoration: line-through;
+}
+
+.u-whiteBg {
+    background:white;
+    color:$black;
+}
+
+@mixin listReset {
+    list-style-type:none;
+    margin:0;
+    padding:0;
+}

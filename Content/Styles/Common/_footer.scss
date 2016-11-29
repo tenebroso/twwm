@@ -1,0 +1,96 @@
+﻿.footer {
+    position:fixed;
+    text-align:center;
+    width: 100%;
+    top: auto;
+    left: 0;
+    bottom: 0;
+    padding: 1em 0;
+    overflow:hidden;
+    z-index:250;
+    //opacity:0;
+    &:after {
+        background:rgba(255,255,255,.5);
+        filter: blur(2px);
+        width:100%;
+        height:100%;
+        position:absolute;
+        left:0;
+        top:0;
+        content:"";
+        z-index:10;
+    }
+
+    .home & {
+       // position:relative;
+        @media (min-width:$screen-sm-min){
+        //    position:absolute;
+        }
+    }
+}
+
+.footer-content {
+    filter:none;
+    position:relative;
+    z-index:20;
+    font-family:$sans-serif-alt;
+    color:white;
+    font-size:12px;
+    @media (min-width:$screen-sm-min){
+        font-size:16px;
+    }
+     img {
+        max-height:42px;
+        width:auto;
+        display:inline-block;
+        vertical-align:middle;
+        margin:5px;
+        max-width:26% !important;
+        @media (min-width:$screen-sm-min){
+            margin:0 5px;
+            max-width:100% !important;
+        }
+        &:first-of-type {
+            margin-left:15px;
+        }
+    }
+     span {
+         display:block;
+         @media (min-width:$screen-sm-min){
+             display:inline;
+         }
+     }
+}
+
+.footer-content > a, 
+.footer-content > a:visited, 
+.dn-icon-mobilise-close .path2:before {
+    color: white;
+    transition:color .35s;
+}
+
+.footer-content > a:hover {
+    text-decoration:none;
+}
+
+
+.footer-content > a:hover .dn-icon-mobilise-close .path2:before {
+    color:$blue;
+}
+
+.footer-content .dn-icon-mobilise-close .path2:before {
+    font-size: 45px;
+    margin: 0;
+    transition:color .35s;
+}
+
+.footer-content > a {
+    display:none;
+    @media (min-width:$screen-sm-min){
+        position: absolute;
+        right: 5px;
+        top: 0px;
+        display:block;
+        cursor:pointer;
+    }
+}

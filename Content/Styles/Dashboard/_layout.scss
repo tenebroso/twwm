@@ -1,0 +1,22 @@
+﻿.dashboard-sidebar {
+    box-shadow:6px 0px 4px rgba(0, 0, 0, 0.05);
+    @media (min-width:$screen-sm-min) {
+        padding:50px 40px 80px 40px;
+        min-width:240px;
+    }
+}
+.dashboard-content {
+    @media (min-width:$screen-sm-min) {
+        padding:40px;
+        width:60%;
+    }
+}
+
+.dashboard-sidebarContent {
+    background:rgba(40,171,205,1);
+}
+
+.dashboard-header {
+    color:white;
+    margin:0 0 35px;
+}

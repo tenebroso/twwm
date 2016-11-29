@@ -1,0 +1,71 @@
+﻿<div id="wrapper">
+	<aside class="leftSidebar">
+
+		<div class="search-container">
+			<form class="search form-group" id="search">
+				<span class="search-submit"><i class="dn-icon-search2"></i></span>
+				<input type="text" class="search-input form-control" value="" placeholder="Search Blog" />
+			</form>
+			<div class="search-results">
+				5 results for <span class="search-term">Salvation</span>
+			</div>
+		</div>
+
+		<div class="popularSearches-container">
+			<h3 class="popularSearches-header">Popular Searches</h3>
+			<ul class="list-reset popularSearches">
+				<li class="popularSearches-item"><a href="#">Salvation</a></li>
+				<li class="popularSearches-item"><a href="#">Army</a></li>
+				<li class="popularSearches-item"><a href="#">Connecting</a></li>
+				<li class="popularSearches-item"><a href="#">Upcoming</a></li>
+				<li class="popularSearches-item"><a href="#">Evangelism</a></li>
+				<li class="popularSearches-item"><a href="#">Prayer</a></li>
+			</ul>
+		</div>
+	</aside>
+
+	<main class="content margin-top-lg margin-left-lg">
+		<img ng-src="/Content/Images/SA_Truck_1.jpg" class="event-featuredPhoto"/>
+		<div ng-repeat="event in vm.events">
+			<article class="event margin-bottom-lg" ng-hide="{{event.hideInMenu}}">
+				<div class="event-photo">
+					<img ng-src="{{event.thumbFacebookMetaTag}}" />
+				</div>
+				<div class="event-details">
+					<header>
+						<time class="event-time">{{event.publishDate | date:'MMMM'}} <span>{{event.publishDate | date:'d'}}</span></time>
+					</header>
+					<div class="event-content">
+						<a class="event-directions" href="{{event.address}}">
+							Directions
+						</a>
+						<h1 class="event-title">{{event.title}}</h1>
+						<div class="event-meta" ng-bind-html="event.synopsis | unsafe"></div>
+						<div class="event-body" ng-bind-html="event.content | unsafe"></div>
+					</div>
+				</div>
+			</article>
+		</div>
+	</main>
+
+	<aside class="rightSidebar featuredPost-container margin-left-lg">
+		<div class="dateTimeModule">
+			<a class="dateTimeModule-toggle">&nbsp;</a>
+			<div class="dateTimeModule-details" ng-controller="TimeCtrl">
+				<strong>
+					{{getDay()}}<br />
+					<span>{{getDate()}}</span>
+				</strong> {{ clock | date:'HH:mm:ss'}}
+			</div>
+		</div>
+		<h2 class="featuredPost-heading">Featured Events</h2>
+			<ul ng-repeat="event in vm.events" class="featuredPost-list">
+				<li class="featuredPost" ng-show="{{event.hideInMenu}}">
+					<a href="#" class="featuredPost-link">
+						<div class="featuredPost-date">{{event.publishDate | date:'MMMM'}} <span>{{event.publishDate | date:'dd'}}</span></div>
+						<samp class="featuredPost-title">{{event.title}}</samp>
+					</a>
+				</li>
+			</ul>
+	</aside>
+</div>

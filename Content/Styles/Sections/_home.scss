@@ -1,0 +1,380 @@
+﻿body.home {
+    position:relative;
+    padding:0;
+    transition:padding .35s;
+    .navbar-logo {
+        opacity:0;
+    }
+    @media (min-width:$screen-sm-min){
+    .navbar-logo {
+        opacity:1;
+    }
+    .header {
+            opacity:0;
+            transition:opacity .35s;
+            //top:100vh;
+            &.fixed {
+                opacity:1;
+                top:0;
+            }
+        }
+    }
+}
+
+.home-navigation {
+    display:none;
+    @media (min-width:$screen-sm-min){
+        display:block;
+    }
+    .navbar-icons {
+        display:none;
+    }
+}
+
+.home-logo {
+    max-width:140px !important;
+    margin:0 auto;
+    display:block;
+}
+
+.home-container {
+    color:white;
+    .nav {
+        float:none;
+        margin:0 auto;
+        font-size:22px;
+        li {
+            margin:0 1.5em;
+        }
+    }
+
+    .nav li a {
+        font-weight:500;
+    }
+    .nav-icon {
+        display:none;
+    }
+}
+
+.home-panel {
+    overflow:hidden;
+    background-color:white;
+    @media (min-width:$screen-sm-min){
+        height:100vh;
+        background-size:cover;
+        background-repeat:no-repeat;
+        background-position:center top;
+        position:relative;
+    }
+    
+}
+
+.home-panelOne {
+    overflow: hidden;
+    background-color: white;
+    padding: 11em 1em 0;
+    min-height: 100vh;
+    @media (min-width:$screen-sm-min){
+        padding:0;
+    }
+    .dn-icon-arrow-down {
+        display:none;
+
+        @media(min-width:$screen-sm-min){
+            display:block;
+            color:white;
+            border:1px solid rgba(255,255,255,1);
+
+            border-radius:50%;
+            padding: 1em;
+            margin:0 0 0 -.5em;
+        
+            position: absolute;
+            left: 50%;
+            bottom: 5em;
+        }
+    }
+
+    &:after {
+        content:"";
+        display:block;
+        width:100%;
+        height:100%;
+        left:0;
+        top:0;
+        /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,000000+100&0+0,1+100 */
+        background: -moz-linear-gradient(top,  rgba(255,255,255,0) 0%, rgba(0,0,0,1) 100%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(0,0,0,1) 100%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to bottom,  rgba(255,255,255,0) 0%,rgba(0,0,0,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
+    }
+
+    .home-container {
+        @media (min-width:$screen-sm-min){
+            top: calc(50% - 66px);
+            transform: translate(0,-50%);
+            -webkit-transform: translate(0,-50%);
+            -moz-transform: translate(0,-50%);
+        }
+        position: relative;
+        z-index:20;
+    }
+}
+
+.home-panelTwoSlider,
+.home-panelThreeSlider {
+    @media (min-width:$screen-sm-min){
+        position:absolute;
+        bottom:0;
+    }
+    line-height:1.4;
+    .slick-dots {
+        list-style-type:none;
+        margin:0;
+        padding:0;
+        text-align:center;
+        li {
+            display:inline-block;
+            line-height:0;
+            font-size:0;
+        }
+        li button {
+            border:none;
+            background:none;
+            &:focus {
+                outline:none;
+            }
+        }
+    }
+}
+
+.home-panelTwoSlider {
+    color: white;
+    padding:50px 25px;
+    @media (min-width:$screen-sm-min){
+         max-width:515px;
+        width: 80%;
+        height:80vh;
+        left: 60px;
+        background: rgba(255,255,255,.35);
+        backdrop-filter:blur(5px);
+        -webkit-backdrop-filter:blur(5px);
+        padding:100px 50px;
+    }
+   
+    h1,h2,h3,h4,h5,h6 {
+        font-family:$sans-serif-alt;
+        
+        font-weight:500;
+        line-height:1.1;
+        margin:0 0 20px;
+        @media (min-width:$screen-sm-min){
+            font-size:44px;
+        }
+    }
+
+    p {
+        font-size:13px;
+    }
+
+    .slick-dots {
+        margin: 3em 0 0;
+        li {
+            background: none;
+            padding: 5px;
+        }
+        li button {
+            width: 15px;
+            height: 15px;
+            background: white;
+            border-radius: 50%;
+            opacity: .5;
+            transition: opacity .35s;
+        }
+    }
+
+    .slick-dots li[aria-selected="true"] button, 
+    .slick-dots li button:hover {
+        opacity: 1;
+    }
+}
+
+.home-panelThreeSlider {
+    right: 0;
+    z-index: 100;
+    @media(min-width:$screen-sm-min){
+         width: 50%;
+    }
+   
+    height: 100%;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#0088a7+0,146dad+100 */
+    background: rgb(0,136,167); /* Old browsers */
+    background: -moz-linear-gradient(top,  rgba(0,136,167,1) 0%, rgba(20,109,173,1) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top,  rgba(0,136,167,1) 0%,rgba(20,109,173,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom,  rgba(0,136,167,1) 0%,rgba(20,109,173,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0088a7', endColorstr='#146dad',GradientType=0 ); /* IE6-9 */
+    @media (min-width:$screen-sm-min){
+        &:after {
+            content: "\e90e";
+            font-family: 'SA-UI-ELEMENTS' !important;
+            color: white;
+            position: absolute;
+            bottom: 2em;
+            left: 50%;
+            font-size: 44px;
+        }
+    }
+     
+    .slick-list {
+        @media (min-width:$screen-sm-min){
+            padding-top:149px;
+        }
+    }
+    .slick-slide {
+        padding:15px 25px 25px;
+
+        @media (min-width:$screen-sm-min){
+            padding: 80px 100px;
+        }
+        
+        color: white;
+    }
+    .slick-slider {
+        position: relative;
+        min-height:100vh;
+        @media (min-width:$screen-sm-min){
+            min-height:10vh;
+        }
+    }
+    .slick-dots {
+        @media (min-width:$screen-sm-min){
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: #00B1FF;
+        }
+
+        height: 49px;
+        width: 100%;
+        @media (min-width:$screen-sm-min){
+            height:149px;
+        }
+        li {
+            width: 25%;
+            margin: 0 -4px 0 0;
+        }
+        li button:after {
+            font-family: 'SA-UI-ELEMENTS' !important;
+            font-size: 22px;
+            color: white;
+            line-height: 49px;
+            background: none;
+            opacity:.35;
+            transition:opacity .35s;
+
+            @media(min-width:$screen-sm-min){
+                font-size:55px;
+                 line-height: 149px;
+            }
+        }
+        li button:hover:after, li.slick-active button:after {
+            opacity:1;
+        }
+        li:first-child button:after {
+            content: "\e9f9";
+        }
+        li:nth-child(2) button:after {
+            content: "\e9e9";
+        }
+        li:nth-child(3) button:after {
+            content: "\e9fc";
+        }
+        li:nth-child(4) button:after {
+            content: "\e902";
+        }
+    }
+
+    h2 {
+        @media (min-width:$screen-sm-min){
+            font-size:44px;
+        }
+        margin:0 0 .5em;
+    }
+}
+
+.home-panelFour {
+    .tv {
+        z-index: 1;
+        max-height:50vh;
+        overflow: hidden;
+
+        @media(min-width:$screen-sm-min){
+            position: absolute;
+            top: 0;
+            left: 0;
+            height:100%;
+            width:100%;
+            max-height:100vh;
+        }
+        
+  
+      iframe {
+            z-index: 1;
+            margin: auto;
+
+            opacity: 0;
+            transition: opacity .5s;
+            
+            float:left;
+
+            @media (max-with:$screen-sm-max){
+                height:auto;
+                width:100%;
+            }
+
+            @media (min-width:$screen-sm-min){
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                float:none;
+            }
+
+        &.active {
+            opacity: 1;
+        }
+      }
+    }
+
+    .home-container {
+        position: relative;
+        color:black;
+        padding: 25px;
+        @media (min-width:$screen-sm-min){
+            padding:0;
+            color:white;
+            top: 50%;
+            transform: translate(0,-50%);
+            max-width: 640px;
+        }
+        z-index: 50;
+        width: 95%;
+        margin: 0 auto;
+        h2 {
+            font-size: 22px;
+            @media(min-width:$screen-sm-min){
+                font-size:44px;
+            }
+            line-height: 1.2;
+            margin: 0 0 .5em;
+        }
+    }
+}
+
+@media (max-width:$screen-sm-max) {
+    .home-panelTwo,
+    .home-panelThree {
+        background:none !important;
+    }
+}

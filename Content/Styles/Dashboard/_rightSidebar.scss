@@ -1,0 +1,94 @@
+﻿.location-selector {
+    padding: 30px 15px 15px 15px;
+    color: white;
+    font-size: 16px;
+    line-height: 1.2;
+}
+
+.location-selector:after {
+    content: "";
+    display: block;
+    height: 2px;
+    background: rgba(255,255,255,.17);
+    margin: 11px 0 2px;
+}
+
+.location-filters {
+    background-color:rgba(64,105,128,1);
+    padding:5px 5px 5px 15px;
+    overflow:hidden;
+    h3 {
+        margin:0;
+        float:left;
+        font-size: 16px;
+        margin: 7px 0;
+        color: white;
+        font-family:$sans-serif-alt;
+    }
+    > a {
+        padding: 7px 11px;
+        font-size: 11px;
+        color: white;
+        transition: background-color .35s;
+        background-color: transparent;
+        float: right;
+        &:hover, &.active {
+            background-color:rgba(53,85,105,1);
+            text-decoration:none;
+        }
+    }
+}
+
+.dashboard-activities {
+    line-height: 1.4;
+    padding: 10px 0;
+}
+
+.dashboard-list {
+    counter-reset: profiles-counter;
+
+    .dashboard-profilePhoto {
+        border:none;
+        border-radius:0;
+        border-left:1px solid #5bb0db;
+        float:left;
+        padding: 10px;
+        width:55px;
+        height:55px;
+        overflow:hidden;
+        &:after {
+            display:none;
+        }
+    }
+}
+
+.dashboard-list li {
+    background: #3899ba;
+    color: white;
+    border-bottom: 1px solid #5bb0db;
+    font-size: 11px;
+    line-height: 1.4;
+    overflow: hidden;
+    padding: 0 10px 0 40px;
+    list-style-position: outside;
+    list-style-type: none;
+    position:relative;
+    
+    &:before {
+        content: counter(profiles-counter);
+        counter-increment: profiles-counter;
+        position: absolute;
+        left: 14px;
+        top: 11px;
+        font-size: 20px;
+        font-weight: 100;
+    }
+
+    strong {
+        font-size:13px;
+    }
+
+    &:last-child {
+        border-color:transparent;
+    }
+}
