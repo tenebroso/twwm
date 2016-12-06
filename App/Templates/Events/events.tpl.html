@@ -1,32 +1,15 @@
 ﻿<div id="wrapper">
 	<aside class="leftSidebar">
 
-		<div class="search-container">
-			<form class="search form-group" id="search">
-				<span class="search-submit"><i class="dn-icon-search2"></i></span>
-				<input type="text" class="search-input form-control" value="" placeholder="Search Blog" />
-			</form>
-			<div class="search-results">
-				5 results for <span class="search-term">Salvation</span>
-			</div>
-		</div>
-
-		<div class="popularSearches-container">
-			<h3 class="popularSearches-header">Popular Searches</h3>
-			<ul class="list-reset popularSearches">
-				<li class="popularSearches-item"><a href="#">Salvation</a></li>
-				<li class="popularSearches-item"><a href="#">Army</a></li>
-				<li class="popularSearches-item"><a href="#">Connecting</a></li>
-				<li class="popularSearches-item"><a href="#">Upcoming</a></li>
-				<li class="popularSearches-item"><a href="#">Evangelism</a></li>
-				<li class="popularSearches-item"><a href="#">Prayer</a></li>
-			</ul>
-		</div>
+		<search data-type="events"></search>
 	</aside>
 
 	<main class="content margin-top-lg margin-left-lg">
 		<img ng-src="/Content/Images/SA_Truck_1.jpg" class="event-featuredPhoto"/>
 		<div ng-repeat="event in vm.events">
+			<article ng-show="{{event.noResults}}" class="event margin-bottom-lg">
+				{{event.content}}
+			</article>
 			<article class="event margin-bottom-lg" ng-hide="{{event.hideInMenu}}">
 				<div class="event-photo">
 					<img ng-src="{{event.thumbFacebookMetaTag}}" />

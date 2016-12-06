@@ -30,7 +30,7 @@
 		};
 
 		$rootScope.getDate = function () {
-			return moment(new Date).format("ll");
+			return moment(new Date).format("D MMM YYYY");
 		};
 
 		return;

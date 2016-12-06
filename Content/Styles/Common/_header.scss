@@ -4,7 +4,7 @@
     left:0;
     width:100%;
     padding:1.2em 0;
-    background:rgba(#001424, .53);
+    background: rgba(0, 20, 36, 0.63);
     //background:$blueDark;
     z-index:1000;
     @media (min-width:$screen-sm-min) {
@@ -83,7 +83,7 @@
 .navbar-brand {
     text-align:center;
     @media (min-width:$screen-sm-min){
-        padding: 0 0 0 4.75em;
+        padding: 0 0 0 6.75em;
         text-align:left;
     }
     
@@ -172,9 +172,7 @@
     }
     &.active a {
         border-color: white;
-    }
-    &.active a {
-        font-weight:500;
+        font-weight: 600;
     }
 }
 
@@ -202,10 +200,11 @@
     position:relative;
     z-index:20;
     font-family:$sans-serif-alt;
-    font-weight:100;
+    font-weight:400;
     transition:border .35s;
     letter-spacing:1px;
     cursor:pointer;
+    font-size:14px;
 }
 
 .nav:not(.navbar-icons) a {

@@ -46,8 +46,6 @@
 			});
 		};
 
-		console.log(page);
-
 		$http({
 			method: 'GET',
 			url: '//www.salvationarmyusa.org/nhqblog/news/json/all/false/' + page + '/2',

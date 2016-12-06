@@ -53,15 +53,11 @@
 		</nav>
 	</header>
 
-	<div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
-
-
 	<div ui-view autoscroll="true"></div>
 
 	<twwm-footer></twwm-footer>
 
 	<script src="Content/Scripts/jquery-1.8.3.min.js"></script>
-	<script src="Content/Scripts/lazySizes.min.js"></script>
 	<script src="Content/Scripts/angular.js"></script>
 	<script src="Content/Scripts/angular-ui-router.js"></script>
 	<script src="Content/Scripts/angular-animate.js"></script>
@@ -74,10 +70,9 @@
 	<script src="Content/Scripts/angular-youtube-embed.js"></script>
 	<script src="App/app.js"></script>
 
-
-
 	<script src="App/Directives/Global/navigation.js"></script>
 	<script src="App/Directives/Global/footer.js"></script>
+	<script src="App/Directives/Global/search.js"></script>
 	<script src="App/Directives/Dashboard/navigation.js"></script>
 	<script src="App/Directives/Dashboard/leaderBoard.js"></script>
 	<script src="App/Directives/Home/homePanelOne.js"></script>
@@ -88,6 +83,7 @@
 	<script src="App/Services/auth.fct.js"></script>
 	<script src="App/Services/user.fct.js"></script>
 	<script src="App/Services/flash.fct.js"></script>
+	<script src="App/Services/page.fct.js"></script>
 
 	<!--<script src="App/Controllers/Account/account.ctrl.js"></script>
 	<script src="App/Controllers/Account/login.ctrl.js"></script>-->

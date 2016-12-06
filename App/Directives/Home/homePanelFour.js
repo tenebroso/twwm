@@ -3,7 +3,7 @@
 
 	angular
 		.module('homePanelFour', ['youtube-embed'])
-		.directive('homePanelFour', function ($http) {
+		.directive('twwmHomePanelFour', function () {
 			return {
 				restrict: "E",
 				templateUrl: "App/Templates/Home/homePanelFour.tpl.html",
@@ -17,41 +17,33 @@
 						loop:1
 					};
 
-					$http({
-						method: "GET",
-						url: '//migration.salvationarmy.org/mobilize_endpoint/homePanelFour/json'
-					}).success(function (data) {
-						scope.panelFour = data;
+					scope.$on('youtube.player.ready', function ($event, player) {
+						player.mute();
+					});
 
-						scope.$on('youtube.player.ready', function ($event, player) {
-							player.mute();
-						});
-						
-						scope.$on('youtube.player.ready', function ($event, player) {
+					scope.$on('youtube.player.ready', function ($event, player) {
 
-							player.mute();
+						player.mute();
 
-							if ($(window).width() < 767) {
-								$('.tv iframe').addClass('active');
+						if ($(window).width() < 767) {
+							$('.tv iframe').addClass('active');
+						} else {
+							var w = $(window).width() + 200;
+							var h = $(window).height() + 200;
+							$('.tv iframe').addClass('active');
+							if (w / h > 16 / 9) {
+								player.setSize(w, w / 16 * 9);
+								$('.tv iframe').css({ 'left': '0px' });
 							} else {
-								var w = $(window).width() + 200;
-								var h = $(window).height() + 200;
-								$('.tv iframe').addClass('active');
-								if (w / h > 16 / 9) {
-									player.setSize(w, w / 16 * 9);
-									$('.tv iframe').css({ 'left': '0px' });
-								} else {
-									player.setSize(h / 9 * 16, h);
-									$('.tv iframe').css({ 'left': -($('.tv iframe').outerWidth() - w) / 2 });
-								}
+								player.setSize(h / 9 * 16, h);
+								$('.tv iframe').css({ 'left': -($('.tv iframe').outerWidth() - w) / 2 });
 							}
-							
-						});
+						}
 
-						scope.$on('youtube.player.ended', function ($event, player) {
-							player.playVideo();
-						});
+					});
 
+					scope.$on('youtube.player.ended', function ($event, player) {
+						player.playVideo();
 					});
 				}
 			};

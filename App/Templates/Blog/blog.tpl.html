@@ -1,42 +1,24 @@
 ﻿<div id="wrapper">
 	<aside class="leftSidebar">
 
-		<div class="search-container">
-			<form class="search form-group" id="search">
-				<span class="search-submit"><i class="dn-icon-search2"></i></span>
-				<input type="text" class="search-input form-control" value="" placeholder="Search Blog" />
-			</form>
-			<div class="search-results">
-				5 results for <span class="search-term">Salvation</span>
-			</div>
-		</div>
+		<search data-type="blog"></search>
 
-		<div class="popularSearches-container">
-			<h3 class="popularSearches-header">Popular Searches</h3>
-			<ul class="list-reset popularSearches">
-				<li class="popularSearches-item"><a href="#">Salvation</a></li>
-				<li class="popularSearches-item"><a href="#">Army</a></li>
-				<li class="popularSearches-item"><a href="#">Connecting</a></li>
-				<li class="popularSearches-item"><a href="#">Upcoming</a></li>
-				<li class="popularSearches-item"><a href="#">Evangelism</a></li>
-				<li class="popularSearches-item"><a href="#">Prayer</a></li>
-			</ul>
-		</div>
 	</aside>
 
 	<main class="content margin-top-lg margin-left-lg">
-		<div scroll="blog.loadMore()">
 			<div ng-repeat="post in vm.posts">
-				<article class="blogPost margin-bottom-lg" ng-show="{{post.hideInMenu}}">
+				<article ng-show="{{post.noResults}}" class="blogPost margin-bottom-lg">
+					{{post.content}}
+				</article>
+				<article class="blogPost margin-bottom-lg" ng-show="{{post.hideInMenu}}" ng-hide="{{post.noResults}}">
 					<header>
 						<h1 class="blogPost-title">{{post.title}}</h1>
 						<time class="blogPost-meta"><i class="dn-icon-calendar"></i> {{post.publishDate | date:'longDate'}} <span ng-hide="{{post.hideAuthor}}">by <span>{{post.author}}</span></span></time>
 					</header>
 					<div class="blogPost-content" ng-bind-html="post.content | unsafe"></div>
-					<p class="blogPost-tags u-hidden"><strong>tags:</strong> <a href="#">tagName</a></p>
+					<!--<p class="blogPost-tags u-hidden"><strong>tags:</strong> <a href="#">tagName</a></p>-->
 				</article>
 			</div>
-		</div>
 	</main>
 
 	<aside class="rightSidebar featuredPost-container margin-top-lg margin-left-lg">

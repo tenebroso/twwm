@@ -20,7 +20,7 @@ label {
     -webkit-box-shadow:0 0 0;
     -moz-box-shadow:0 0 0;
     border-radius:0;
-    font-size:14px;
+    font-size:13px;
     font-weight:bold;
     &:focus {
         box-shadow:0 0 0;
@@ -48,8 +48,8 @@ label {
         content:"\e9f4";
         line-height: 1;
         font-size:16px;
-        color:$greyDark;
         transition:color .35s;
+        color: rgba(42, 42, 42, 0.60);
     }
     &:hover {
         &:before {

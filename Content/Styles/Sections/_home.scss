@@ -16,6 +16,7 @@
             &.fixed {
                 opacity:1;
                 top:0;
+                height: 65px;
             }
         }
     }
@@ -49,7 +50,8 @@
     }
 
     .nav li a {
-        font-weight:500;
+        font-weight: 500;
+        font-size: 24px;
     }
     .nav-icon {
         display:none;
@@ -83,15 +85,19 @@
         @media(min-width:$screen-sm-min){
             display:block;
             color:white;
-            border:1px solid rgba(255,255,255,1);
+            border: 2px solid #ffffff;
 
             border-radius:50%;
-            padding: 1em;
+            padding: 26px;
             margin:0 0 0 -.5em;
         
             position: absolute;
-            left: 50%;
-            bottom: 5em;
+            left: calc(50% - 40px);
+            bottom: 4em;
+            text-align: center;
+            font-size: 30px;
+            font-weight: 100;
+
         }
     }
 
@@ -119,6 +125,10 @@
         position: relative;
         z-index:20;
     }
+
+    .home-container h1 {
+        margin-bottom: 1.5em;
+    }
 }
 
 .home-panelTwoSlider,
@@ -127,7 +137,7 @@
         position:absolute;
         bottom:0;
     }
-    line-height:1.4;
+    line-height:1.6;
     .slick-dots {
         list-style-type:none;
         margin:0;
@@ -152,22 +162,21 @@
     color: white;
     padding:50px 25px;
     @media (min-width:$screen-sm-min){
-         max-width:515px;
+        max-width: 535px;
         width: 80%;
         height:80vh;
         left: 60px;
         background: rgba(255,255,255,.35);
         backdrop-filter:blur(5px);
         -webkit-backdrop-filter:blur(5px);
-        padding:100px 50px;
+        padding: 90px 60px;
     }
    
     h1,h2,h3,h4,h5,h6 {
         font-family:$sans-serif-alt;
-        
-        font-weight:500;
-        line-height:1.1;
-        margin:0 0 20px;
+        font-weight: 400;				
+        line-height: 1.2;
+        margin: 0 0 28px;
         @media (min-width:$screen-sm-min){
             font-size:44px;
         }
@@ -178,10 +187,10 @@
     }
 
     .slick-dots {
-        margin: 3em 0 0;
+        margin: 3.4em 0 0;
         li {
             background: none;
-            padding: 5px;
+            padding: 5px 12px;
         }
         li button {
             width: 15px;
@@ -298,7 +307,7 @@
         @media (min-width:$screen-sm-min){
             font-size:44px;
         }
-        margin:0 0 .5em;
+        margin: 0 0 28px;
     }
 }
 
@@ -354,7 +363,7 @@
         @media (min-width:$screen-sm-min){
             padding:0;
             color:white;
-            top: 50%;
+            top: 45%;
             transform: translate(0,-50%);
             max-width: 640px;
         }

@@ -17,7 +17,7 @@
 		$http({
 			method: "GET",
 			url: '//migration.salvationarmy.org/mobilize_endpoint/' + $state.params.pageName + '/json'
-		}).success(function (data) {
+		}).then(function (data) {
 			vm.page = data;
 		});
 
