@@ -10,7 +10,7 @@
 				<article ng-show="{{post.noResults}}" class="blogPost margin-bottom-lg">
 					{{post.content}}
 				</article>
-				<article class="blogPost margin-bottom-lg" ng-show="{{post.hideInMenu}}" ng-hide="{{post.noResults}}">
+				<article class="blogPost margin-bottom-lg" ng-hide="{{post.hideInMenu}}">
 					<header>
 						<h1 class="blogPost-title">{{post.title}}</h1>
 						<time class="blogPost-meta"><i class="dn-icon-calendar"></i> {{post.publishDate | date:'longDate'}} <span ng-hide="{{post.hideAuthor}}">by <span>{{post.author}}</span></span></time>

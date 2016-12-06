@@ -2264,7 +2264,8 @@ b {
   bottom: 0;
   padding: 1em 0;
   overflow: hidden;
-  z-index: 250; }
+  z-index: 250;
+  opacity: 0; }
   .footer:after {
     background: rgba(255, 255, 255, 0.5);
     filter: blur(2px);

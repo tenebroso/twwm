@@ -5,13 +5,13 @@
         .module('app')
         .controller('EventsController', EventsController);
 
-	EventsController.$inject = ['$rootScope','$http', 'page'];
-	function EventsController($rootScope, $http, page) {
+	EventsController.$inject = ['$rootScope','$http'];
+	function EventsController($rootScope, $http) {
 		var vm = this;
 
 		$http({
 			method: 'GET',
-			url: '//migration.salvationarmy.org/mobilize_endpoint/news/json/all/false/' + page + '/999?tag=events',
+			url: '//migration.salvationarmy.org/mobilize_endpoint/news/json/all/false/0/999?tag=events',
 		})
 		.success(function (data, status) {
 			vm.events = data.news;

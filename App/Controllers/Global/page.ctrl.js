@@ -19,7 +19,6 @@
 			url: '//migration.salvationarmy.org/mobilize_endpoint/' + $state.params.pageName + '/json'
 		}).then(function (response) {
 			vm.page = response.data;
-			console.log(vm.page);
 		});
 
 	}
