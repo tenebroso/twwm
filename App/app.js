@@ -2,7 +2,7 @@
 	'use strict';
 
 	angular
-        .module('app', ['ui.router', 'ngCookies', 'ngAnimate', 'angularMoment', 'home'])
+        .module('app', ['ui.router', 'ngAnimate', 'angularMoment', 'home'])
         .config(config)
         .run(run)
 		.filter('unsafe', function ($sce) {
@@ -90,38 +90,31 @@
 			});
 	}
 
-	run.$inject = ['$rootScope', '$location', '$cookieStore', '$http'];
-	function run($rootScope, $location, $cookieStore, $http) {
-		// keep user logged in after page refresh
-		$rootScope.globals = $cookieStore.get('globals') || {};
-		if ($rootScope.globals.currentUser) {
-			$http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.authdata; // jshint ignore:line
-		}
-
-		$rootScope.$on('$routeChangeSuccess', function (ev, data) {
-			if (data.$route && data.$route.controller)
-				$rootScope.controller = data.$route.controller;
-		})
-
-		$rootScope.$on('$locationChangeStart', function (event, next, current) {
-			// redirect to login page if not logged in and trying to access a restricted page
-			var restrictedPage = $.inArray($location.path(), ['/login', '/register']) === -1;
-			var loggedIn = $rootScope.globals.currentUser;
-			if (restrictedPage && !loggedIn) {
-				//$location.path('/login');
-			}
-		});
-
+	run.$inject = ['$rootScope', '$state', '$timeout'];
+	function run($rootScope, $state, $timeout) {
+		
 		$rootScope.toggleMobileNav = function (el) {
-			console.log(el);
 			var nav = angular.element(document.querySelector('#nav-primary'));
 			if (nav.hasClass('opened')) {
 				nav.removeClass('opened');
-			} else {
+			} else if($(window).width() < 991) {
 				nav.addClass('opened');
-			}
-			
+			}	
 		}
+
+		$rootScope.$on('$stateChangeStart', function () {
+			console.log($state);
+			angular.element('body').addClass('loading');
+		});
+
+		$rootScope.$on('$stateChangeSuccess', function () {
+			if ($state.current.name === 'events' || $state.current.name === 'blog')
+				$rootScope.$wrapperClass = 'wrapper';
+			else
+				$rootScope.$wrapperClass = '';
+
+			document.body.scrollTop = document.documentElement.scrollTop = 0;
+		});
 	}
 
 })();

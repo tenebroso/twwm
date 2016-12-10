@@ -1,36 +1,20 @@
-﻿<div id="wrapper">
-	<aside class="leftSidebar">
+﻿
+	<search data-type="blog" class="blogSearch"></search>
 
-		<search data-type="blog"></search>
-
-	</aside>
-
-	<main class="content margin-top-lg margin-left-lg">
-			<div ng-repeat="post in vm.posts">
-				<article ng-show="{{post.noResults}}" class="blogPost margin-bottom-lg">
-					{{post.content}}
-				</article>
-				<article class="blogPost margin-bottom-lg" ng-hide="{{post.hideInMenu}}">
-					<header>
-						<h1 class="blogPost-title">{{post.title}}</h1>
-						<time class="blogPost-meta"><i class="dn-icon-calendar"></i> {{post.publishDate | date:'longDate'}} <span ng-hide="{{post.hideAuthor}}">by <span>{{post.author}}</span></span></time>
-					</header>
-					<div class="blogPost-content" ng-bind-html="post.content | unsafe"></div>
-					<!--<p class="blogPost-tags u-hidden"><strong>tags:</strong> <a href="#">tagName</a></p>-->
-				</article>
-			</div>
+	<main class="content">
+		<div ng-repeat="post in vm.posts" ng-show="{{post.published}}">
+			<article ng-show="{{post.noResults}}" class="blogPost margin-bottom-lg">
+				{{post.content}}
+			</article>
+			<article class="blogPost margin-bottom-lg" ng-hide="{{post.hideInMenu}}">
+				<header>
+					<h1 class="blogPost-title">{{post.title}}</h1>
+					<time class="blogPost-meta"><i class="dn-icon-calendar"></i> {{post.publishDate | date:'longDate'}} <span ng-hide="{{post.hideAuthor}}">by <span>{{post.author}}</span></span></time>
+				</header>
+				<div class="blogPost-content" ng-bind-html="post.content | unsafe"></div>
+				<!--<p class="blogPost-tags u-hidden"><strong>tags:</strong> <a href="#">tagName</a></p>-->
+			</article>
+		</div>
 	</main>
 
-	<aside class="rightSidebar featuredPost-container margin-top-lg margin-left-lg">
-		<h2 class="featuredPost-heading">Featured Posts</h2>
-		<ul class="featuredPost-list" ng-repeat="post in vm.posts">
-			<li class="featuredPost" ng-show="{{post.hideInMenu}}">
-				<a href="#" class="featuredPost-link">
-					<div class="featuredPost-date">{{post.publishDate | date:'MMMM'}} 
-					<span>{{post.publishDate | date:'dd'}}</span></div>
-					<samp class="featuredPost-title">{{post.title | words:8}}</samp>
-				</a>
-			</li>
-		</ul>
-	</aside>
-</div>
+	<featured-posts class="blogFeatured" data-category="blog"></featured-posts>

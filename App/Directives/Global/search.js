@@ -9,55 +9,98 @@
 				templateUrl: "App/Templates/Global/search.tpl.html",
 				link: function (scope, el, attr) {
 
-					var resultLabel = "results";
+					var resultLabel;
+					var flattenObj = function (object, target, prefix) {
+						target = target || {};
+						prefix = prefix || '';
+						angular.forEach(object, function (value, key) {
+							if (angular.isObject(value)) {
+								flattenObj(value, target, key);
+							} else {
+								target[key] = value;
+							}
+						});
+						return target;
+					};
+
+					var noResults = function (response) {
+						response.data.objects.push({
+							noResults: true,
+							content: 'Sorry, there were no results!',
+							synopsis: 'Sorry, there were no results!',
+							hideInMenu: true,
+							published:true
+						});
+						scope.vm.posts = response.data.objects;
+						angular.element('body').removeClass('loading');
+				}
 
 					if(attr.type == "events")
 						scope.placeText = "Search Events";
 					else
 						scope.placeText = "Search Blog";
 
+					scope.resetSearch = function () {
+						scope.vm.getPosts();
+						scope.vm.hasResults = false;
+						scope.vm.result = '';
+						scope.vm.hasTerm = false;
+						scope.searchTerm = '';
+					};
+
 					scope.submitSearch = function (term) {
 
-						if (term)
-							scope.searchTerm = term;
+						if (!term){
+							scope.vm.result = 'Please enter a term';
+							scope.vm.getPosts();
+							return;
+						}
+
+						scope.vm.hasTerm = true;
 
 						$http({
 							method: 'GET',
-							url: '//mdqa.salvationarmy.org/mobilize_endpoint/search/news?query=' + scope.searchTerm + '&tags=' + attr.type
+							url: '//migration.salvationarmy.org/mobilize_endpoint/search/news?query=' + term + '&tags=' + attr.type
 						}).then(function successCallback(response) {
-							console.log(response);
 
 							if (response.data.totalCount == 0) {
-								response.data.objects.push({
-									noResults:true,
-									content: 'Sorry, there were no results!',
-									synopsis: 'Sorry, there were no results!',
-									hideInMenu: true
-								});
+
+								noResults(response);
+
 							} else {
+								
 								$.each(response.data.objects, function (i, v) {
-									response.data.objects[i].content = response.data.objects[i].document.content;
-									response.data.objects[i].synopsis = response.data.objects[i].document.synopsis;
-									response.data.objects[i].author = response.data.objects[i].document.author;
-									response.data.objects[i].thumbFacebookMetaTag = response.data.objects[i].document.thumbFacebookMetaTag;
+									response.data.objects[i] = flattenObj(response.data.objects[i]);
+									var postPublishDate = moment(v.publishDate);
+									if (moment(new Date).isBefore(postPublishDate))
+										response.data.objects[i].published = false;
+									else
+										response.data.objects[i].published = true;
 								});
+
+
 
 							}
 
-								if (attr.type == "events")
-									scope.vm.events = response.data.objects;
-								else
-									scope.vm.posts = response.data.objects;
 
-								if (response.data.totalCount == 1) {
+								scope.vm.posts = response.data.objects;
+
+								if (response.data.totalCount == 1)
 									resultLabel = 'result';
-								}
+								else
+									resultLabel = "results"
 
-								scope.result = response.data.totalCount + ' ' + resultLabel + ' for <span class="search-term">' + scope.searchTerm + '</span>';
-							
+								scope.vm.result = response.data.totalCount + ' ' + resultLabel + ' for <span class="search-term">' + term + '</span>';
+								scope.vm.hasResults = true;
 
-						}, function errorCallback(response) {});
+								angular.element('body').removeClass('loading');
+
+						}, function errorCallback(response) {
+							noResults(response);
+						});
 					}
+
+					return;
 
 				}
 			};

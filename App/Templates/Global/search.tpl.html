@@ -1,19 +1,22 @@
-﻿<div class="search-container">
-	<form class="search form-group" id="search" ng-submit="submitSearch()">
-		<span class="search-submit"><i class="dn-icon-search2"></i></span>
-		<input type="text" class="search-input form-control" ng-model="searchTerm" placeholder="{{placeText}}" />
-	</form>
-	<div class="search-results" ng-bind-html="result | unsafe"></div>
-</div>
+﻿<aside class="leftSidebar">
+	<div class="search-container">
+		<form class="search form-group" id="search" ng-submit="submitSearch(searchTerm)">
+			<span class="search-submit"><i class="dn-icon-search2"></i></span>
+			<input type="text" class="search-input form-control" ng-model="searchTerm" placeholder="{{placeText}}" />
+			<i class="search-clear dn-icon-mobilise-close" ng-click="resetSearch()" ng-show="vm.hasTerm"><span class="path1"></span><span class="path2"></span></i>
+		</form>
+		<div class="search-results" ng-bind-html="vm.result | unsafe"></div>
+	</div>
 
-<div class="popularSearches-container">
-	<h3 class="popularSearches-header">Popular Searches</h3>
-	<ul class="list-reset popularSearches">
-		<li class="popularSearches-item"><a ng-click="submitSearch('Salvation')">Salvation</a></li>
-		<li class="popularSearches-item"><a ng-click="submitSearch('Army');">Army</a></li>
-		<li class="popularSearches-item"><a ng-click="submitSearch('Connecting');">Connecting</a></li>
-		<li class="popularSearches-item"><a ng-click="submitSearch('Upcoming');">Upcoming</a></li>
-		<li class="popularSearches-item"><a ng-click="submitSearch('Evangelism');">Evangelism</a></li>
-		<li class="popularSearches-item"><a ng-click="submitSearch('Prayer');">Prayer</a></li>
-	</ul>
-</div>
+	<div class="popularSearches-container">
+		<h3 class="popularSearches-header">Popular Searches</h3>
+		<ul class="list-reset popularSearches">
+			<li class="popularSearches-item"><a ng-click="submitSearch('Salvation')">Salvation</a></li>
+			<li class="popularSearches-item"><a ng-click="submitSearch('Army');">Army</a></li>
+			<li class="popularSearches-item"><a ng-click="submitSearch('Connecting');">Connecting</a></li>
+			<li class="popularSearches-item"><a ng-click="submitSearch('Upcoming');">Upcoming</a></li>
+			<li class="popularSearches-item"><a ng-click="submitSearch('Evangelism');">Evangelism</a></li>
+			<li class="popularSearches-item"><a ng-click="submitSearch('Prayer');">Prayer</a></li>
+		</ul>
+	</div>
+</aside>

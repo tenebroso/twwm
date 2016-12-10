@@ -18,7 +18,8 @@
     display: block;
 }
 
-.u-hidden {
+.u-hidden,
+[ng-hide=true] {
     display:none !important;
 }
 

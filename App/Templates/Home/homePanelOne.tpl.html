@@ -1,4 +1,4 @@
-﻿<div class="home-panelOne home-panel" ng-style="{'background-image': 'url(' + panelOne.thumbFacebookMetaTag + ')'}">
+﻿<div class="home-panelOne home-panel" ng-style="{'background-image': (panelOne.thumbFacebookMetaTag === null ||  panelOne.customHeadContent !== '') ? '' : 'url(' + panelOne.thumbFacebookMetaTag + ')'}">
 	<div class="row home-container">
 		<div class="u-textCenter col-sm-12">
 			<img ng-src="../../../Content/Images/shield.png" class="home-logo" />
@@ -7,5 +7,10 @@
 		</div>
 	</div>
 
-	<i class="dn-icon-arrow-down"></i>
+
+	<div class="tv" ng-hide="panelOne.customHeadContent === ''">
+		<youtube-video video-id="panelOne.customHeadContent" player-vars="playerVars"></youtube-video>
+	</div>
+
+	<a class="home-scrollTrigger" ng-click="vm.gotoAnchor('homePanelTwo')"><i class="dn-icon-arrow-down"></i></a>
 </div>

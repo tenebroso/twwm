@@ -18,23 +18,36 @@
 			};
 		});
 
-	BlogController.$inject = ['$rootScope', '$http'];
-	function BlogController($rootScope, $http) {
+	BlogController.$inject = ['$rootScope', '$http', 'ReadService'];
+	function BlogController($rootScope, $http, ReadService) {
 		var vm = this;
+		var todaysDate = moment(new Date).format("LL");
 
-		$http({
-			method: 'GET',
-			url: '//migration.salvationarmy.org/mobilize_endpoint/news/json/all/false/0/999?tag=blog',
-		})
-		.success(function (data, status) {
-			vm.posts = data.news;
-			$rootScope.posts = vm.posts;
-		})
-		.error(function (data, status) {
-			
-		});
+		vm.getPosts = function () {
 
-		return;
+			ReadService('blog')
+				.then(function successCallback(response) {
+
+					$.each(response.data.news, function (i, v) {
+						var postPublishDate = moment(v.publishDate).format("LL");
+						if (moment(todaysDate).isBefore(postPublishDate)) {
+							response.data.news[i].published = false;
+						}
+					});
+
+					vm.posts = response.data.news;
+					$rootScope.featuredPosts = vm.posts;
+					angular.element('body').removeClass('loading');
+
+				}, function errorCallback(response) {
+					// error handling
+				});
+
+		};
+		
+		vm.getPosts();
+
+		return vm;
 
 	}
 

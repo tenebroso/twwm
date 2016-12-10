@@ -1,17 +1,4 @@
-﻿.content + .rightSidebar {
-   display:none;
-    @media (min-width:$screen-sm-min) {
-        display: inline-block;
-        vertical-align: top;
-        max-width: 19.75%;
-        position:fixed;
-        overflow-y:hidden;
-        background: rgba(255,255,255,0.20);
-        min-height:99vh;
-    }
-}
-
-.featuredPost-container {
+﻿.featuredPost-container {
     background:$blue;
 }
 

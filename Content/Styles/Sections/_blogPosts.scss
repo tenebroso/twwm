@@ -1,22 +1,15 @@
-﻿.leftSidebar + .content {
-    
-    @media (min-width:$screen-sm-min) {
-        display:inline-block;
-        vertical-align: top;
-        width:59%;
-        max-width:665px;
-    }
-}
-
-.blogPost {
+﻿.blogPost {
     background:white;
     padding: 3.5em 2.2em 4.5em;
     position:relative;
     box-shadow:0 0 5px rgba(0,0,0,.25);
-    header {
-        margin: 0 0 30px;
+   
+    @media (min-width:$screen-sm-min){
+         header {
+            margin: 0 0 30px;
+        }
     }
-    @media (max-width:$screen-sm-max) {
+    @media (max-width:$screen-xs-max) {
         img {
             margin:1em auto !important;
             display:block !important;

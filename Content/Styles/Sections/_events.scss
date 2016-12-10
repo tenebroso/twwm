@@ -26,7 +26,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ededed', end
     margin: 0 1.6em 0 0;
     overflow:hidden;
     float:left;
-    padding-top:34px;
+    //padding-top:34px;
     @media (min-width:$screen-sm-min) {
         width:260px;
         float:none;
@@ -44,7 +44,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ededed', end
    
     @media (min-width:$screen-sm-min) {
         width:calc(100% - 280px);
-        padding: 2em 0 0;
+        //padding: 2em 0 0;
         display:flex;
     }
 }
@@ -83,17 +83,17 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ededed', end
 }
 
 .event-body {
-    height:0;
+    //height:0;
     overflow:hidden;
     @media (min-width:$screen-sm-min) {
-        height:auto;
+        //height:auto;
         overflow:visible;
     }
 }
 
 .event-time {
     
-    display: block;
+    display:none;
     text-align: center;
     padding: 10px 14px;
     font-size: 12px;
@@ -111,6 +111,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ededed', end
     }
 
     @media (min-width:$screen-sm-min) {
+        display: block;
         background:transparent;
         color:inherit;
         position:relative;

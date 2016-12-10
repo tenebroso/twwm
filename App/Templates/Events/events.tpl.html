@@ -1,16 +1,12 @@
-﻿<div id="wrapper">
-	<aside class="leftSidebar">
+﻿	<search data-type="events" class="eventsSearch"></search>
 
-		<search data-type="events"></search>
-	</aside>
-
-	<main class="content margin-top-lg margin-left-lg">
-		<img ng-src="/Content/Images/SA_Truck_1.jpg" class="event-featuredPhoto"/>
-		<div ng-repeat="event in vm.events">
+	<main class="content">
+		<img ng-src="/Content/Images/SA_Truck_1.jpg" class="event-featuredPhoto" />
+		<div ng-repeat="event in vm.posts">
 			<article ng-show="{{event.noResults}}" class="event margin-bottom-lg">
 				{{event.content}}
 			</article>
-			<article class="event margin-bottom-lg" ng-hide="{{event.hideInMenu}}">
+			<article class="event" ng-hide="{{event.hideInMenu}}" id="anchor{{'event.id'}}">
 				<div class="event-photo">
 					<img ng-src="{{event.thumbFacebookMetaTag}}" />
 				</div>
@@ -31,24 +27,4 @@
 		</div>
 	</main>
 
-	<aside class="rightSidebar featuredPost-container margin-left-lg">
-		<div class="dateTimeModule">
-			<a class="dateTimeModule-toggle">&nbsp;</a>
-			<div class="dateTimeModule-details" ng-controller="TimeCtrl">
-				<strong>
-					{{getDay()}}<br />
-					<span>{{getDate()}}</span>
-				</strong> {{ clock | date:'HH:mm:ss'}}
-			</div>
-		</div>
-		<h2 class="featuredPost-heading">Featured Events</h2>
-			<ul ng-repeat="event in vm.events" class="featuredPost-list">
-				<li class="featuredPost" ng-show="{{event.hideInMenu}}">
-					<a href="#" class="featuredPost-link">
-						<div class="featuredPost-date">{{event.publishDate | date:'MMMM'}} <span>{{event.publishDate | date:'dd'}}</span></div>
-						<samp class="featuredPost-title">{{event.title}}</samp>
-					</a>
-				</li>
-			</ul>
-	</aside>
-</div>
+	<featured-posts class="eventsFeatured" data-category="events"></featured-posts>

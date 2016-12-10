@@ -9,7 +9,7 @@
 	function PageFactory($http) {
 		return function (slug) {
 			return $http({
-				url: '//mdqa.salvationarmy.org/mobilize_endpoint/' + slug + '/json',
+				url: '//migration.salvationarmy.org/mobilize_endpoint/' + slug + '/json',
 				method: 'GET'
 			});
 		};

@@ -5,32 +5,22 @@
         .module('home', ['slickCarousel', 'homePanelOne', 'homePanelTwo', 'homePanelThree', 'homePanelFour'])
         .controller('HomeController', HomeController);
 
-	HomeController.$inject = ['$rootScope', '$http', '$cookies', '$q', 'Page'];
-	function HomeController($rootScope, $http, $cookies, $q, Page) {
+	HomeController.$inject = ['$rootScope', '$http', '$q', 'Page', '$anchorScroll', '$location'];
+	function HomeController($rootScope, $http, $q, Page, $anchorScroll, $location) {
 		var vm = this;
 
 		vm.title = 'The Whole World Mobilising';
 
-		if ($cookies.get('country') == undefined) {
-			$http({
-				method: "GET",
-				url: '//freegeoip.net/json/'
-			}).success(function (data) {
-				if (data.country_code && data.country_code == 'US') {
-					$cookies.put('country', 'US')
-					//vm.title = 'The Whole World Mobilizing';
-				}
-			});
-		} else {
-			if ($cookies.get('country') == 'US') {
-				vm.title = 'The Whole World Mobilizing';
-			} else {
-				return;
+		vm.gotoAnchor = function (x) {
+			var newHash = 'anchor' + x;
+			if ($location.hash() !== newHash) {
+				// set the $location.hash to `newHash` and
+				// $anchorScroll will automatically scroll to it
+				$location.hash('anchor' + x);
+				var header = angular.element('header');
+				header.addClass('fixed');
 			}
-		}
-
-
-		$rootScope.scrollTo = function (target) { };
+		};
 
 
 		vm.getHome = function () {
@@ -45,7 +35,7 @@
 					$rootScope.panelThree = responses[2].data;
 					$rootScope.panelFour = responses[3].data;
 					$rootScope.slidesLoaded = true;
-					console.log($rootScope);
+					angular.element('body').removeClass('loading');
 					return $rootScope;
 			});
 		};

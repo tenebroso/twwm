@@ -1,4 +1,6 @@
-﻿// Core variables and mixins
+﻿@import "Common/variables.scss";
+
+// Core variables and mixins
 @import "Vendor/bootstrap/variables";
 @import "Vendor/bootstrap/mixins";
 @import "Sections/profile";
@@ -14,7 +16,7 @@
 
 @import "Vendor/bootstrap/forms";
 
-@import "Common/variables.scss";
+
 @import "Common/utilities.scss";
 @import "Common/globals.scss";
 @import "Common/typography.scss";
@@ -23,11 +25,11 @@
 @import "Common/footer.scss";
 @import "Common/btn.scss";
 @import "Common/inputs.scss";
-@import "Common/margin.scss";
-@import "Common/padding.scss";
+//@import "Common/margin.scss";
+//@import "Common/padding.scss";
 
-@import "Sections/leftSidebar";
-@import "Sections/rightSidebar";
+@import "Sections/search";
+@import "Sections/featuredPosts";
 @import "Sections/blogPosts";
 @import "Sections/events";
 @import "Sections/dateTimeModule";

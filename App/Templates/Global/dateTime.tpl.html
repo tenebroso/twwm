@@ -1,0 +1,9 @@
+﻿<div class="dateTimeModule">
+	<a class="dateTimeModule-toggle">&nbsp;</a>
+	<div class="dateTimeModule-details" ng-controller="TimeCtrl">
+		<strong>
+			{{getDay()}}<br />
+			<span>{{getDate()}}</span>
+		</strong> {{ clock | date:'HH:mm:ss'}}
+	</div>
+</div>
