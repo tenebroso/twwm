@@ -22,7 +22,7 @@
     -moz-transition:all 0s;
     position:absolute;
     left:0;
-    bottom:-3.9em;
+    top:50%;
     width:100%;
     min-height:65%;
     overflow:hidden;
@@ -34,7 +34,7 @@
     padding-left:1em;
     padding-right:1em;
     @media (min-width:$screen-sm-min){
-        bottom:-4.4em;
+        //bottom:-4.4em;
         padding-left:0;
         padding-right:0;
     }

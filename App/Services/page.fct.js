@@ -5,11 +5,11 @@
         .module('app')
         .factory('Page', PageFactory);
 
-	PageFactory.$inject = ['$http'];
-	function PageFactory($http) {
+	PageFactory.$inject = ['$http', 'twwmConfig'];
+	function PageFactory($http, twwmConfig) {
 		return function (slug) {
 			return $http({
-				url: '//migration.salvationarmy.org/mobilize_endpoint/' + slug + '/json',
+				url: twwmConfig.publicEndpoint + '/' + slug + '/json',
 				method: 'GET'
 			});
 		};

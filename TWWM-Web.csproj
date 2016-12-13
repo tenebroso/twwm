@@ -77,6 +77,8 @@
     <Content Include="App\app.run.js" />
     <Content Include="App\Directives\Dashboard\leaderBoard.js" />
     <Content Include="App\Directives\Dashboard\navigation.js" />
+    <Content Include="App\Directives\Global\dateTime.js" />
+    <Content Include="App\Directives\Global\featuredPosts.js" />
     <Content Include="App\Directives\Global\footer.js" />
     <Content Include="App\Directives\Global\navigation.js" />
     <Content Include="App\Controllers\Account\account.ctrl.js" />
@@ -94,6 +96,8 @@
     <Content Include="App\Controllers\Events\events.ctrl.js" />
     <Content Include="App\Templates\Events\events.tpl.html" />
     <Content Include="App\Controllers\Home\home.ctrl.js" />
+    <Content Include="App\Templates\Global\featuredPosts.tpl.html" />
+    <Content Include="App\Templates\Global\dateTime.tpl.html" />
     <Content Include="App\Templates\Global\footer.tpl.html" />
     <Content Include="App\Templates\Global\search.tpl.html" />
     <Content Include="App\Templates\Home\home.tpl.html" />
@@ -306,9 +310,9 @@
     <Content Include="Content\Styles\Vendor\bootstrap\mixins\_background-variant.scss" />
     <Content Include="Content\Styles\Vendor\bootstrap\mixins\_alerts.scss" />
     <Content Include="Content\Styles\Common\_icons.scss" />
-    <Content Include="Content\Styles\Sections\_leftSidebar.scss" />
+    <Content Include="Content\Styles\Sections\_search.scss" />
     <Content Include="Content\Styles\Sections\_blogPosts.scss" />
-    <Content Include="Content\Styles\Sections\_rightSidebar.scss" />
+    <Content Include="Content\Styles\Sections\_featuredPosts.scss" />
     <Content Include="Content\Styles\Sections\_events.scss" />
     <Content Include="Content\Styles\Common\_typography.scss" />
     <Content Include="Content\Styles\Sections\_dateTimeModule.scss" />

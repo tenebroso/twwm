@@ -57,3 +57,16 @@ label {
         }
     }
 }
+
+.search {
+    position:rel
+}
+
+.search-clear {
+    position: absolute;
+    right: 9px;
+    top: 10px;
+    .path1:before {
+        color:black;
+    }
+}

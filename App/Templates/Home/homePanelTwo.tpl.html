@@ -1,5 +1,6 @@
 ﻿<div id="anchor{{'homePanelTwo'}}" class="home-panelTwo home-panel anchor" ng-style="{'background-image': 'url(' + panelTwo.thumbFacebookMetaTag + ')'}">
 	<div class="home-panelTwoSlider">
-		<slick init-onload=true ng-if="slidesLoaded" fade="true" arrows=false dots=true ng-bind-html="panelTwo.content | unsafe"></slick>
+		<slick init-onload=true ng-if="slidesLoaded" fade="true" autoplay="true" autoplaySpeed=10000 arrows=false dots=true ng-bind-html="panelTwo.content | unsafe"></slick>
 	</div>
+	<a class="home-scrollTrigger" ng-click="vm.gotoAnchor('homePanelThree')"><i class="dn-icon-arrow-down"></i></a>
 </div>

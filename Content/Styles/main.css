@@ -1588,7 +1588,7 @@ img {
   border-radius: 50%;
   opacity: 0;
   padding: 0; }
-  .loading .loadingIndicator, .loading body:after {
+  .loadingIndicator.loading, body.loading:after {
     -webkit-animation: rotate .75s infinite linear, opacity 1s forwards;
     -moz-animation: rotate .75s infinite linear, opacity 1s forwards;
     animation: rotate .75s infinite linear, opacity 1s forwards; }
@@ -2290,6 +2290,16 @@ b {
     .nav-toggle {
       display: none; } }
 
+.navbar-search {
+  color: white;
+  position: absolute;
+  right: 1.5em;
+  top: .5em;
+  font-size: 17px; }
+  @media (min-width: 992px) {
+    .navbar-search {
+      display: none; } }
+
 .footer {
   position: fixed;
   text-align: center;
@@ -2406,6 +2416,16 @@ b {
     transition: color .35s;
     color: rgba(42, 42, 42, 0.6); }
   .search-submit:hover:before {
+    color: black; }
+
+.search {
+  position: rel; }
+
+.search-clear {
+  position: absolute;
+  right: 9px;
+  top: 10px; }
+  .search-clear .path1:before {
     color: black; }
 
 .featuredPost-list,
@@ -2606,11 +2626,15 @@ a.featuredPost-link {
 .search-term {
   color: #95989A; }
 
+.wrapper .content .ng-scope:last-child article:last-of-type {
+  margin-bottom: 0; }
+
 .blogPost, .event {
   background: white;
   padding: 3.5em 2.2em 4.5em;
   position: relative;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.25); }
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
+  margin-bottom: 1em; }
   @media (min-width: 992px) {
     .blogPost header, .event header {
       margin: 0 0 30px; } }
@@ -2676,7 +2700,7 @@ a.featuredPost-link {
   display: block; }
   @media (min-width: 992px) {
     .event-featuredPhoto {
-      margin: 0 auto 1.5em; } }
+      margin: 0 auto 1em; } }
 
 .event-photo {
   width: 150px;
@@ -2762,7 +2786,7 @@ a.featuredPost-link {
 .event-directions {
   border: 1px solid #00829f;
   padding: 5px 10px;
-  margin: 0em -1em 1em 1em;
+  margin: 0 0 1em 1em;
   transition: all .35s;
   float: right; }
   .event-directions:hover {
@@ -2837,7 +2861,8 @@ body.home {
 .home-scrollTrigger {
   cursor: pointer;
   opacity: 1;
-  transition: all .35s; }
+  transition: all .35s;
+  transform: translate3d(0, 0, 0); }
   .home-scrollTrigger:hover {
     text-decoration: none; }
   .no-touchevents .home-scrollTrigger:hover {
@@ -2855,6 +2880,9 @@ body.home {
   max-width: 140px !important;
   margin: 0 auto;
   display: block; }
+  @media (min-width: 992px) {
+    .home-logo {
+      margin: 0 auto 3em; } }
 
 .home-container {
   color: white; }
@@ -2915,6 +2943,10 @@ body.home {
           float: left; } }
       .home-panel .tv iframe.active {
         opacity: 1; }
+        @media (max-width: 991px) {
+          .home-panel .tv iframe.active {
+            max-width: 100%;
+            height: auto; } }
 
 .home-panelOne {
   overflow: hidden;
@@ -2933,13 +2965,15 @@ body.home {
         border: 2px solid #ffffff;
         border-radius: 50%;
         padding: 26px;
-        margin: 0 0 0 -.5em;
-        position: absolute;
-        left: calc(50% - 40px);
-        bottom: 4em;
-        text-align: center;
-        font-size: 30px;
-        font-weight: 100; } }
+        margin: 0 0 0 -.5em; } }
+  .home-panelOne .home-scrollTrigger {
+    position: absolute;
+    left: calc(50% - 30px);
+    bottom: 4em;
+    text-align: center;
+    font-size: 30px;
+    font-weight: 100;
+    z-index: 20; }
   .home-panelOne:after {
     content: "";
     display: block;
@@ -3128,6 +3162,15 @@ body.home {
       .home-panelThreeSlider h2 {
         font-size: 44px; } }
 
+@media (min-width: 992px) {
+  .home-panelTwo .home-scrollTrigger {
+    position: absolute;
+    right: 8em;
+    bottom: 2em;
+    z-index: 20;
+    font-size: 44px;
+    color: white; } }
+
 .home-panelFour {
   background-color: white; }
   @media (min-width: 992px) {
@@ -3183,7 +3226,7 @@ body.home {
   -moz-transition: all 0s;
   position: absolute;
   left: 0;
-  bottom: -3.9em;
+  top: 50%;
   width: 100%;
   min-height: 65%;
   overflow: hidden;
@@ -3196,7 +3239,6 @@ body.home {
   padding-right: 1em; }
   @media (min-width: 992px) {
     .page-wrapper {
-      bottom: -4.4em;
       padding-left: 0;
       padding-right: 0; } }
 

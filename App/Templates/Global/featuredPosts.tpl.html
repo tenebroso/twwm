@@ -5,7 +5,7 @@
 	<h2 class="featuredPost-heading">Featured {{postType}}</h2>
 	<ul ng-repeat="featuredPost in featuredPosts" class="featuredPost-list">
 		<li class="featuredPost" ng-show="{{featuredPost.hideInMenu}}" ng-hide="!{{featuredPost.published}}">
-			<a href="#" class="featuredPost-link">
+			<a class="featuredPost-link">
 				<div class="featuredPost-date">
 					{{featuredPost.publishDate | date:'MMMM'}}
 					<span>{{featuredPost.publishDate | date:'dd'}}</span>

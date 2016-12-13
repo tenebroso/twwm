@@ -3,7 +3,7 @@
 
 	<main class="content">
 		<div ng-repeat="post in vm.posts" ng-show="{{post.published}}">
-			<article ng-show="{{post.noResults}}" class="blogPost margin-bottom-lg">
+			<article ng-show="{{post.noResults}}" class="blogPost">
 				{{post.content}}
 			</article>
 			<article class="blogPost margin-bottom-lg" ng-hide="{{post.hideInMenu}}">

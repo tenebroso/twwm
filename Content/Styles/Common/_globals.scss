@@ -78,7 +78,7 @@ img {
     border-bottom: 6px solid #ddd;
     border-left: 6px solid $blue;
     border-radius: 50%;
-    .loading & {
+    &.loading {
         -webkit-animation: rotate .75s infinite linear, opacity 1s forwards;
         -moz-animation: rotate .75s infinite linear, opacity 1s forwards;
         animation: rotate .75s infinite linear, opacity 1s forwards;

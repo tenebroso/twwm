@@ -29,6 +29,7 @@
     cursor:pointer;
     opacity:1;
     transition:all .35s;
+    transform:translate3d(0,0,0);
     &:hover {
         text-decoration:none;
     }
@@ -53,6 +54,9 @@
     max-width:140px !important;
     margin:0 auto;
     display:block;
+    @media (min-width:$screen-sm-min){
+        margin:0 auto 3em;
+    }
 }
 
 .home-container {
@@ -127,6 +131,10 @@
 
         &.active {
             opacity: 1;
+            @media (max-width:$screen-xs-max){
+                max-width:100%;
+                height:auto;
+            }
         }
         }
     }
@@ -152,14 +160,18 @@
             padding: 26px;
             margin:0 0 0 -.5em;
         
-            position: absolute;
-            left: calc(50% - 40px);
-            bottom: 4em;
-            text-align: center;
-            font-size: 30px;
-            font-weight: 100;
-
+            
         }
+    }
+
+    .home-scrollTrigger {
+        position: absolute;
+        left: calc(50% - 30px);
+        bottom: 4em;
+        text-align: center;
+        font-size: 30px;
+        font-weight: 100;
+        z-index:20;
     }
 
     &:after {
@@ -380,6 +392,19 @@
             font-size:44px;
         }
         margin: 0 0 28px;
+    }
+}
+
+.home-panelTwo {
+    .home-scrollTrigger {
+        @media (min-width:$screen-sm-min){
+            position: absolute;
+            right: 8em;
+            bottom: 2em;
+            z-index: 20;
+            font-size: 44px;
+            color: white;
+        } 
     }
 }
 

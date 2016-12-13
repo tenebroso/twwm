@@ -1,9 +1,11 @@
-﻿	<search data-type="events" class="eventsSearch"></search>
+﻿<search data-type="events" class="eventsSearch"></search>
 
-	<main class="content">
-		<img ng-src="/Content/Images/SA_Truck_1.jpg" class="event-featuredPhoto" />
+<main class="content">
+	<a href="{{vm.featuredEvent.url}}">
+		<img ng-src="{{vm.featuredEvent.image}}" class="event-featuredPhoto" />
+	</a>
 		<div ng-repeat="event in vm.posts">
-			<article ng-show="{{event.noResults}}" class="event margin-bottom-lg">
+			<article ng-show="{{event.noResults}}" class="event">
 				{{event.content}}
 			</article>
 			<article class="event" ng-hide="{{event.hideInMenu}}" id="anchor{{'event.id'}}">
@@ -25,6 +27,6 @@
 				</div>
 			</article>
 		</div>
-	</main>
+</main>
 
-	<featured-posts class="eventsFeatured" data-category="events"></featured-posts>
+<featured-posts class="eventsFeatured" data-category="events"></featured-posts>

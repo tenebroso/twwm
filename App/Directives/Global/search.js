@@ -3,7 +3,7 @@
 
 	angular
 		.module('app')
-		.directive('search', function ($state, $http) {
+		.directive('search', function ($state, $http, twwmConfig) {
 			return {
 				restrict: "E",
 				templateUrl: "App/Templates/Global/search.tpl.html",
@@ -60,7 +60,7 @@
 
 						$http({
 							method: 'GET',
-							url: '//migration.salvationarmy.org/mobilize_endpoint/search/news?query=' + term + '&tags=' + attr.type
+							url: twwmConfig.publicEndpoint + '/search/news?query=' + term + '&tags=' + attr.type
 						}).then(function successCallback(response) {
 
 							if (response.data.totalCount == 0) {

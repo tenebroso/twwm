@@ -5,8 +5,8 @@
         .module('app')
         .controller('PageController', PageController);
 
-	PageController.$inject = ['$rootScope', '$http', '$state'];
-	function PageController($rootScope, $http, $state) {
+	PageController.$inject = ['$rootScope', '$http', '$state', 'twwmConfig'];
+	function PageController($rootScope, $http, $state, twwmConfig) {
 		var vm = this;
 
 		if ($state.params.pageName == null || $state.params.pageName == 'undefined') {
@@ -16,7 +16,7 @@
 		
 		$http({
 			method: "GET",
-			url: '//migration.salvationarmy.org/mobilize_endpoint/' + $state.params.pageName + '/json'
+			url: twwmConfig.publicEndpoint + '/' + $state.params.pageName + '/json'
 		}).then(function (response) {
 			vm.page = response.data;
 			angular.element('body').removeClass('loading');

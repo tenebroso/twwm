@@ -35,7 +35,11 @@
 	<script src="Content/Scripts/modernizr-3.3.1.js"></script>
 	<script src="https://use.typekit.net/fmq2hmx.js"></script>
 	<script>try { Typekit.load({ async: true }); } catch (e) { }</script>
-
+	<script>
+	//if(location.protocol == 'https:' && location.host == 'mobilising.salvationarmy.org'){
+	//	location.assign('http://mobilising.salvationarmy.org');
+	//}
+	</script>
 
 </head>
 <body ui-sref-active="home">
@@ -46,6 +50,10 @@
 				<a class="navbar-brand" ui-sref="home">
 					<img src="Content/Images/shield.png" class="navbar-logo" />
 					<span class="navbar-tagline">THE WHOLE WORLD <em>MOBILISING</em></span>
+				</a>
+
+				<a class="navbar-search">
+					<i class="dn-icon-search2"></i>
 				</a>
 			</div>
 

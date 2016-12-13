@@ -5,9 +5,20 @@
         .module('app')
         .controller('EventsController', EventsController);
 
-	EventsController.$inject = ['$rootScope', '$http', 'ReadService'];
-	function EventsController($rootScope, $http, ReadService) {
+	EventsController.$inject = ['$rootScope', '$http', 'ReadService', 'Page'];
+	function EventsController($rootScope, $http, ReadService, Page) {
 		var vm = this;
+
+		Page('eventPageHeader')
+			.then(function successCallback(response){
+				vm.featuredEvent = {
+					image: response.data.thumbFacebookMetaTag,
+					url: response.data.redirectUrl
+				}
+			},
+			function errorCallback(response){
+
+			});
 
 		vm.getPosts = function () {
 			ReadService('events')
@@ -15,6 +26,7 @@
 
 					$.each(response.data.news, function (i, event) {
 						var addr = $.parseHTML(event.synopsis);
+						if (addr == null) return;
 						response.data.news[i].address = '//www.google.com/maps/dir/Current+Location/' + addr[2].innerText + '/data=!4m2!4m1!3e0';
 					});
 

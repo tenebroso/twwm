@@ -256,3 +256,14 @@
         display:none;
     }
 }
+
+.navbar-search {
+    color: white;
+    position: absolute;
+    right: 1.5em;
+    top: .5em;
+    font-size: 17px;
+    @media (min-width:$screen-sm-min){
+        display:none;
+    }
+}

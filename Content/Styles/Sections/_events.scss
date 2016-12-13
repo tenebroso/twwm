@@ -1,11 +1,11 @@
 ﻿.event {
     @extend .blogPost;
     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ededed+0,ffffff+100 */
-background: rgb(237,237,237); /* Old browsers */
-background: -moz-linear-gradient(top,  rgba(237,237,237,1) 0%, rgba(255,255,255,1) 100%); /* FF3.6-15 */
-background: -webkit-linear-gradient(top,  rgba(237,237,237,1) 0%,rgba(255,255,255,1) 100%); /* Chrome10-25,Safari5.1-6 */
-background: linear-gradient(to bottom,  rgba(237,237,237,1) 0%,rgba(255,255,255,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ededed', endColorstr='#ffffff',GradientType=0 ); /* IE6-9 */
+    background: rgb(237,237,237); /* Old browsers */
+    background: -moz-linear-gradient(top,  rgba(237,237,237,1) 0%, rgba(255,255,255,1) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top,  rgba(237,237,237,1) 0%,rgba(255,255,255,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom,  rgba(237,237,237,1) 0%,rgba(255,255,255,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ededed', endColorstr='#ffffff',GradientType=0 ); /* IE6-9 */
 
     @media (min-width:$screen-sm-min) {
         display:flex;
@@ -17,7 +17,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ededed', end
     margin:0 auto;
     display:block;
     @media (min-width:$screen-sm-min){
-        margin:0 auto 1.5em;
+        margin:0 auto 1em;
     }
 }
 
@@ -128,7 +128,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ededed', end
 .event-directions {
     border:1px solid $blue;
     padding:5px 10px;
-    margin:0em -1em 1em 1em;
+    margin:0 0 1em 1em;
     transition:all .35s;
     float:right;
     &:hover {

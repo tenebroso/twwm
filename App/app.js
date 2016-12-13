@@ -10,7 +10,10 @@
 				return $sce.trustAsHtml(val);
 			};
 		})
-		.constant('apiHost', 'https://qamobilize-web-381809290.us-east-1.elb.amazonaws.com/uaa');
+		.constant('twwmConfig', {
+			'authEndpoint': '//qamobilize-web-381809290.us-east-1.elb.amazonaws.com/uaa',
+			'publicEndpoint': 'https://webmanager.salvationarmy.org/mobilize_endpoint'
+		});
 
 	config.$inject = ['$stateProvider', '$urlRouterProvider'];
 	function config($stateProvider, $urlRouterProvider) {
@@ -99,11 +102,10 @@
 				nav.removeClass('opened');
 			} else if($(window).width() < 991) {
 				nav.addClass('opened');
-			}	
+			}
 		}
 
 		$rootScope.$on('$stateChangeStart', function () {
-			console.log($state);
 			angular.element('body').addClass('loading');
 		});
 
