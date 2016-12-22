@@ -19,7 +19,8 @@ a.featuredPost-link {
     transition:background-color .35s;
     &:hover,
     &:active,
-    &:focus {
+    &:focus,
+    &.active {
         color:white;
         text-decoration:none;
         background-color:$blueDark;

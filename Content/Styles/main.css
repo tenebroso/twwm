@@ -1527,6 +1527,9 @@ select[multiple].input-lg {
   margin: 0;
   padding: 0px; }
 
+html {
+  height: auto !important; }
+
 html, body {
   min-height: 100%; }
 
@@ -1633,6 +1636,7 @@ div#preload {
   margin: 0 1em; }
   @media (min-width: 992px) {
     .content {
+      max-width: 60%;
       flex: 0 0 60%;
       margin: 1em 1em 0 1em; } }
 
@@ -1661,9 +1665,6 @@ div#preload {
   opacity: 1; }
 
 [ui-view].ng-enter, [ui-view].ng-leave {
-  position: absolute;
-  left: 0;
-  right: 0;
   -webkit-transition: opacity .5s ease-in-out;
   -moz-transition: opacity .5s ease-in-out;
   -o-transition: all .5s ease-in-out;
@@ -2267,15 +2268,15 @@ b {
       font-size: 16px; } }
 
 @media (max-width: 1199px) {
-  .navbar-nav:not(.navbar-icons).opened {
+  .navbar-nav.opened:not(.navbar-icons) {
     opacity: 1;
     max-height: 100vh;
     height: 100vh;
     overflow: visible;
     margin-top: 14px; }
-    .navbar-nav:not(.navbar-icons).opened li a {
+    .navbar-nav.opened:not(.navbar-icons) li a:not(.goog-te-menu-value) {
       padding: 1em 0; }
-    .navbar-nav:not(.navbar-icons).opened li.active a {
+    .navbar-nav.opened:not(.navbar-icons) li.active a {
       border-color: transparent; } }
 
 .nav-toggle {
@@ -2295,10 +2296,24 @@ b {
   position: absolute;
   right: 1.5em;
   top: .5em;
-  font-size: 17px; }
-  @media (min-width: 992px) {
-    .navbar-search {
-      display: none; } }
+  font-size: 17px;
+  display: none; }
+
+body .goog-te-gadget-icon {
+  float: right;
+  position: relative; }
+
+body .goog-te-gadget-simple {
+  background: transparent;
+  border: none; }
+
+body .goog-te-menu-value {
+  margin-right: 1.5em; }
+  body .goog-te-menu-value > span:first-of-type {
+    display: none; }
+  body .goog-te-menu-value:before {
+    content: "Language";
+    color: white; }
 
 .footer {
   position: fixed;
@@ -2590,11 +2605,11 @@ a.featuredPost-link {
   color: white;
   border-bottom: 1px solid rgba(255, 255, 255, 0.3);
   transition: background-color .35s; }
-  a.featuredPost-link:hover, a.featuredPost-link:active, a.featuredPost-link:focus {
+  a.featuredPost-link:hover, a.featuredPost-link:active, a.featuredPost-link:focus, a.featuredPost-link.active {
     color: white;
     text-decoration: none;
     background-color: #011d38; }
-    a.featuredPost-link:hover .featuredPost-date, a.featuredPost-link:active .featuredPost-date, a.featuredPost-link:focus .featuredPost-date {
+    a.featuredPost-link:hover .featuredPost-date, a.featuredPost-link:active .featuredPost-date, a.featuredPost-link:focus .featuredPost-date, a.featuredPost-link.active .featuredPost-date {
       background-color: #011d38; }
 
 .featuredPost-date, .featuredPost-title {
@@ -2635,6 +2650,8 @@ a.featuredPost-link {
   position: relative;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
   margin-bottom: 1em; }
+  .blogPost iframe, .event iframe {
+    max-width: 100%; }
   @media (min-width: 992px) {
     .blogPost header, .event header {
       margin: 0 0 30px; } }
@@ -2901,7 +2918,8 @@ body.home {
 .home-panel {
   overflow: hidden;
   background-color: #00829f;
-  background: linear-gradient(to bottom, #0088a7 0%, #146dad 100%); }
+  background: linear-gradient(to bottom, #0088a7 0%, #146dad 100%);
+  position: relative; }
   @media (min-width: 992px) {
     .home-panel {
       height: 100vh;
@@ -2913,7 +2931,7 @@ body.home {
     z-index: 1;
     max-height: 50vh;
     overflow: hidden; }
-    @media (min-width: 992px) {
+    @media (min-width: 768px) {
       .home-panel .tv {
         position: absolute;
         top: 0;
@@ -2927,11 +2945,11 @@ body.home {
       opacity: 0;
       transition: opacity .5s;
       display: block; }
-      @media (max-with: 1199px) {
+      @media (max-with: 767px) {
         .home-panel .tv iframe {
           height: auto;
           width: 100%; } }
-      @media (min-width: 992px) {
+      @media (min-width: 768px) {
         .home-panel .tv iframe {
           position: absolute;
           top: 0;
@@ -2943,7 +2961,7 @@ body.home {
           float: left; } }
       .home-panel .tv iframe.active {
         opacity: 1; }
-        @media (max-width: 991px) {
+        @media (max-width: 767px) {
           .home-panel .tv iframe.active {
             max-width: 100%;
             height: auto; } }
@@ -3049,7 +3067,7 @@ body.home {
     margin: 0 0 28px; }
     @media (min-width: 992px) {
       .home-panelTwoSlider h1, .home-panelTwoSlider h2, .home-panelTwoSlider h3, .home-panelTwoSlider h4, .home-panelTwoSlider h5, .home-panelTwoSlider h6 {
-        font-size: 44px; } }
+        font-size: 40px; } }
   .home-panelTwoSlider p {
     font-size: 13px; }
   .home-panelTwoSlider .slick-dots {

@@ -1,0 +1,8 @@
+﻿<a ui-sref="blog.index">Get All Posts</a>
+<article class="blogPost">
+	<header>
+		<h1 class="blogPost-title">{{BlogCtrl.detail.title}}</h1>
+		<time class="blogPost-meta"><i class="dn-icon-calendar"></i> {{BlogCtrl.detail.publishDate | date:'longDate'}} <span ng-hide="{{BlogCtrl.detail.hideAuthor}}">by <span>{{BlogCtrl.detail.author}}</span></span></time>
+	</header>
+	<div class="blogPost-content" ng-bind-html="BlogCtrl.detail.content | unsafe"></div>
+</article>

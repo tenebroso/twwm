@@ -5,9 +5,17 @@
 </ul>
 <ul class="nav navbar-nav" id="nav-primary">
 	<!--<li ui-sref-active="active"><a ui-sref="participate" ng-click="toggleMobileNav()">Participate</a></li>-->
-	<li ui-sref-active="active"><a ui-sref="blog" ng-click="toggleMobileNav()">Blog</a></li>
-	<li ui-sref-active="active"><a ui-sref="events" ng-click="toggleMobileNav()">Events</a></li>
+	<li ui-sref-active="active"><a ui-sref="blog.index" ng-click="toggleMobileNav()">Blog</a></li>
+	<li ui-sref-active="active"><a ui-sref="events.index" ng-click="toggleMobileNav()">Events</a></li>
 	<li ui-sref-active="active"><a ui-sref="about({pageName:'aboutUs'})" ng-click="toggleMobileNav()">About</a></li>
 	<li ui-sref-active="active"><a ui-sref="contact({pageName:'contactUs'})" ng-click="toggleMobileNav()">Contact</a></li>
+	<li><div id="google_translate_element"></div>
+	<script type="text/javascript">
+	function googleTranslateElementInit() {
+	  new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, gaTrack: true, gaId: 'UA-88798830-1'}, 'google_translate_element');
+	}
+	</script>
+	
+</li>
 </ul>
 <i class="dn-icon-other nav-toggle" ng-click="toggleMobileNav()"></i>

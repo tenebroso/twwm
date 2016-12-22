@@ -18,12 +18,9 @@
 					};
 
 					scope.$on('youtube.player.ready', function ($event, player) {
-						player.mute();
-					});
-
-					scope.$on('youtube.player.ready', function ($event, player) {
 
 						player.mute();
+						player.playVideo();
 
 						if ($(window).width() < 767) {
 							$('.tv iframe').addClass('active');

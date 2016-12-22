@@ -1,54 +1,69 @@
 ﻿(function () {
 	'use strict';
 
-	angular
-        .module('app')
-        .controller('BlogController', BlogController)
-		.filter('words', function () {
-			return function (input, words) {
-				if (isNaN(words)) return input;
-				if (words <= 0) return '';
-				if (input) {
-					var inputWords = input.split(/\s+/);
-					if (inputWords.length > words) {
-						input = inputWords.slice(0, words).join(' ') + '…';
-					}
-				}
-				return input;
-			};
+	var BlogCtrl = function ($scope, $state, ReadService, $timeout) {
+		var vm = this;
+
+		vm.detail = {};
+		vm.getDetail = getDetail;
+		vm.getIndex = getIndex;
+		vm.index = [];
+		vm.postUrl;
+
+		function getIndex() {
+			ReadService('blog')
+				.then(readSuccess)
+				.then(function (collection) {
+					$scope.featured = collection;
+					vm.index = collection;
+				})
+				.then($scope.hideLoading);
+		};
+
+		function getDetail() {
+			ReadService('blog')
+				.then(readSuccess)
+				.then(function (collection) {
+					$scope.featured = collection;
+					return collection.filter(function (post) {
+						return post.urlAlias === vm.postUrl;
+					});
+				})
+				.then(function (collection) {
+					vm.detail = collection[0];
+				})
+				.then($scope.hideLoading);
+		};
+
+		$scope.$on('$stateChangeSuccess', function () {
+			vm.postUrl = $state.params.postUrl;
+			$scope.$wrapperClass = 'wrapper';
+
+			if (vm.postUrl)
+				getDetail();
+			else
+				getIndex();
 		});
 
-	BlogController.$inject = ['$rootScope', '$http', 'ReadService'];
-	function BlogController($rootScope, $http, ReadService) {
-		var vm = this;
-		var todaysDate = moment(new Date).format("LL");
+	};
 
-		vm.getPosts = function () {
+	function readSuccess(response) {
 
-			ReadService('blog')
-				.then(function successCallback(response) {
+		$.each(response.data.news, function (i, v) {
+			var postPublishDate = moment(v.publishDate, moment.ISO_8601);
+			if (moment(new Date(), moment.ISO_8601).isBefore(postPublishDate)) {
+				response.data.news[i].published = false;
+			}
+		});
 
-					$.each(response.data.news, function (i, v) {
-						var postPublishDate = moment(v.publishDate).format("LL");
-						if (moment(todaysDate).isBefore(postPublishDate)) {
-							response.data.news[i].published = false;
-						}
-					});
-
-					vm.posts = response.data.news;
-					$rootScope.featuredPosts = vm.posts;
-					angular.element('body').removeClass('loading');
-
-				}, function errorCallback(response) {
-					// error handling
-				});
-
-		};
-		
-		vm.getPosts();
-
-		return vm;
+		return response.data.news;
 
 	}
+
+	BlogCtrl.$inject = ['$scope', '$state', 'ReadService', '$timeout'];
+
+	angular
+        .module('app')
+        .controller('BlogController', BlogCtrl);
 
 })();

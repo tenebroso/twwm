@@ -1,32 +1,15 @@
 ﻿<search data-type="events" class="eventsSearch"></search>
 
 <main class="content">
-	<a href="{{vm.featuredEvent.url}}">
-		<img ng-src="{{vm.featuredEvent.image}}" class="event-featuredPhoto" />
+	<a href="{{EventsCtrl.featuredEvent.url}}">
+		<img ng-src="{{EventsCtrl.featuredEvent.image}}" class="event-featuredPhoto" />
 	</a>
-		<div ng-repeat="event in vm.posts">
-			<article ng-show="{{event.noResults}}" class="event">
-				{{event.content}}
-			</article>
-			<article class="event" ng-hide="{{event.hideInMenu}}" id="anchor{{'event.id'}}">
-				<div class="event-photo">
-					<img ng-src="{{event.thumbFacebookMetaTag}}" />
-				</div>
-				<div class="event-details">
-					<header>
-						<time class="event-time">{{event.publishDate | date:'MMMM'}} <span>{{event.publishDate | date:'d'}}</span></time>
-					</header>
-					<div class="event-content">
-						<a class="event-directions" href="{{event.address}}">
-							Directions
-						</a>
-						<h1 class="event-title">{{event.title}}</h1>
-						<div class="event-meta" ng-bind-html="event.synopsis | unsafe"></div>
-						<div class="event-body" ng-bind-html="event.content | unsafe"></div>
-					</div>
-				</div>
-			</article>
-		</div>
+	<article ng-show="{{event.noResults}}" class="event">
+		{{event.content}}
+	</article>
+	<div class="detail">
+		<div ui-view></div>
+	</div>
 </main>
 
 <featured-posts class="eventsFeatured" data-category="events"></featured-posts>

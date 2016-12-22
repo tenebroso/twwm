@@ -229,13 +229,13 @@
 }
 
 @media (max-width:$screen-sm-max) {
-    .navbar-nav:not(.navbar-icons).opened {
+    .navbar-nav.opened:not(.navbar-icons) {
         opacity: 1;
         max-height: 100vh;
         height:100vh;
         overflow: visible;
         margin-top:14px;
-        li a {
+        li a:not(.goog-te-menu-value) {
             padding: 1em 0;
         }
         li.active a {
@@ -263,7 +263,33 @@
     right: 1.5em;
     top: .5em;
     font-size: 17px;
+    display:none;
     @media (min-width:$screen-sm-min){
-        display:none;
+       // display:none;
+    }
+}
+
+// Google Translate Overrides
+
+body {
+    .goog-te-gadget-icon {
+        float: right;
+        position: relative;
+    }
+
+    .goog-te-gadget-simple {
+        background: transparent;
+        border: none;
+    }
+
+    .goog-te-menu-value {
+        margin-right: 1.5em;
+        > span:first-of-type {
+            display: none;
+        }
+        &:before {
+            content: "Language";
+            color: white;
+        }
     }
 }

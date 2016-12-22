@@ -35,31 +35,11 @@
 	<script src="Content/Scripts/modernizr-3.3.1.js"></script>
 	<script src="https://use.typekit.net/fmq2hmx.js"></script>
 	<script>try { Typekit.load({ async: true }); } catch (e) { }</script>
-	<script>
-	//if(location.protocol == 'https:' && location.host == 'mobilising.salvationarmy.org'){
-	//	location.assign('http://mobilising.salvationarmy.org');
-	//}
-	</script>
 
 </head>
-<body ui-sref-active="home">
+<body>
 
-	<header class="header" class-when-sticky="fixed">
-		<nav class="navbar navbar-default">
-			<div class="navbar-header">
-				<a class="navbar-brand" ui-sref="home">
-					<img src="Content/Images/shield.png" class="navbar-logo" />
-					<span class="navbar-tagline">THE WHOLE WORLD <em>MOBILISING</em></span>
-				</a>
-
-				<a class="navbar-search">
-					<i class="dn-icon-search2"></i>
-				</a>
-			</div>
-
-			<navigation></navigation>
-		</nav>
-	</header>
+	<twwm-header></twwm-header>
 
 	<div ui-view autoscroll="true" class="{{$wrapperClass}}"></div>
 
@@ -69,7 +49,7 @@
 	<script src="Content/Scripts/angular.js"></script>
 	<script src="Content/Scripts/angular-ui-router.js"></script>
 	<script src="Content/Scripts/angular-animate.js"></script>
-	<!--<script src="Content/Scripts/angular-cookies.js"></script>-->
+
 	<script src="Content/Scripts/moment.js"></script>
 	<script src="Content/Scripts/angular-moment.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.js"></script>
@@ -79,25 +59,21 @@
 	<script src="App/app.js?v=1.41"></script>
 
 	<script src="App/Directives/Global/navigation.js"></script>
-	<!--<script src="App/Directives/Global/footer.js"></script>-->
+
 	<script src="App/Directives/Global/search.js"></script>
 	<script src="App/Directives/Global/dateTime.js"></script>
 	<script src="App/Directives/Global/featuredPosts.js"></script>
+	<script src="App/Directives/Global/header.js"></script>
 	<script src="App/Directives/Dashboard/navigation.js"></script>
-	<!--<script src="App/Directives/Dashboard/leaderBoard.js"></script>-->
+
 	<script src="App/Directives/Home/homePanelOne.js"></script>
 	<script src="App/Directives/Home/homePanelTwo.js"></script>
 	<script src="App/Directives/Home/homePanelThree.js"></script>
 	<script src="App/Directives/Home/homePanelFour.js"></script>
 
-	<!--<script src="App/Services/auth.fct.js"></script>
-	<script src="App/Services/user.fct.js"></script>
-	<script src="App/Services/flash.fct.js"></script>-->
 	<script src="App/Services/page.fct.js"></script>
 	<script src="App/Services/blog.fct.js"></script>
-
-	<!--<script src="App/Controllers/Account/account.ctrl.js"></script>
-	<script src="App/Controllers/Account/login.ctrl.js"></script>-->
+	<script src="App/Services/featured.fct.js"></script>
 
 	<script src="App/Controllers/Events/events.ctrl.js"></script>
 	<script src="App/Controllers/Home/home.ctrl.js"></script>
@@ -106,18 +82,23 @@
 
 	<script src="App/Controllers/Blog/blog.ctrl.js"></script>
 	<script src="App/Controllers/Account/register.ctrl.js"></script>
-	<!--<script src="App/Controllers/Dashboard/dashboard.ctrl.js"></script>-->
+
 
 	<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+		// Google scripts for analytics and translate
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-  ga('create', 'UA-88798830-1', 'auto');
-  ga('send', 'pageview');
-
+		ga('create', 'UA-88798830-1', 'auto');
+		ga('send', 'pageview');
+		
+		function googleTranslateElementInit() {
+			new google.translate.TranslateElement({ pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, gaTrack: true, gaId: 'UA-88798830-1' }, 'google_translate_element');
+		}
 	</script>
+	<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 	
 </body>
 </html>

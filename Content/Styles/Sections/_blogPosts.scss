@@ -8,7 +8,9 @@
     position:relative;
     box-shadow:0 0 5px rgba(0,0,0,.25);
     margin-bottom:1em;
-   
+    iframe {
+        max-width:100%;
+    }
     @media (min-width:$screen-sm-min){
          header {
             margin: 0 0 30px;

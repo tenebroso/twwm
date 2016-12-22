@@ -82,7 +82,8 @@
 .home-panel {
     overflow:hidden;
     background-color: #00829f;
-     background: linear-gradient(to bottom, #0088a7 0%, #146dad 100%);
+    background: linear-gradient(to bottom, #0088a7 0%, #146dad 100%);
+    position:relative;
     @media (min-width:$screen-sm-min){
         height:100vh;
         background-size:cover;
@@ -95,7 +96,7 @@
         max-height:50vh;
         overflow: hidden;
 
-        @media(min-width:$screen-sm-min){
+        @media(min-width:768px){
             position: absolute;
             top: 0;
             left: 0;
@@ -113,12 +114,12 @@
             transition: opacity .5s;
             display:block;
 
-            @media (max-with:$screen-sm-max){
+            @media (max-with:767px){
                 height:auto;
                 width:100%;
             }
 
-            @media (min-width:$screen-sm-min){
+            @media (min-width:768px){
                 position: absolute;
                 top: 0;
                 right: 0;
@@ -131,7 +132,7 @@
 
         &.active {
             opacity: 1;
-            @media (max-width:$screen-xs-max){
+            @media (max-width:767px){
                 max-width:100%;
                 height:auto;
             }
@@ -251,7 +252,7 @@
         line-height: 1.2;
         margin: 0 0 28px;
         @media (min-width:$screen-sm-min){
-            font-size:44px;
+            font-size:40px;
         }
     }
 

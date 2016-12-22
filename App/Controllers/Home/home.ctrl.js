@@ -9,6 +9,8 @@
 	function HomeController($rootScope, $http, $q, Page, $anchorScroll, $location) {
 		var vm = this;
 
+		vm.hideHeader = true;
+
 		vm.title = 'The Whole World Mobilising';
 
 		vm.gotoAnchor = function (x) {
@@ -41,7 +43,6 @@
 		};
 
 		vm.getHome();
-
 		
 
 	}

@@ -8,6 +8,7 @@
 				restrict: "E",
 				templateUrl: "App/Templates/Home/homePanelOne.tpl.html",
 				link: function (scope, el, attr) {
+
 					scope.playerVars = {
 						controls: 0,
 						autoplay: 1,
@@ -17,12 +18,9 @@
 					};
 
 					scope.$on('youtube.player.ready', function ($event, player) {
-						player.mute();
-					});
-
-					scope.$on('youtube.player.ready', function ($event, player) {
 
 						player.mute();
+						player.playVideo();
 
 						if ($(window).width() < 767) {
 							$('.tv iframe').addClass('active');

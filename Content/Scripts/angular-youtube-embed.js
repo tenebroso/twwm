@@ -133,6 +133,12 @@ angular.module('youtube-embed', [])
 			playerWidth: '=?'
 		},
 		link: function (scope, element, attrs) {
+
+			if (document.body.clientWidth < 768) {
+				return;
+			};
+
+
 			// allows us to $watch `ready`
 			scope.utils = youtubeEmbedUtils;
 

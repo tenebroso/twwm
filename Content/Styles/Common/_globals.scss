@@ -4,6 +4,10 @@
 	padding: 0px;
 }
 
+html {
+    height:auto !important;
+}
+
 html, body {
     min-height: 100%;
     //height:100%;
@@ -130,6 +134,7 @@ div#preload {
 .content {
     margin:0 1em;
     @media (min-width:$screen-sm-min) {
+        max-width:60%;
         flex:0 0 60%;
         margin:1em 1em 0 1em;
     }
@@ -165,9 +170,6 @@ div#preload {
 
 
 [ui-view].ng-enter, [ui-view].ng-leave {
-  position: absolute;
-  left: 0;
-  right: 0;
   -webkit-transition:opacity .5s ease-in-out;
     -moz-transition:opacity .5s ease-in-out;
     -o-transition:all .5s ease-in-out;
@@ -191,5 +193,4 @@ div#preload {
 
 [ui-view].ng-leave-active {
   opacity: 0;
-
 }

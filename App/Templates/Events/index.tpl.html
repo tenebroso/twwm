@@ -1,0 +1,18 @@
+﻿<article class="event" ng-hide="{{event.hideInMenu}}" ng-repeat="event in EventsCtrl.index">
+	<div class="event-photo">
+		<img ng-src="{{event.thumbFacebookMetaTag}}" />
+	</div>
+	<div class="event-details">
+		<header>
+			<time class="event-time">{{event.publishDate | date:'MMMM'}} <span>{{event.publishDate | date:'d'}}</span></time>
+		</header>
+		<div class="event-content">
+			<a class="event-directions" href="{{event.address}}">
+				Directions
+			</a>
+			<h1 class="event-title">{{event.title}}</h1>
+			<div class="event-meta" ng-bind-html="event.synopsis | unsafe"></div>
+			<div class="event-body" ng-bind-html="event.content | unsafe"></div>
+		</div>
+	</div>
+</article>

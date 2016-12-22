@@ -80,6 +80,7 @@
     <Content Include="App\Directives\Global\dateTime.js" />
     <Content Include="App\Directives\Global\featuredPosts.js" />
     <Content Include="App\Directives\Global\footer.js" />
+    <Content Include="App\Directives\Global\header.js" />
     <Content Include="App\Directives\Global\navigation.js" />
     <Content Include="App\Controllers\Account\account.ctrl.js" />
     <Content Include="App\Directives\Global\search.js" />
@@ -92,13 +93,18 @@
     <Content Include="App\Services\blog.fct.js" />
     <Content Include="App\Templates\Blog\blog.tpl.html" />
     <Content Include="App\Controllers\Blog\blog.ctrl.js" />
+    <Content Include="App\Templates\Blog\index.tpl.html" />
+    <Content Include="App\Templates\Blog\post.tpl.html" />
     <Content Include="App\Templates\Dashboard\leaderboard.tpl.html" />
     <Content Include="App\Controllers\Events\events.ctrl.js" />
     <Content Include="App\Templates\Events\events.tpl.html" />
     <Content Include="App\Controllers\Home\home.ctrl.js" />
+    <Content Include="App\Templates\Events\index.tpl.html" />
+    <Content Include="App\Templates\Events\post.tpl.html" />
     <Content Include="App\Templates\Global\featuredPosts.tpl.html" />
     <Content Include="App\Templates\Global\dateTime.tpl.html" />
     <Content Include="App\Templates\Global\footer.tpl.html" />
+    <Content Include="App\Templates\Global\header.tpl.html" />
     <Content Include="App\Templates\Global\search.tpl.html" />
     <Content Include="App\Templates\Home\home.tpl.html" />
     <Content Include="App\Templates\Dashboard\dashboard.tpl.html" />

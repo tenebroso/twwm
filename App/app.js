@@ -38,10 +38,53 @@
 				controllerAs: 'vm'
 			})
 			.state('blog', {
-				url:'/blog',
-				controller: 'BlogController',
+				abstract:true,
+				url: '/blog',
 				templateUrl: 'App/Templates/Blog/blog.tpl.html',
-				controllerAs: 'vm'
+				controller: 'BlogController',
+				controllerAs: 'BlogCtrl'
+			})
+			.state('blog.index', {
+				url: '',
+				templateUrl: 'App/Templates/Blog/index.tpl.html'
+			})
+			.state('blog.post', {
+				url: '/:postUrl',
+				templateUrl: 'App/Templates/Blog/post.tpl.html'
+			})
+			.state('events', {
+				abstract:true,
+				url: '/events',
+				templateUrl: 'App/Templates/Events/events.tpl.html',
+				controller: 'EventsController',
+				controllerAs: 'EventsCtrl'
+			})
+			.state('events.index', {
+				url: '',
+				templateUrl: 'App/Templates/Events/index.tpl.html'
+			})
+			.state('events.event', {
+				url: '/:postUrl',
+				templateUrl: 'App/Templates/Events/post.tpl.html'
+			})
+			.state('search', {
+				abstract:true,
+				url: '/search/:type',
+				templateUrl:
+					function (stateParams) {
+						var param = stateParams.type.replace(/\b([a-z])/g, function (ch) {
+							return ch.toUpperCase();
+						});
+						return 'App/Templates/' + param + '/' + stateParams.type + '.tpl.html';
+					}
+			})
+			.state('search.events', {
+				url: '/:term',
+				templateUrl: 'App/Templates/Events/index.tpl.html'
+			})
+			.state('search.blog', {
+				url: '/:term',
+				templateUrl: 'App/Templates/Blog/index.tpl.html'
 			})
 			.state('participate', {
 				url: '/participate',
@@ -65,12 +108,6 @@
 				url: '/profile',
 				controller: 'MyaccountController',
 				templateUrl: 'App/Templates/Account/profile.tpl.html',
-				controllerAs: 'vm'
-			})
-			.state('events', {
-				url: '/events',
-				controller: 'EventsController',
-				templateUrl: 'App/Templates/Events/events.tpl.html',
 				controllerAs: 'vm'
 			})
 			.state('contact', {
@@ -105,17 +142,16 @@
 			}
 		}
 
-		$rootScope.$on('$stateChangeStart', function () {
+		$rootScope.addLoading = function () {
 			angular.element('body').addClass('loading');
-		});
+		}
 
-		$rootScope.$on('$stateChangeSuccess', function () {
-			if ($state.current.name === 'events' || $state.current.name === 'blog')
-				$rootScope.$wrapperClass = 'wrapper';
-			else
-				$rootScope.$wrapperClass = '';
+		$rootScope.hideLoading = function () {
+			angular.element('body').removeClass('loading');
+		}
 
-			document.body.scrollTop = document.documentElement.scrollTop = 0;
+		$rootScope.$on('$stateChangeStart', function () {
+			$rootScope.addLoading();
 		});
 	}
 

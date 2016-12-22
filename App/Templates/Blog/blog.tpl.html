@@ -1,20 +1,9 @@
-﻿
-	<search data-type="blog" class="blogSearch"></search>
+﻿<search data-type="blog" class="blogSearch"></search>
 
-	<main class="content">
-		<div ng-repeat="post in vm.posts" ng-show="{{post.published}}">
-			<article ng-show="{{post.noResults}}" class="blogPost">
-				{{post.content}}
-			</article>
-			<article class="blogPost margin-bottom-lg" ng-hide="{{post.hideInMenu}}">
-				<header>
-					<h1 class="blogPost-title">{{post.title}}</h1>
-					<time class="blogPost-meta"><i class="dn-icon-calendar"></i> {{post.publishDate | date:'longDate'}} <span ng-hide="{{post.hideAuthor}}">by <span>{{post.author}}</span></span></time>
-				</header>
-				<div class="blogPost-content" ng-bind-html="post.content | unsafe"></div>
-				<!--<p class="blogPost-tags u-hidden"><strong>tags:</strong> <a href="#">tagName</a></p>-->
-			</article>
-		</div>
-	</main>
+<main class="content">
+	<div class="detail">
+		<div ui-view></div>
+	</div>
+</main>
 
-	<featured-posts class="blogFeatured" data-category="blog"></featured-posts>
+<featured-posts class="blogFeatured" data-category="blog"></featured-posts>
