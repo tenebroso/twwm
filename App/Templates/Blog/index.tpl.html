@@ -1,7 +1,7 @@
 ﻿<article ng-show="{{post.noResults}}" class="blogPost">
 	{{post.content}}
 </article>
-<article class="blogPost" ng-hide="{{post.hideInMenu}}" ng-repeat="post in BlogCtrl.index" ng-show="{{post.published}}">
+<article class="blogPost" ng-hide="{{post.hideInMenu}}" ng-repeat="post in vm.index" ng-show="{{post.published}}">
 	<header>
 		<h1 class="blogPost-title">{{post.title}}</h1>
 		<time class="blogPost-meta"><i class="dn-icon-calendar"></i> {{post.publishDate | date:'longDate'}} <span ng-hide="{{post.hideAuthor}}">by <span>{{post.author}}</span></span></time>

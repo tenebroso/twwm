@@ -1,21 +1,41 @@
 ﻿(function () {
 	'use strict';
 
-	var EventsCtrl = function ($scope, $state, ReadService, Page) {
+	var EventsCtrl = function ($scope, $state, ReadService, SearchService, Page) {
 		var vm = this;
 
-		vm.detail = {};
 		vm.featuredEvent = {};
-		//vm.getDetail = getDetail;
+		vm.getDetail = getDetail;
 		vm.getIndex = getIndex;
 		vm.index = [];
 		vm.postUrl;
+		vm.resetSearch = resetSearch;
+		vm.submitSearch = submitSearch;
 
 		Page('eventPageHeader')
 			.then(function (response) {
 				vm.featuredEvent.image = response.data.thumbFacebookMetaTag;
 				vm.featuredEvent.imageurl = response.data.redirectUrl;
 			});
+
+		function resetSearch() {
+			vm.hasTerm = false;
+			delete vm.result;
+
+			if ($state.current.name == 'events.event')
+				vm.getDetail();
+			else
+				vm.getIndex();
+		}
+
+		function submitSearch(term, scope) {
+			SearchService.submitSearch(term, scope)
+				.then(function (response) {
+					vm.index = response.data.objects;
+					vm.hasTerm = true;
+					vm.result = SearchService.getResultsLabel(response, term);
+				})
+		}
 
 		function getIndex() {
 			ReadService('events')
@@ -37,7 +57,7 @@
 					});
 				})
 				.then(function (collection) {
-					vm.detail = collection[0];
+					vm.index = collection;
 				})
 				.then($scope.hideLoading);
 		}
@@ -74,7 +94,7 @@
 
 	}
 
-	EventsCtrl.$inject = ['$scope', '$state', 'ReadService', 'Page'];
+	EventsCtrl.$inject = ['$scope', '$state', 'ReadService', 'SearchService', 'Page'];
 
 	angular
         .module('app')

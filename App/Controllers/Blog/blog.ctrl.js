@@ -1,14 +1,34 @@
 ﻿(function () {
 	'use strict';
 
-	var BlogCtrl = function ($scope, $state, ReadService, $timeout) {
+	var BlogCtrl = function ($scope, $state, ReadService, SearchService) {
 		var vm = this;
 
-		vm.detail = {};
 		vm.getDetail = getDetail;
 		vm.getIndex = getIndex;
 		vm.index = [];
 		vm.postUrl;
+		vm.resetSearch = resetSearch;
+		vm.submitSearch = submitSearch;
+
+		function resetSearch() {
+			vm.hasTerm = false;
+			delete vm.result;
+
+			if ($state.current.name == 'blog.post')
+				vm.getDetail();
+			else
+				vm.getIndex();
+		}
+
+		function submitSearch(term, scope) {
+			SearchService.submitSearch(term, scope)
+				.then(function (response) {
+					vm.index = response.data.objects;
+					vm.hasTerm = true;
+					vm.result = SearchService.getResultsLabel(response, term);
+				})
+		}
 
 		function getIndex() {
 			ReadService('blog')
@@ -30,7 +50,7 @@
 					});
 				})
 				.then(function (collection) {
-					vm.detail = collection[0];
+					vm.index = collection;
 				})
 				.then($scope.hideLoading);
 		};
@@ -60,7 +80,7 @@
 
 	}
 
-	BlogCtrl.$inject = ['$scope', '$state', 'ReadService', '$timeout'];
+	BlogCtrl.$inject = ['$scope', '$state', 'ReadService', 'SearchService'];
 
 	angular
         .module('app')

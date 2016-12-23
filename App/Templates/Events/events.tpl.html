@@ -1,8 +1,8 @@
 ﻿<search data-type="events" class="eventsSearch"></search>
 
 <main class="content">
-	<a href="{{EventsCtrl.featuredEvent.url}}">
-		<img ng-src="{{EventsCtrl.featuredEvent.image}}" class="event-featuredPhoto" />
+	<a href="{{vm.featuredEvent.url}}">
+		<img ng-src="{{vm.featuredEvent.image}}" class="event-featuredPhoto" />
 	</a>
 	<article ng-show="{{event.noResults}}" class="event">
 		{{event.content}}

@@ -71,9 +71,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App\app.js" />
-    <Content Include="App\app.routes.js" />
     <Content Include="App\app.config.js" />
-    <Content Include="App\app.services.js" />
     <Content Include="App\app.run.js" />
     <Content Include="App\Directives\Dashboard\leaderBoard.js" />
     <Content Include="App\Directives\Dashboard\navigation.js" />
@@ -88,7 +86,9 @@
     <Content Include="App\Directives\Home\homePanelOne.js" />
     <Content Include="App\Directives\Home\homePanelThree.js" />
     <Content Include="App\Directives\Home\homePanelTwo.js" />
+    <Content Include="App\Services\featured.fct.js" />
     <Content Include="App\Services\page.fct.js" />
+    <Content Include="App\Services\search.fct.js" />
     <Content Include="App\Templates\Account\profile.tpl.html" />
     <Content Include="App\Services\blog.fct.js" />
     <Content Include="App\Templates\Blog\blog.tpl.html" />
@@ -126,6 +126,7 @@
     <Content Include="App\Templates\Home\homePanelOne.tpl.html" />
     <Content Include="App\Templates\Home\homePanelThree.tpl.html" />
     <Content Include="App\Templates\Home\homePanelTwo.tpl.html" />
+    <Content Include="App\Templates\Search\results.tpl.html" />
     <Content Include="Content\Fonts\SA-UI-ELEMENTS.svg" />
     <Content Include="Content\Images\android-chrome-144x144.png" />
     <Content Include="Content\Images\android-chrome-36x36.png" />

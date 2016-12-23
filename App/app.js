@@ -42,7 +42,7 @@
 				url: '/blog',
 				templateUrl: 'App/Templates/Blog/blog.tpl.html',
 				controller: 'BlogController',
-				controllerAs: 'BlogCtrl'
+				controllerAs: 'vm'
 			})
 			.state('blog.index', {
 				url: '',
@@ -50,14 +50,14 @@
 			})
 			.state('blog.post', {
 				url: '/:postUrl',
-				templateUrl: 'App/Templates/Blog/post.tpl.html'
+				templateUrl: 'App/Templates/Blog/index.tpl.html'
 			})
 			.state('events', {
 				abstract:true,
 				url: '/events',
 				templateUrl: 'App/Templates/Events/events.tpl.html',
 				controller: 'EventsController',
-				controllerAs: 'EventsCtrl'
+				controllerAs: 'vm'
 			})
 			.state('events.index', {
 				url: '',
@@ -65,26 +65,7 @@
 			})
 			.state('events.event', {
 				url: '/:postUrl',
-				templateUrl: 'App/Templates/Events/post.tpl.html'
-			})
-			.state('search', {
-				abstract:true,
-				url: '/search/:type',
-				templateUrl:
-					function (stateParams) {
-						var param = stateParams.type.replace(/\b([a-z])/g, function (ch) {
-							return ch.toUpperCase();
-						});
-						return 'App/Templates/' + param + '/' + stateParams.type + '.tpl.html';
-					}
-			})
-			.state('search.events', {
-				url: '/:term',
 				templateUrl: 'App/Templates/Events/index.tpl.html'
-			})
-			.state('search.blog', {
-				url: '/:term',
-				templateUrl: 'App/Templates/Blog/index.tpl.html'
 			})
 			.state('participate', {
 				url: '/participate',

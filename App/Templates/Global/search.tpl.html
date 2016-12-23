@@ -1,9 +1,9 @@
 ﻿<aside class="leftSidebar">
 	<div class="search-container">
-		<form class="search form-group" id="search" ng-submit="vm.submitSearch(searchTerm)">
+		<form class="search form-group" id="search" ng-submit="vm.submitSearch(searchTerm, this)">
 			<span class="search-submit"><i class="dn-icon-search2"></i></span>
-			<input type="text" class="search-input form-control" ng-model="searchTerm" placeholder="{{placeText}}" />
-			<i class="search-clear dn-icon-mobilise-close" ng-click="vm.resetSearch(this)" ng-show="vm.hasTerm"><span class="path1"></span><span class="path2"></span></i>
+			<input type="text" class="search-input form-control" ng-model="searchTerm" value="{{searchTerm}}" placeholder="{{placeText}}" required />
+			<i class="search-clear dn-icon-mobilise-close" ng-click="vm.resetSearch()" ng-show="vm.hasTerm"><span class="path1"></span><span class="path2"></span></i>
 		</form>
 		<div class="search-results" ng-bind-html="vm.result | unsafe"></div>
 	</div>
@@ -11,12 +11,12 @@
 	<div class="popularSearches-container">
 		<h3 class="popularSearches-header">Popular Searches</h3>
 		<ul class="list-reset popularSearches">
-			<li class="popularSearches-item"><a ng-click="vm.submitSearch('Salvation')">Salvation</a></li>
-			<li class="popularSearches-item"><a ng-click="vm.submitSearch('Army');">Army</a></li>
-			<li class="popularSearches-item"><a ng-click="vm.submitSearch('Connecting');">Connecting</a></li>
-			<li class="popularSearches-item"><a ng-click="vm.submitSearch('Upcoming');">Upcoming</a></li>
-			<li class="popularSearches-item"><a ng-click="vm.submitSearch('Evangelism');">Evangelism</a></li>
-			<li class="popularSearches-item"><a ng-click="vm.submitSearch('Prayer');">Prayer</a></li>
+			<li class="popularSearches-item"><a ng-click="vm.submitSearch('Salvation', this)">Salvation</a></li>
+			<li class="popularSearches-item"><a ng-click="vm.submitSearch('Army', this);">Army</a></li>
+			<li class="popularSearches-item"><a ng-click="vm.submitSearch('Connecting', this);">Connecting</a></li>
+			<li class="popularSearches-item"><a ng-click="vm.submitSearch('Upcoming', this);">Upcoming</a></li>
+			<li class="popularSearches-item"><a ng-click="vm.submitSearch('Evangelism', this);">Evangelism</a></li>
+			<li class="popularSearches-item"><a ng-click="vm.submitSearch('Prayer', this);">Prayer</a></li>
 		</ul>
 	</div>
 </aside>
