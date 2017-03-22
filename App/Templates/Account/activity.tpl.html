@@ -1,0 +1,15 @@
+﻿<div class="activity" ng-click="vm.getSingleActivity(activity.id,activity.activityType.id)">
+	<div class="activity-date">
+		{{::activity.start | date:'MMMM'}} <span>{{::activity.start | date:'dd'}}</span>
+	</div>
+	<div class="activity-details">
+		<h2 class="activity-title">{{::activity.title}}</h2>
+		<p class="activity-info">{{::activity.start | date:'shortTime'}}</p>
+		<p class="activity-type"><i class="dn-icon-ride"></i> <strong>Activity:</strong> {{::activity.activityType.name}}</p>
+	</div>
+	<div class="activity-involvement">
+		<span class="activity-count">+{{::activity.actionCount}}</span> <i class="dn-icon-person-solid"></i>
+		<br />
+		<span class="activity-isInvolved true"><i class="dn-icon-checkmark"></i></span>
+	</div>
+</div>

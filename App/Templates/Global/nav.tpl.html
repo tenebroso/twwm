@@ -1,21 +1,42 @@
 ﻿<ul class="nav navbar-nav navbar-icons">
 	<li class="nav-icon" ui-sref-active="active"><a ui-sref="dashboard" ><span class="dn-icon-dashboard"></span></a></li>
-	<li class="nav-icon" ui-sref-active="active"><a ui-sref="participate" ><span class="dn-icon-map"></span></a></li>
-	<li class="nav-icon" ui-sref-active="active"><a ui-sref="myaccount" ><span class="dn-icon-my-account"></span></a></li>
+	<li class="nav-icon" ui-sref-active="active"><a ui-sref="participate.index" ><span class="dn-icon-map"></span></a></li>
+	<li class="nav-icon" ui-sref-active="active"><a ui-sref="profile" ><span class="dn-icon-my-account"></span></a></li>
 </ul>
 <ul class="nav navbar-nav" id="nav-primary">
-	<!--<li ui-sref-active="active"><a ui-sref="participate" ng-click="toggleMobileNav()">Participate</a></li>-->
-	<li ui-sref-active="active"><a ui-sref="blog.index" ng-click="toggleMobileNav()">Blog</a></li>
-	<li ui-sref-active="active"><a ui-sref="events.index" ng-click="toggleMobileNav()">Events</a></li>
+	<li ui-sref-active="{'active': 'participate.**'}">
+		<a ui-sref="participate.index" ng-click="toggleMobileNav()">Participate</a>
+		<ul>
+			<li>
+				<a ui-sref="participate.index" ui-sref-active="{'active':'participate.index', 'active 1': 'participate.readItem'}" twwm-flyout-open><span></span> Read</a>
+			</li>
+			<li>
+				<a ui-sref="participate.pray" ui-sref-active="{'active':'participate.pray', 'active 1': 'participate.prayer'}" twwm-flyout-open><span></span> Pray</a>
+			</li>
+			<li>
+				<a ui-sref="participate.mobilise" ui-sref-active="{'active': 'participate.mobilise.**', 'active 1': 'participate.activity'}" twwm-flyout-open><span></span> Mobilise</a>
+			</li>
+			<li>
+				<a ui-sref="participate.reach" ui-sref-active="{'active':'participate.reach', 'active 1': 'participate.reachItem'}" twwm-flyout-open><span></span> Reach</a>
+			</li>
+			<li>
+				<a href="https://www.facebook.com/mobilising/" target="_blank"><span></span> Connect</a>
+
+			</li>
+		</ul>
+	</li>
+	<li ui-sref-active="{'active':'blog.index', 'active 1': 'blog.post'}"><a ui-sref="blog.index" ng-click="toggleMobileNav()">Blog</a></li>
+	<li ui-sref-active="{'active':'events.index', 'active 1': 'events.event'}"><a ui-sref="events.index" ng-click="toggleMobileNav()">Events</a></li>
 	<li ui-sref-active="active"><a ui-sref="about({pageName:'aboutUs'})" ng-click="toggleMobileNav()">About</a></li>
 	<li ui-sref-active="active"><a ui-sref="contact({pageName:'contactUs'})" ng-click="toggleMobileNav()">Contact</a></li>
-	<li><div id="google_translate_element"></div>
-	<script type="text/javascript">
-	function googleTranslateElementInit() {
-	  new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, gaTrack: true, gaId: 'UA-88798830-1'}, 'google_translate_element');
-	}
-	</script>
-	
-</li>
+	<li>
+		<div id="google_translate_element"></div>
+		<script type="text/javascript">
+			function googleTranslateElementInit() {
+				new google.translate.TranslateElement({ pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, gaTrack: true, gaId: 'UA-88798830-1' }, 'google_translate_element');
+			}
+		</script>
+
+	</li>
 </ul>
 <i class="dn-icon-other nav-toggle" ng-click="toggleMobileNav()"></i>

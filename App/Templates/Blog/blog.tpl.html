@@ -2,7 +2,13 @@
 
 <main class="content">
 	<div class="detail">
+		<!--<ul class="pagination">
+			<li class="page" ng-repeat="i in vm.getNumber(vm.totalPages) track by $index">
+				<a ng-click="vm.getIndex($index)">{{$index+1}}</a>
+			</li>
+		</ul>-->
 		<div ui-view></div>
+		
 	</div>
 </main>
 

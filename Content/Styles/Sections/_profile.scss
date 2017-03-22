@@ -1,1 +1,32 @@
 ﻿@import "../Profile/photo";
+@import "../Profile/_registration.scss";
+
+.profile-content {
+    @extend .dashboard-content;
+    max-width: 564px;
+    width: 100%;
+    margin: 0 auto;
+    flex: 1 1 100%;
+    padding: 40px 0;
+    overflow:visible;
+    .profile-photo {
+        margin:0 auto 1em;
+        display:block;
+        float:none;
+        @media (min-width:$screen-sm-min){
+            float:left;
+            margin:0;
+        }
+    }
+    .dashboard-tabs {
+        opacity:1;
+        //text-align:right;
+    }
+}
+
+.profile-photoContainer {
+    height:166px;
+    @media (min-width:$screen-sm-min){
+        height:auto;
+    }
+}

@@ -1,7 +1,7 @@
 ﻿(function () {
 	'use strict';
 
-	var EventsCtrl = function ($scope, $state, ReadService, SearchService, Page) {
+	var EventsCtrl = function ($scope, $state, BlogService, SearchService, Page) {
 		var vm = this;
 
 		vm.featuredEvent = {};
@@ -16,6 +16,9 @@
 			.then(function (response) {
 				vm.featuredEvent.image = response.data.thumbFacebookMetaTag;
 				vm.featuredEvent.imageurl = response.data.redirectUrl;
+			})
+			.catch(function (err) {
+				console.log(err);
 			});
 
 		function resetSearch() {
@@ -35,23 +38,29 @@
 					vm.hasTerm = true;
 					vm.result = SearchService.getResultsLabel(response, term);
 				})
+				.catch(function (err) {
+					console.log(err);
+				});
 		}
 
 		function getIndex() {
-			ReadService('events')
+			BlogService('events')
 				.then(readSuccess)
 				.then(function (posts) {
-					vm.index = posts;
+					vm.index = _.orderBy(posts, 'publishDate', 'asc');
 					$scope.featured = vm.index;
 				})
-				.then($scope.hideLoading);
+				.then($scope.hideLoading)
+				.catch(function (err) {
+					console.log(err);
+				});
 		}
 
 		function getDetail() {
-			ReadService('events')
+			BlogService('events')
 				.then(readSuccess)
 				.then(function (collection) {
-					$scope.featured = collection;
+					$scope.featured = _.orderBy(collection, 'publishDate', 'asc');
 					return collection.filter(function (post) {
 						return post.urlAlias === vm.postUrl;
 					});
@@ -59,7 +68,10 @@
 				.then(function (collection) {
 					vm.index = collection;
 				})
-				.then($scope.hideLoading);
+				.then($scope.hideLoading)
+				.catch(function (err) {
+					console.log(err);
+				});
 		}
 
 		$scope.getDay = function () {
@@ -94,7 +106,7 @@
 
 	}
 
-	EventsCtrl.$inject = ['$scope', '$state', 'ReadService', 'SearchService', 'Page'];
+	EventsCtrl.$inject = ['$scope', '$state', 'BlogService', 'SearchService', 'Page'];
 
 	angular
         .module('app')

@@ -3,8 +3,6 @@
 // Core variables and mixins
 @import "Vendor/bootstrap/variables";
 @import "Vendor/bootstrap/mixins";
-@import "Sections/profile";
-@import "Sections/profile";
 
 // Reset and dependencies
 @import "Vendor/bootstrap/normalize";
@@ -13,9 +11,11 @@
 // Core CSS
 @import "Vendor/bootstrap/scaffolding";
 @import "Vendor/bootstrap/grid";
-
 @import "Vendor/bootstrap/forms";
-
+@import "Vendor/bootstrap/tables";
+@import "Vendor/bootstrap/input-groups";
+@import "Vendor/magnific-popup";
+@import "Vendor/caption";
 
 @import "Common/utilities.scss";
 @import "Common/globals.scss";
@@ -25,6 +25,8 @@
 @import "Common/footer.scss";
 @import "Common/btn.scss";
 @import "Common/inputs.scss";
+@import "Common/pagination.scss";
+@import "Common/cookie";
 //@import "Common/margin.scss";
 //@import "Common/padding.scss";
 
@@ -37,3 +39,6 @@
 @import "Sections/pages";
 @import "Sections/dashboard";
 @import "Sections/profile";
+@import "Sections/participate";
+@import "Sections/comments";
+@import "Sections/admin";

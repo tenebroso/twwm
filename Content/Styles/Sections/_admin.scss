@@ -1,0 +1,143 @@
+﻿.admin-content {
+    @extend .dashboard-content;
+    width: 100%;
+    flex: 1 1 100%;
+    max-width: 100%;
+}
+
+.admin-tabs {
+    @extend .dashboard-tabs;
+    opacity:1;
+}
+
+.admin-tabContent {
+    @extend .dashboard-tabContent;
+
+    .table {
+        margin:2em 0;
+    }
+
+    th {
+        background:$blueDark;
+        color:white;
+        cursor:pointer;
+        transition:background .35s;
+        &:hover {
+            background:$blueLight;
+        }
+    }
+
+    td {
+        word-break:break-word;
+    }
+
+    [class^=dn-icon] {
+        float: right;
+        display: block;
+        font-size: 10px;
+        margin: 4px 0 0;
+    }
+
+    .dn-icon-rotated {
+        transform:rotate(-90deg);
+    }
+}
+
+.admin-readContainer {
+    .control-label {
+        margin: 0;
+        font-size: 12px;
+        text-transform: uppercase;
+        color: rgba(255,255,255,.5);
+    }
+
+    trix-toolbar {
+        margin:1.5em 0 0;
+    }
+
+    trix-editor {
+        margin:0 0 1.5em;
+    }
+    hr {
+        border-color: rgba(255, 255, 255, 0.4);
+    }
+    .content-link {
+        display:block;
+        background-color:transparent;
+        transition:background-color .35s;
+        padding:15px 0;
+        border-bottom:1px solid rgba($blueDark, .15);
+    .item-date {
+        color:rgba(255,255,255,75);
+        margin:0;
+    }
+    &:hover {
+        background-color:rgba($blueDark, .2);
+    }
+}
+}
+
+#contentCreator {
+    margin-bottom:1em;
+}
+
+// Trix Overrides
+
+button.code {
+    display:none;
+}
+
+trix-toolbar .button_group:last-of-type {
+    border-right:1px solid #ddd;
+}
+
+trix-toolbar .button_row {
+    justify-content:flex-start;
+}
+
+trix-toolbar .button_group {
+    border-radius: 0;
+    border: none;
+    margin-bottom: 0;
+    margin-right: -3px;
+    border-left: 1px solid #ddd;
+}
+
+trix-toolbar .button_group button {
+    background-color:white;
+    &.icon {
+        height:1.9em;
+    }
+}
+
+trix-toolbar .button_group button, trix-toolbar .button_group input[type=button] {
+    border-radius:0;
+}
+
+trix-toolbar input {
+    color:black;
+}
+
+.button_groups {
+    margin: 0 0 -5px 0;
+    background: white;
+}
+
+trix-toolbar .dialogs .dialog input[type=button] {
+    background: #222;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 5px 9px;
+    border: none;
+    margin: 0 1px 0 0;
+}
+
+trix-toolbar .dialogs .button_group:last-of-type {
+    border: none;
+}
+
+.form-group a:not(.btn) {
+    color: #00829f;
+    text-decoration: underline;
+}

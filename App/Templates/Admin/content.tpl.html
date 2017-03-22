@@ -1,0 +1,45 @@
+﻿<div class="row admin-readContainer">
+	<div class="col-sm-6">
+		<div ng-show="vm.isEditing" class="row">
+			<div class="col-xs-6 col-xs-offset-6">
+				<a class="btn" ng-click="vm.reset();">Add New</a>
+			</div>
+		</div>
+		<form ng-submit="vm.create()" id="contentCreator">
+			<div class="form-group">
+				<label for="title" class="control-label">Title</label>
+				<input type="text" class="form-control" id="title" ng-model="vm.item.title" placeholder="Title" required>
+			</div>
+			<div class="form-group">
+				<label for="date" class="control-label">Publish Date</label>
+				<input type="date" class="form-control" id="date" placeholder="Date (yyyy-MM-dd)" ng-model="vm.item.publishDate" required>
+			</div>
+			<div class="form-group">
+				<label for="content" class="control-label">Content</label>
+				<trix-editor name="content" angular-trix spellcheck="true" class="trix-content form-control isWhite" ng-model="vm.item.body" placeholder="Content"></trix-editor>
+			</div>
+			<div class="row">
+				<div class="col-xs-6">
+					<button class="btn btn-cancel" type="reset" ng-click="vm.reset();">Cancel</button>
+				</div>
+				<div class="col-xs-6">
+					<button class="btn" type="submit">Submit</button>
+				</div>
+			</div>
+		</form>
+		<div ng-show="vm.isEditing" class="row">
+			<div class="col-xs-4 col-xs-offset-4">
+				<a class="btn btn-cancel btn-delete" ng-click="vm.deleteItem(vm.item.id);">Delete</a>
+			</div>
+		</div>
+	</div>
+	<div class="col-sm-6">
+		<div class="row content-link" ng-repeat="item in vm.items" data-id="{{::item.id}})" ng-click="vm.editItem(this);">
+			<div class="col-xs-12 entry-content">
+				<h3 class="item-title">{{item.title}}</h3>
+				<p class="item-date">{{item.publishDate | date:'dd/MM/yyyy'}}</p>
+				<!--<div class="item-content" ng-bind-html="item.body | unsafe"></div>-->
+			</div>
+		</div>
+	</div>
+</div>

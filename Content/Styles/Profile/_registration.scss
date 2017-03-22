@@ -1,0 +1,26 @@
+﻿.registration-addPhoto {
+    border-radius:50%;
+    border:1px solid rgba(255,255,255,.73);
+    font-size:52px;
+    line-height:89px;
+    text-align:center;
+
+    margin:0 auto;
+    display:block;
+
+    width:89px;
+    height:89px;
+    overflow:hidden;
+    img {
+        float:left;
+        //transition:opacity .35s;
+        opacity:1;
+    }
+    &:hover {
+        text-decoration:none;
+        border-color:white;
+        img {
+            opacity:.75;
+        }
+    }
+}

@@ -1,0 +1,23 @@
+﻿<div class="flyoutHeader">
+	<i class="dn-icon-pray-outlined flyoutHeader__icon"></i>
+
+	<span class="flyoutHeader__text">Pray</span>
+
+	<twwm-flyoutclose></twwm-flyoutclose>
+</div>
+
+<div class="flyoutNavigation noPadding">
+	<div class="flyoutNavigation__controls">
+		<span class="flyoutNavigation__button" ng-class="::{'selected': prayVm.newPrayer.type === 1}" ng-click="prayVm.startCreating(1)">
+			<i class="dn-icon-plus"></i>
+			Request Prayer
+		</span>
+		<span class="flyoutNavigation__button" ng-class="::{'selected': prayVm.newPrayer.type === 0}" ng-click="prayVm.startCreating(0)">
+			<i class="dn-icon-plus"></i>
+			Add a Prayer
+		</span>
+	</div>
+	
+</div>
+
+<twwm-pray></twwm-pray>

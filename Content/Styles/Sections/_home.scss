@@ -235,12 +235,13 @@
 .home-panelTwoSlider {
     color: white;
     padding:50px 25px;
+    background: rgba(0,0,0,.75);
     @media (min-width:$screen-sm-min){
         max-width: 535px;
         width: 80%;
         height:80vh;
         left: 60px;
-        background: rgba(255,255,255,.35);
+        background: rgba(0,0,0,.75);
         backdrop-filter:blur(5px);
         -webkit-backdrop-filter:blur(5px);
         padding: 90px 60px;
@@ -384,7 +385,7 @@
             content: "\e9fc";
         }
         li:nth-child(4) button:after {
-            content: "\e902";
+            content: "\e967";
         }
     }
 
@@ -410,10 +411,7 @@
 }
 
 .home-panelFour {
-    background-color:white;
-    @media (min-width:$screen-sm-min){
-         background: linear-gradient(to bottom, #0088a7 0%, #146dad 100%);
-    }
+    background: linear-gradient(to bottom, #0088a7 0%, #146dad 100%);
     .home-container {
         position: relative;
         color:black;
@@ -439,9 +437,30 @@
     }
 }
 
-@media (max-width:$screen-sm-max) {
+@media (max-width:480px) {
+    .home-panelTwoSlider {
+        background:none;
+    }
     .home-panelTwo,
     .home-panelThree {
-        background:none !important;
+        padding-top: 20em;
+        background-repeat: no-repeat;
+        background-size: contain;
+    }
+    .home-panelFour {
+        padding-bottom:4em;
+    }
+}
+
+@media (min-width:481px) and (max-width:991px){
+     .home-panelTwoSlider {
+         background:none;
+     }
+    .home-panelTwo,
+    .home-panelThree {
+        background-position: center top;
+        background-repeat: no-repeat;
+        padding-top: 60%;
+        background-size: contain;
     }
 }

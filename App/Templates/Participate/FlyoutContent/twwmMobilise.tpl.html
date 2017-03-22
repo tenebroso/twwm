@@ -1,0 +1,24 @@
+﻿<ul class="participatePosts-list">
+	<li ng-repeat="activity in mobiliseVm.archives | orderBy:'start' : true | limitTo: '25'" class="participatePost" ng-hide="activity.privateActivity || activity.title == '' || !activity.title">
+		<a class="participatePost-link" ng-click="vm.getSingleActivity(activity.id,activity.identity.contentClass)">
+
+			<div class="participatePost-date">
+				{{::activity.start | date:'MMMM'}}
+				<span>{{::activity.start | date:'dd'}}</span>
+			</div>
+			<div class="participatePost-content">
+				<div class="participatePost-stats">
+					<span class="participatePost-count">+{{::activity.actionCount}}</span>
+					<span class="participatePost-personIcon"><i class="dn-icon-person-solid"></i></span>
+					<span class="participatePost-readIcon"><i class="dn-icon-pin-checkmark" ng-if="activity.actioned"><span class="path1"></span><span class="path2"></span></i></span>
+				</div>
+				<span class="participatePost-title">{{::activity.title}}</span>
+				<span class="participatePost-synopsis">{{::activity.start | date: 'dd/MM/yyyy'}}</span>
+				<span class="participatePost-activityType">
+					<i class="{{::activity.activityType.id | activityIcon}}"></i> <strong>Activity:</strong> {{::activity.activityType.name}}
+				</span>
+			</div>
+
+		</a>
+	</li>
+</ul>

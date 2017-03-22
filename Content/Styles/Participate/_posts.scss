@@ -1,0 +1,218 @@
+﻿.participatePosts-list {
+    @extend .featuredPost-list;
+}
+
+.participatePost {
+    //@extend .featuredPost;
+}
+
+a.participatePost-link {
+    @extend .featuredPost-link;
+    color:#747474;
+    border-bottom:1px solid rgba(#95989A, .3);
+    display:flex;
+    cursor:pointer;
+    &:hover {
+        background-color:rgba(#D1D5DA, .35);
+        color:#747474;
+    }
+}
+
+.participatePost-date {
+    @extend .featuredPost-date;
+    background-color:transparent;
+    border-right:1px solid rgba(#95989A, .3);
+    a.participatePost-link:hover & {
+        background-color:transparent;
+    }
+
+}
+
+.participatePost-isRequest {
+    color:white;
+    padding:2px 5px;
+    background:$blueLight;
+    font-size: 11px;
+    margin: 0 0 0 5px;
+    line-height: 11px;
+    font-weight: normal;
+}
+
+.participatePost-isFlagged {
+    display:block;
+    color:$red;
+    font-weight: bold;
+}
+
+.participatePost-content {
+    flex: 1 1 80%;
+    padding: 14px 10px;
+    line-height:1.2;
+}
+
+.participatePost-synopsis {
+    color:#747474;
+    h1,h2,h3,h4,h5,h6,strong, span, em {
+        font-size:13px !important;
+        font-weight:normal;
+        font-family:$sans-serif;
+        font-style:normal;
+        color:#747474;
+    }
+}
+
+.participatePost-stats {
+    flex:1 1 20%;
+    padding:14px 5px;
+    text-align:right;
+    .participatePost-content & {
+        flex: none;
+        float: right;
+        padding: 0 5px 0 5px;
+        margin-top: -3px;
+    }
+}
+
+.participatePost-count {
+    color:$green;
+    font-size:15px;
+}
+
+.participatePost-personIcon {
+    font-size:16px;
+    .participatePost-content & {
+        padding-left:7px;
+    }
+}
+
+.participatePost-personDetails {
+    flex: 1 1 0;
+    padding: 11px 0 0;
+    text-align: center;
+    img {
+        border-radius: 50%;
+        padding: 4px;
+    }
+    i[class*=person] {
+        border: 1px solid transparent;
+        border-radius: 50%;
+        padding: 5px;
+        font-size: 9px;
+        background: #ccc;
+    }
+     + .participatePost-content {
+        padding-left: 0;
+    }
+} 
+
+.participatePost-readIcon {
+    display:block;
+    font-size:17px;
+    color:$green;
+    padding:5px 0 0;
+}
+
+.participatePost-count, 
+.participatePost-personIcon {
+    display: inline-block;
+    vertical-align: middle;
+    width: 40%;
+}
+
+.participatePost-title {
+    @extend .featuredPost-title;
+    display:block;
+    width:auto;
+    color:$black;
+    padding:0 0 5px;
+    font-size:14px;
+    a.participatePost-link:hover & {
+        //color:white;
+    }
+}
+
+.participatePost-subtitle {
+    font-weight: normal;
+    font-style: italic;
+    font-size: 11px;
+}
+
+.participatePost-activityType {
+    display: block;
+    margin: 5px 0 0;
+    font-size: 12px;
+    color:$blueLight;
+    > i {
+        padding: 0 2px 0 0;
+        position: relative;
+        top: 1px;
+    }
+}
+
+a[class*=Post].reported,
+div[class*=Content].reported {
+    background-color: rgba(255, 0, 0, 0.26);
+    &:after {
+        content: "!";
+        border: 1px solid red;
+        width: 20px;
+        height: 20px;
+        text-align: center;
+        border-radius: 50%;
+        font-weight: bold;
+        font-size: 15px;
+        background: red;
+        color: white;
+        line-height: 19px;
+        margin: 9px 7px 0 0;
+    }
+}
+
+div[class*=Content].reported:after {
+    display:none;
+}
+
+.share-container {
+    overflow:hidden;
+    .share-box {
+        position: absolute;
+        top: 5px;
+        left: 11%;
+        z-index:10;
+        transform:translate(0,200%);
+        transition:transform .35s;
+        text-align:center;
+     }
+    .btn {
+        position:relative;
+        z-index:20;
+        background:white;
+        transform:translate(0,0);
+        transition:transform .35s;
+        img {
+            width:15px;
+            margin:-2px 0 0 3px;
+        }
+    }
+    &.isSharing {
+        .btn {
+            transform:translate(0,-100%);
+        }
+        .share-box {
+            transform:translate(0,0);
+        }
+    }
+}
+
+.share-box > div {
+    vertical-align: middle;
+    display: inline-block;
+}
+.share-box > div > iframe {
+    float: left;
+}
+
+.share-box + .event-body,
+.share-box + .blogPost-content {
+    padding-top:1em;
+}

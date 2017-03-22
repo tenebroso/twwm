@@ -10,14 +10,19 @@
 				link: function (scope, el, attr) {
 
 					FeaturedService.getFeatured(attr.category).then(function (response) {
-						scope.featured = response.data.news;
+						scope.featured = _.orderBy(response.data.news, 'publishDate', 'desc');
+
+						if (attr.category === "events") {
+							scope.postType = "Events";
+							scope.featured = _.orderBy(scope.featured, ['publishDate'], ['asc']);
+						} else {
+							scope.postType = "Posts";
+						}
+
+
 					});
 
-					if (attr.category === "events")
-						scope.postType = "Events";
-					else
-						scope.postType = "Posts";
-
+					
 				}
 			};
 		}]);

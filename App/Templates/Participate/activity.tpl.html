@@ -1,0 +1,69 @@
+﻿<div class="flyoutHeader">
+	<i class="flyoutHeader__icon" ng-class="vm.content.type === 'evangelism' ? 'dn-icon-evangelise' : 'dn-icon-flame'"></i>
+
+	<span class="flyoutHeader__text">{{::vm.content.type}}</span>
+
+	<twwm-flyoutclose></twwm-flyoutclose>
+</div>
+
+<div class="flyoutNavigation">
+	<span class="flyoutNavigation__control" ui-sref="participate.mobilise">
+		<i class="dn-icon-arrow-back"></i>
+		Back
+	</span>
+</div>
+
+<div class="flyoutContent">
+
+	<div class="newActivity newActivity__success newActivity__single">
+
+		<div class="row">
+			<div class="col-xs-2">
+				<span class="newActivity__icon"><i class="{{::vm.content.activityType.id | activityIcon}}"></i></span>
+			</div>
+			<div class="col-xs-7">
+				<p class="newActivity__title">{{vm.content.title}}</p>
+				<p class="newActivity__date"><i class="dn-icon-calendar"></i> {{::vm.content.start | date: 'dd/MM/yyyy'}}</p>
+			</div>
+			<div class="col-xs-3">
+				<span class="participatePost-count">+{{::vm.content.actionCount}}</span>
+				<span class="participatePost-personIcon"><i class="dn-icon-person-solid"></i></span>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-12">
+				<div class="newActivity_description entry-content" ng-bind-html="::vm.content.description | unsafe"></div>
+			</div>
+		</div>
+
+		<comment></comment>
+
+		<div class="row">
+			<div class="col-xs-6 share-container" data-type="{{::vm.content.type}}" data-id="{{::vm.content.id}}" twwm-share>
+				<a class="btn btn-cancel">
+					Share
+					<img src="../../../Content/Images/share-dark@2x.png" />
+				</a>
+				<div class="share-box">
+					<div fb-like="vm.fullUrl"></div>
+					<div tweet="vm.content.title" tweet-url="vm.fullUrl"></div>
+				</div>
+			</div>
+			<div class="col-xs-6">
+				<button class="btn" ng-class="::{'btn-selected': vm.content.actioned === true}" ng-click="vm.toggleParticipation(vm.content.id, vm.content.actioned)">
+					{{ vm.content.actioned ? "Joined" : "Join"}}
+					<i class="dn-icon-checkmark" ng-if="vm.content.actioned"></i>
+				</button>
+			</div>
+		</div>
+
+		<div class="row" ng-hide="(vm.loggedInUsername !== vm.content.username) && !currentUser.isAdmin">
+			<div class="col-md-12">
+				<a class="newActivity__delete" ng-click="vm.removeActivity(vm.content.id)">Delete this activity</a>
+			</div>
+		</div>
+
+	</div>
+
+</div>

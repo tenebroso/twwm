@@ -1,0 +1,19 @@
+﻿<ul class="participatePosts-list">
+	<li ng-repeat="reach in reachVm.archives track by $index" class="participatePost">
+		<a class="participatePost-link" ui-sref="participate.reachItem({urlAlias:reach.id, tag:'reach'})">
+			<div class="participatePost-date">
+				{{::reach.publishDate | date:'MMMM'}}
+				<span>{{::reach.publishDate | date:'dd'}}</span>
+			</div>
+			<div class="participatePost-content content-entry">
+				<div class="participatePost-stats">
+					<span class="participatePost-count">+{{::reach.actionCount}}</span>
+					<span class="participatePost-personIcon"><i class="dn-icon-person-solid"></i></span>
+					<span class="participatePost-readIcon"><i class="dn-icon-pin-checkmark" ng-if="reach.actioned"><span class="path1"></span><span class="path2"></span></i></span>
+				</div>
+				<span class="participatePost-title">{{::reach.title}}</span>
+				<span class="participatePost-synopsis" ng-bind-html="::reach.body | limitWord:8 | unsafe"></span>
+			</div>
+		</a>
+	</li>
+</ul>

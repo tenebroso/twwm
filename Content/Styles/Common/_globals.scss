@@ -28,8 +28,10 @@ body {
         min-height:calc(100vh - 4em);
         position:relative;
         padding:3.9em 0 0;
+        margin:0;
         @media (min-width:$screen-sm-min) {
             padding:4.2em 0 0;
+            margin:0 auto;
         }
     }
 
@@ -72,6 +74,11 @@ img {
 	border-width: 0px;
 	max-width:100% !important;
     height:auto !important;
+}
+
+[class*="logo"],
+.navbar-tagline {
+   // opacity:0 !important;
 }
 
 .loadingIndicator {
@@ -123,20 +130,50 @@ div#preload {
 
 .wrapper {
     position:relative;
-    margin:0 auto;
+    margin:0 1em;
+    &.entry {
+        display:block;
+        color:white;
+        padding:2em 0;
+        margin:2em 3em;
+    }
     @media (min-width:$screen-sm-min) {
         margin:0 auto 4em;
         max-width:1280px;
         display:flex;
+        &.entry {
+            padding:4em 0;
+            margin:0 auto;
+        }
     }
 }
 
+twwm-header {
+    display:block;
+}
+
 .content {
-    margin:0 1em;
+    overflow:hidden;
+    //margin:0 1em;
     @media (min-width:$screen-sm-min) {
         max-width:60%;
         flex:0 0 60%;
         margin:1em 1em 0 1em;
+    }
+}
+
+.content-link {
+    cursor:pointer;
+}
+
+.entry-content {
+    ul, ol {
+        margin:1em 0 1em 1.5em;
+    }
+    blockquote {
+        border-left: 3px solid #ddd;
+        padding-left: .5em;
+        margin: 1em 0 1em .5em;
     }
 }
 
@@ -164,7 +201,7 @@ div#preload {
     }
 }
 
-[ui-view] {
+/*[ui-view] {
     opacity:1;
 }
 
@@ -193,4 +230,4 @@ div#preload {
 
 [ui-view].ng-leave-active {
   opacity: 0;
-}
+}*/

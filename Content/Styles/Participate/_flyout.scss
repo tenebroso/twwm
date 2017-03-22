@@ -1,0 +1,259 @@
+﻿.flyout {
+    padding:0;
+
+    background:white;
+    flex:none;
+    
+    transform: translate3d(0,0,0);
+    transition: transform .35s;
+    //overflow-x:scroll;
+    overflow-y: scroll;
+    overflow-x: hidden;
+   
+    display: block;
+    width: 100%;
+    height: calc(100vh - 102px);
+
+    position: absolute;
+    z-index:20;
+
+    
+    top: 44px;
+    right: 0;
+
+
+    @media (min-width:$screen-sm-min){
+        position:relative;
+        top:0;
+        right:auto;
+        height:auto;
+        width:auto;
+        max-height:93vh;
+        min-width:350px;
+        box-shadow:-6px 0px 4px rgba(0, 0, 0, 0.05);
+        flex:1 1 35%;
+    }
+    &.isClosed {
+        transform:translate3d(150%,0,0);
+    }
+    p:not(.newActivity__title):not(.newActivity__date) {
+        margin:0 0 1em;
+    }
+    trix-toolbar .button_group button {
+        width: 26px;
+        border-top: 1px solid #ddd;
+        margin-bottom: -1px;
+    }
+    trix-editor {
+        margin-bottom:1em;
+        max-width:323px;
+        font-weight:normal;
+        a {
+            text-decoration:underline;
+        }
+    }
+}
+
+.flyoutContent {
+    padding: 15px 0;
+    @media (min-width:$screen-sm-min){
+        padding:25px 10px;
+    }
+}
+
+.flyoutHeader {
+    background:$blueLight;
+    color:white;
+    text-transform:uppercase;
+
+    font-size: 12px;
+    padding: 5px 10px;
+    @media(min-width:$screen-sm-min){
+        padding:10px;
+        font-size:14px;
+    }
+}
+
+.flyoutHeader__text {
+    font-family:$sans-serif-alt;
+    padding:0 0 0 5px;
+    letter-spacing:1px;
+}
+
+.flyoutNavigation__control {
+    cursor:pointer;
+    transition: color .35s;
+
+    &:hover{
+        color:$blue;
+    }
+}
+
+.flyoutNavigation__controls {
+    display:flex;
+}
+
+.flyoutNavigation__button {
+    color:white;
+    background:$blue;
+    transition:background-color .35s;
+    flex:1 1 50%;
+    padding:5px;
+    cursor:pointer;
+    text-align:center;
+    font-weight:bold;
+    font-size:12px;
+    &:first-child {
+        border-right:1px solid $white;
+    }
+    &:hover, &.selected {
+        background-color:$black;
+    }
+}
+
+.flyoutHeader__close {
+    cursor:pointer;
+    padding:2px 0 2px 15px;
+    .path2:before {
+        color: white;
+        transition:color .35s;
+        font-size: 22px;
+        font-weight: bold;
+        position: relative;
+        top: -4px;
+        right: -7px;
+    }
+    .path1:before {
+        color:transparent;
+        background:transparent;
+    }
+    &:hover {
+        .path2:before {
+            color:black;
+        }
+    }
+}
+
+.flyoutNavigation {
+    padding:10px;
+    overflow:hidden;
+    //display:none;
+    width:100%;
+    @media (min-width:$screen-sm-min){
+        display:block;
+        border-bottom:1px solid rgba(#95989A, .3);
+    }
+    &.noPadding {
+        padding:0;
+        //width:100%;
+    }
+}
+
+form[name=newActivity] {
+    overflow: hidden;
+    padding:0 1em;
+    @media (min-width:$screen-sm-min){
+        padding:0;
+    }
+}
+
+.newActivity {
+    transform:translate3d(0,0,0);
+    padding:0 0 2em;
+}
+
+.flyout-warning {
+    display: block;
+    margin: 1em 0;
+    text-align: center;
+    color: $red;
+}
+
+.newActivity__option {
+    display:inline-block;
+    width:25%;
+    margin:11px -4px 11px 0;
+    text-align:center;
+    padding:10px;
+    color:rgba(#4B3F4E, .67);
+    transition:color .35s;
+    cursor:pointer;
+    font-size:12px;
+    line-height:1;
+    font-weight:bold;
+
+    &:hover,
+    &.selected {
+        color:$blueLight;
+    }
+}
+
+.newActivity__option-selected {
+    color: $blueLight;
+    font-size: 12px;
+    .newActivity__success & {
+        text-align:center;
+        margin:0 0 1em;
+    }
+}
+
+.newActivity__icon {
+    font-size: 36px;
+    display: block;
+    margin: 0 0 5px;
+    .newActivity__option-selected & {
+       display: inline-block;
+       font-size: 12px;
+    }
+    .newActivity__success & {
+        color:$blue;
+    }
+}
+
+.newActivity__success .row {
+    margin:0 0 1em;
+}
+
+.newActivity__title {
+    font-weight:bold;
+    color:black;
+}
+
+.newActivity__delete {
+    display:block;
+    margin:2em 0;
+    text-align:center;
+    color:#908A91;
+    cursor:pointer;
+    &:hover {
+        color:$black;
+    }
+}
+
+.newActivity__date {
+    font-size: 11px;
+    line-height: 14px;
+    .dn-icon-calendar {
+        display: inline-block;
+        vertical-align: top;
+        font-size: 14px;
+        padding: 0 3px 0 0;
+    }
+}
+
+.createPrayer {
+    padding:0 1em;
+    @media (min-width:$screen-sm-min){
+        padding:0;
+    }
+    textarea {
+        margin:0 0 1em;
+    }
+}
+
+.singlePrayer__photo {
+    border-radius:50%;
+    overflow:hidden;
+    width:50px;
+    height:50px;
+}

@@ -1,8 +1,9 @@
 ﻿// Colors
 $red: #EF666D;
 $blue:rgba(0,130,159,1);
+$blueLight: #00C7F4;
 $blueDark:rgba(1,29,56,1);
-$green: #ACCC25;
+$green: #67CB54;
 $greenALt: #8ACDAA;
 $orange: #EBA23E;
 
@@ -21,6 +22,22 @@ $shadow: 0 0 1px rgba(0,0,0,.11),0 1px 2px rgba(0,0,0,.22);
 $shadowTransition: box-shadow .15s cubic-bezier(.4,0,.2,1);
 $shadowLarge: 0 0 3px rgba(0,0,0,.13),0 3px 6px rgba(0,0,0,.26);
 
+// Form Elements
+$input-bg: transparent;
+$input-border: rgba(255,255,255,.4);
+$input-border-radius: 0;
+$input-color: $white;
+$input-bg-disabled: $input-bg;
+
+ /*height: $input-height-base; // Make inputs at least the height of their button counterpart (base line-height + padding + border)
+  padding: $padding-base-vertical $padding-base-horizontal;
+  font-size: $font-size-base;
+  line-height: $line-height-base;
+  color: $input-color;
+  background-color: $input-bg;
+  background-image: none; // Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214
+  border: 1px solid $input-border;
+  border-radius: $input-border-radius;*/
 
 // Media queries breakpoints
 
@@ -58,6 +75,9 @@ $screen-xs-max:              ($screen-sm-min - 1) !default;
 $screen-sm-max:              ($screen-md-min - 1) !default;
 $screen-md-max:              ($screen-lg-min - 1) !default;
 
+$table-border-color: rgba($blueDark, .15);
+$input-group-addon-bg: transparent;
+$input-group-addon-border-color: transparent;
 
 // MIXINS
 @mixin border-radius($radius) {

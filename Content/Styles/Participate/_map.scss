@@ -1,0 +1,93 @@
+﻿#map {
+    width:100%;
+    
+    position:absolute;
+    left:0;
+    top:44px;
+    z-index:10;
+    height:calc(100vh - 101px);
+    @media (min-width:$screen-sm-min){
+       min-height:95vh;
+       height:100%;
+       height:95vh;
+       top:0;
+    }
+    div > div {
+        background-color:transparent !important;
+    }
+}
+
+#map, #map * {
+    box-sizing: content-box;
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    max-width:none !important;
+}
+
+
+p {
+  
+}
+
+@keyframes bounce {
+  0% {
+    opacity: 0;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+    transform: translateY(-2000px);
+  }
+  60% {
+    opacity: 1;
+    filter: none;
+    transform: translateY(30px);
+  }
+  80% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.custom-marker {
+   // animation-name: bounce;
+   // animation-fill-mode: both;
+   // animation-duration: 1s;
+    transition:width .35s;
+    transform:translate(0,0);
+    -webkit-transform:translate(0,0);
+    -moz-transform:translate(0,0);
+    &.joined,
+    &.colored {
+        z-index:20;
+        &:after {
+            background: url(/Content/Images/checkmark-joined@2x.png);
+            background-repeat:no-repeat;
+            z-index:120;
+            content: "";
+            position: absolute;
+            right: -5px;
+            top: -8px;
+            background-size: contain;
+            width: 20px;
+            height: 20px;
+        }
+    }
+    &.enlarged {
+        width: 39px;
+        transform: translate(-3px,-10px);
+    }
+}
+
+.custom-marker:not(.enlarged) img:not(.colored) {
+    filter: grayscale(100%);
+}
+
+.custom-marker.enlarged img,
+.custom-marker img.colored {
+    z-index:100;
+    position:relative;
+    &:after {
+        z-index:110;
+    }
+}

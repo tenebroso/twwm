@@ -1,0 +1,19 @@
+﻿<ul class="participatePosts-list">
+	<li ng-repeat="read in readVm.archives track by $index" class="participatePost">
+		<a class="participatePost-link" ui-sref="participate.readItem({urlAlias:read.id, tag:'read'})">
+			<div class="participatePost-date">
+				{{::read.publishDate | date:'MMMM'}}
+				<span>{{::read.publishDate | date:'dd'}}</span>
+			</div>
+			<div class="participatePost-content content-entry">
+				<div class="participatePost-stats">
+					<span class="participatePost-count">+{{::read.actionCount}}</span>
+					<span class="participatePost-personIcon"><i class="dn-icon-person-solid"></i></span>
+					<span class="participatePost-readIcon"><i class="dn-icon-pin-checkmark" ng-if="read.actioned"><span class="path1"></span><span class="path2"></span></i></span>
+				</div>
+				<span class="participatePost-title">{{::read.title}}</span>
+				<span class="participatePost-synopsis" ng-bind-html="::read.body | limitWord:8 | unsafe"></span>
+			</div>
+		</a>
+	</li>
+</ul>

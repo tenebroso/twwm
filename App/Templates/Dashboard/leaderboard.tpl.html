@@ -3,36 +3,28 @@
 		<strong>Corps:</strong> Mayfair Community Corps, Chicago, USA <a class="location-selectorToggle">&nbsp;</a>
 	</div>
 	<div class="location-filters">
-		<a href="#" class="active">Activities</a>
-		<a href="#">Reached</a>
+		<a ng-click="vm.showActivities = true" ng-class="{'active': vm.showActivities}">Activities</a>
+		<a ng-click="vm.showActivities = false" ng-class="{'active': !vm.showActivities}">Reached</a>
 		<h3>Top 25 List</h3>
 	</div>
 	<ol class="dashboard-list">
-		<li>
+		<li ng-repeat="leader in vm.dashboardDetails.topUsersByActivity | limitTo:25" ng-show="vm.showActivities">
 			<div class="dashboard-profilePhoto active">
-				<img src="http://www.fillmurray.com/85/85" />
+				<img ng-src="{{::leader.photo}}" />
 			</div>
 			<div class="dashboard-activities">
-				<strong>Me</strong><br />
-				32 Activities Completed
+				<strong>{{leader.username}}</strong><br />
+				{{::leader.activityCount}} Activities Completed
 			</div>
 		</li>
-		<li>
+
+		<li ng-repeat="leader in vm.dashboardDetails.topUsersByPeopleReached | limitTo:25" ng-show="!vm.showActivities">
 			<div class="dashboard-profilePhoto active">
-				<img src="http://www.fillmurray.com/85/85" />
+				<img ng-src="{{::leader.photo}}" />
 			</div>
 			<div class="dashboard-activities">
-				<strong>Me</strong><br />
-				32 Activities Completed
-			</div>
-		</li>
-		<li>
-			<div class="dashboard-profilePhoto active">
-				<img src="http://www.fillmurray.com/85/85" />
-			</div>
-			<div class="dashboard-activities">
-				<strong>Me</strong><br />
-				32 Activities Completed
+				<strong>{{leader.username}}</strong><br />
+				{{::leader.attendance}} People Reached
 			</div>
 		</li>
 	</ol>

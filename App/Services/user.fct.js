@@ -5,53 +5,234 @@
         .module('app')
         .factory('UserService', UserService);
 
-	UserService.$inject = ['apiHost','$http'];
-	function UserService($http) {
-		var service = {};
+	UserService.$inject = ['$rootScope', '$http', '$state', 'twwmConfig', 'localStorageService', 'AuthService', 'ResponseService'];
+	function UserService($rootScope, $http, $state, twwmConfig, localStorageService, AuthService, ResponseService) {
 
-		service.GetAll = GetAll;
-		service.GetById = GetById;
-		service.GetByUsername = GetByUsername;
-		service.Create = Create;
-		service.Update = Update;
-		service.Delete = Delete;
-
-		return service;
-
-		function GetAll() {
-			return $http.get(apiHost + '/api/user').then(handleSuccess, handleError('Error getting all users'));
+		var User = {
+			aboveThirteen: true,
+			authorities: [
+				{
+					authority: ''
+				}
+			],
+			corps: '',
+			deviceLanguage: window.navigator.language ? window.navigator.language : '',
+			deviceTimeZone: String(-(new Date().getTimezoneOffset() / 60)),
+			deviceType: window.navigator.platform ? window.navigator.platform : '',
+			division: '',
+			enabled: true,
+			firstName: 'First Name',
+			ipAddress: '',
+			languagePreference: 'en',
+			lastName: 'Last Name',
+			latitude: 0,
+			locationPermission: true,
+			locationSharing: true,
+			longitude: 0,
+			marketingVerification: true,
+			mobileOs: 'web',
+			photoUrl: '/Content/Images/camera-white@2x.png',
+			registrationLocation: '',
+			registrationMethod: 'web',
+			territoryCode: '',
+			username: ''
 		}
 
-		function GetById(id) {
-			return $http.get(apiHost + '/api/user/' + id).then(handleSuccess, handleError('Error getting user by id'));
+		// TODO Request that FirstName and LastName be nullable
+
+		var userService = {
+			getLatLng: getLatLng,
+			getToken: getToken,
+			getUserDetails: getUserDetails,
+			getUser:getUser,
+			registerUser: registerUser,
+			setLatLng: setLatLng,
+			storeUser:storeUser,
+			updateUser: updateUser
 		}
 
-		function GetByUsername(username) {
-			return $http.get(apiHost + '/api/user/' + username).then(handleSuccess, handleError('Error getting user by username'));
+		return userService;
+
+		function getToken(name) {
+			if (typeof name === 'string')
+				return localStorageService.get(name);
+			else
+				return localStorageService.get('access_token');
 		}
 
-		function Create(user) {
-			return $http.post(apiHost + '/api/user', user).then(handleSuccess, handleError('Error creating user'));
+
+		function registerUser(user) {
+
+			var newUser = Object.assign({}, User, user);
+
+			var userObj = {
+				data: newUser,
+				method: 'POST',
+				url: twwmConfig.authEndpoint + '/api/registration/new'
+			}
+
+			return $http(userObj);
 		}
 
-		function Update(user) {
-			return $http.put(apiHost + '/api/user/' + user.id, user).then(handleSuccess, handleError('Error updating user'));
+		function updateUser(user) {
+			var token = localStorageService.get('access_token');
+
+			if (token == null) {
+				$state.go('login');
+				return;
+			}
+
+			var userObj = {
+				data:user,
+				method: 'PUT',
+				url: twwmConfig.authEndpoint + '/api/registration/edit',
+				headers: {
+					'Authorization': 'Bearer ' + token
+				}
+			}
+
+			function success(response) {
+				console.log(response);
+			}
+
+			function error(error) {
+				console.log(error);
+			}
+
+			return $http(userObj).then(success).catch(error);
 		}
 
-		function Delete(id) {
-			return $http.delete(apiHost + '/api/user/' + id).then(handleSuccess, handleError('Error deleting user'));
+		function getUser() {
+
+			var token = localStorageService.get('access_token');
+
+			if (token == null) {
+				$state.go('login');
+				return;
+			}
+			return $http({
+				url: twwmConfig.authEndpoint + '/api/user',
+				method: 'GET',
+				headers: {
+					'authorization': 'Bearer ' + token
+				}
+			});
+			
 		}
 
-		// private functions
+		function storeUser(res) {
 
-		function handleSuccess(res) {
-			return res.data;
+			function isAdmin(authorities) {
+
+				var adminRole = _.findIndex(authorities, function (auth) {
+					return auth.authority === "ROLE_ADMIN"
+				});
+
+				if (adminRole !== -1)
+					return true;
+				else
+					return false;
+			}
+
+			$rootScope.currentUser.accessToken = localStorageService.get('access_token');
+			$rootScope.currentUser.refreshToken = localStorageService.get('refresh_token');
+
+			getUser()
+				.then(function (res) {
+					$rootScope.currentUser.lat = res.data.latitude;
+					$rootScope.currentUser.lng = res.data.longitude;
+					$rootScope.currentUser.locationPermission = res.data.locationPermission;
+					$rootScope.currentUser.isAdmin = isAdmin(res.data.authorities);
+					$rootScope.currentUser.territoryCode = res.data.territoryCode;
+					$rootScope.currentUser.username = res.data.username;
+					$rootScope.currentUser.firstName = res.data.firstName;
+					$rootScope.currentUser.lastName = res.data.lastName;
+					$rootScope.currentUser.photoUrl = res.data.photoUrl;
+				})
+				.catch(function (err) {
+					console.log(err);
+				});
+
+
 		}
 
-		function handleError(error) {
-			return function () {
-				return { success: false, message: error };
-			};
+		function getUserDetails(username) {
+			var token = localStorageService.get('access_token');
+
+			if (token == null) {
+				$state.go('login');
+				return;
+			}
+			return $http({
+				url: twwmConfig.authEndpoint + '/api/user/' + username,
+				method: 'GET',
+				headers: {
+					'authorization': 'Bearer ' + token
+				}
+			});
+		}
+
+		function getLatLng() {
+			var latLng = [];
+
+			var token = localStorageService.get('access_token');
+
+			if (token == null) {
+				$state.go('login');
+				return;
+			}
+
+			function error(err) {
+				console.log(err);
+				ResponseService.error(err);
+			}
+
+
+			if (localStorageService.get('user_lat') == null) {
+
+				var getObj = {
+					method: 'GET',
+					url: twwmConfig.authEndpoint + '/api/user',
+					headers: {
+						'Authorization': 'Bearer ' + token
+					}
+				}
+
+					$http(getObj)
+					.then(function (res) {
+
+						$rootScope.currentUser.lat = res.data.latitude;
+						$rootScope.currentUser.lng = res.data.longitude;
+
+						latLng.push(res.data.latitude);
+						latLng.push(res.data.longitude);
+						setLatLng(latLng[0], latLng[1]);
+						return latLng;
+					})
+					.catch(error);
+
+			} else {
+				$rootScope.currentUser.lat = localStorageService.get('user_lat');
+				$rootScope.currentUser.lng = localStorageService.get('user_lng');
+
+				latLng.push(Number(localStorageService.get('user_lat')));
+				latLng.push(Number(localStorageService.get('user_lng')));
+				return latLng;
+			}
+
+			if(latLng.length === 0){
+				return [0, 0];
+			}
+			
+		}
+
+		function setLatLng(lat, lng) {
+			if (lat) {
+				localStorageService.set('user_lat', lat);
+			}
+			if (lng) {
+				localStorageService.set('user_lng', lng);
+			}
 		}
 	}
 

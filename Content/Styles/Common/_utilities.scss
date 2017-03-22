@@ -108,13 +108,23 @@
 	font-size: 100% !important;
 }
 .u-textLg {
-	font-size: 125% !important;
+	font-size: 115% !important;
+     @media (min-width:$screen-sm-min){
+        font-size: 125% !important;
+    }
 }
 .u-textXl {
-	font-size: 150% !important;
+    font-size: 125% !important;
+    @media (min-width:$screen-sm-min){
+        font-size: 150% !important;
+    }
+	
 }
 .u-textXxl {
-	font-size: 200% !important;
+	font-size: 150% !important;
+     @media (min-width:$screen-sm-min){
+        font-size: 200% !important;
+    }
 }
 
 .u-uppercase {
@@ -144,6 +154,10 @@
 .u-whiteBg {
     background:white;
     color:$black;
+}
+
+.u-white {
+    color:white !important;
 }
 
 @mixin listReset {

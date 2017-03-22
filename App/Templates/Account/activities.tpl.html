@@ -1,0 +1,48 @@
+﻿<div class="wrapper entry">
+
+	<main class="content activities-content">
+
+		<a class="profile-photo">
+			<img ng-src="{{::currentUser.photoUrl}}" alt="{{::currentUser.name}}" />
+		</a>
+
+		<ul class="dashboard-tabs">
+			<li class="active">
+				<a href="#">My Activities</a>
+			</li>
+			<li>
+				<a href="#" ui-sref="profile">My Profile</a>
+			</li>
+			<li>
+				<a href="#" ng-click="vm.logout()">Logout</a>
+			</li>
+		</ul>
+
+		<!--  Description Tab's Content  -->
+		<div class="dashboard-tabContent dashboard">
+			<div class="row">
+				<div class="col-md-6">
+					<div class="dashboard-resultsList">
+						<div class="dashboard-resultsHeader dashboard-upcomingActivities">
+							<!--<a class="u-floatRight">Show All</a>-->
+							Upcoming Activities
+						</div>
+						<twwm-activity ng-repeat="activity in vm.joinedActivities"></twwm-activity>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="dashboard-resultsList">
+						<div class="dashboard-resultsHeader dashboard-pastActivities">
+							<!--<a class="u-floatRight">Show All</a>-->
+							Previous Activities
+						</div>
+						<twwm-activity ng-repeat="activity in vm.completedActivities"></twwm-activity>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+	</main>
+
+</div>

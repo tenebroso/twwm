@@ -44,6 +44,16 @@
     max-width:670px;
     padding: 3.5em 0;
     margin:0 auto;
+    a {
+        color: white;
+        border-bottom: 1px solid #00829f;
+        text-decoration: none;
+        font-weight: bold;
+        transition:border-color .35s;
+        &:hover {
+            border-color:$red;
+        }
+    }
 }
 
 .page-title {

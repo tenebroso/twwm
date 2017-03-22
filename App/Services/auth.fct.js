@@ -3,130 +3,162 @@
 
 	angular
         .module('app')
-        .factory('AuthenticationService', AuthenticationService);
+        .factory('AuthService', AuthService);
 
-	AuthenticationService.$inject = ['apiHost', '$http', '$cookieStore', '$rootScope', '$timeout', 'UserService'];
-	function AuthenticationService($http, $cookieStore, $rootScope, $timeout, UserService) {
-		var service = {};
+	AuthService.$inject = ['$rootScope', '$http', '$state', 'twwmConfig', 'localStorageService', 'ResponseService'];
+	function AuthService($rootScope, $http, $state, twwmConfig, localStorageService, ResponseService) {
 
-		service.Login = Login;
-		service.SetCredentials = SetCredentials;
-		service.ClearCredentials = ClearCredentials;
-
-		return service;
-
-		function Login(username, password, callback) {
-
-			/* Use this for real authentication
-             ----------------------------------------------*/
-			$http.post('//qamobilize-web-381809290.us-east-1.elb.amazonaws.com/uaa/oauth/', { username: username, password: password })
-			    .success(function (response) {
-			        callback(response);
-			    });
-
+		var userObject = {
+			"grant_type": "password",
+			"username": "",
+			"password": ""
 		}
 
-		function SetCredentials(username, password) {
-			var authdata = Base64.encode(username + ':' + password);
-
-			$rootScope.globals = {
-				currentUser: {
-					username: username,
-					authdata: authdata
-				}
-			};
-
-			$http.defaults.headers.common['Authorization'] = 'Basic ' + authdata; // jshint ignore:line
-			$cookieStore.put('globals', $rootScope.globals);
+		var authService = {
+			hastoken: hastoken,
+			login: login,
+			loginError: loginError,
+			logout: logout,
+			refreshToken: refreshToken,
+			resetPassword: requestPasswordReset,
+			setNewPassword: setNewPassword,
+			storeToken: storeToken
 		}
 
-		function ClearCredentials() {
-			$rootScope.globals = {};
-			$cookieStore.remove('globals');
-			$http.defaults.headers.common.Authorization = 'Basic';
-		}
-	}
 
-	// Base64 encoding service used by AuthenticationService
-	var Base64 = {
+		return authService;
 
-		keyStr: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=',
+		function requestPasswordReset() {
 
-		encode: function (input) {
-			var output = "";
-			var chr1, chr2, chr3 = "";
-			var enc1, enc2, enc3, enc4 = "";
-			var i = 0;
-
-			do {
-				chr1 = input.charCodeAt(i++);
-				chr2 = input.charCodeAt(i++);
-				chr3 = input.charCodeAt(i++);
-
-				enc1 = chr1 >> 2;
-				enc2 = ((chr1 & 3) << 4) | (chr2 >> 4);
-				enc3 = ((chr2 & 15) << 2) | (chr3 >> 6);
-				enc4 = chr3 & 63;
-
-				if (isNaN(chr2)) {
-					enc3 = enc4 = 64;
-				} else if (isNaN(chr3)) {
-					enc4 = 64;
-				}
-
-				output = output +
-                    this.keyStr.charAt(enc1) +
-                    this.keyStr.charAt(enc2) +
-                    this.keyStr.charAt(enc3) +
-                    this.keyStr.charAt(enc4);
-				chr1 = chr2 = chr3 = "";
-				enc1 = enc2 = enc3 = enc4 = "";
-			} while (i < input.length);
-
-			return output;
-		},
-
-		decode: function (input) {
-			var output = "";
-			var chr1, chr2, chr3 = "";
-			var enc1, enc2, enc3, enc4 = "";
-			var i = 0;
-
-			// remove all characters that are not A-Z, a-z, 0-9, +, /, or =
-			var base64test = /[^A-Za-z0-9\+\/\=]/g;
-			if (base64test.exec(input)) {
-				window.alert("There were invalid base64 characters in the input text.\n" +
-                    "Valid base64 characters are A-Z, a-z, 0-9, '+', '/',and '='\n" +
-                    "Expect errors in decoding.");
+			function completedPassword() {
+				$rootScope.passwordMessages.instruction = 'Thank you! A password reset link has been emailed to you.';
+				$rootScope.passwordMessages.complete = true;
 			}
-			input = input.replace(/[^A-Za-z0-9\+\/\=]/g, "");
 
-			do {
-				enc1 = this.keyStr.indexOf(input.charAt(i++));
-				enc2 = this.keyStr.indexOf(input.charAt(i++));
-				enc3 = this.keyStr.indexOf(input.charAt(i++));
-				enc4 = this.keyStr.indexOf(input.charAt(i++));
+			var postObj = {
+				url: twwmConfig.authEndpoint + '/api/registration/reset_request?username=' + encodeURIComponent($rootScope.email),
+				method: 'GET'
+			}
 
-				chr1 = (enc1 << 2) | (enc2 >> 4);
-				chr2 = ((enc2 & 15) << 4) | (enc3 >> 2);
-				chr3 = ((enc3 & 3) << 6) | enc4;
-
-				output = output + String.fromCharCode(chr1);
-
-				if (enc3 != 64) {
-					output = output + String.fromCharCode(chr2);
-				}
-				if (enc4 != 64) {
-					output = output + String.fromCharCode(chr3);
-				}
-
-				chr1 = chr2 = chr3 = "";
-				enc1 = enc2 = enc3 = enc4 = "";
-
-			} while (i < input.length);
-
-			return output;
+			$http(postObj).then(completedPassword).catch(ResponseService.error);
 		}
+
+		function setNewPassword(email, pass, token) {
+			var postObj = {
+				data: {
+					"password": pass,
+					"username": email,
+					"verificationToken": token
+				},
+				url: twwmConfig.authEndpoint + '/api/registration/reset',
+				method: 'POST'
+			}
+
+			$rootScope.addLoading();
+
+			return $http(postObj);
+		}
+
+		function login(email, pass) {
+
+			$rootScope.addLoading();
+
+			userObject.username = email;
+			userObject.password = pass;
+
+			var data = $.param(userObject);
+
+			var postObj = {
+				url: twwmConfig.authEndpoint + '/oauth/token',
+				data: data,
+				headers:{
+					'content-type': "application/x-www-form-urlencoded"
+				},
+				method:'POST'
+			}
+
+			return $http(postObj);
+
+		}
+
+		function refreshToken() {
+
+			$rootScope.addLoading();
+
+			var userObject = {
+				"grant_type": "refresh_token",
+				"refresh_token": localStorageService.get('refresh_token')
+			}
+
+			var data = $.param(userObject);
+
+			var postObj = {
+				url: twwmConfig.authEndpoint + '/oauth/token',
+				data: data,
+				headers: {
+					'content-type': "application/x-www-form-urlencoded"
+				},
+				method: 'POST'
+			}
+
+			return $http(postObj);
+
+		}
+
+		function loginError(err) {
+			ResponseService.error(err, ' Incorrect email and password combination, please try again.');
+			$rootScope.hideLoading();
+		}
+
+		function storeToken(access, refresh, redirect) {
+
+			function submit(key, val) {
+				return localStorageService.set(key, val);
+			}
+
+
+			if (access && refresh) {
+				submit('access_token', access);
+				submit('refresh_token', refresh);
+				if (_.isUndefined(redirect) || redirect !== false) {
+					redirectAfterLogin();
+				}
+				return true;
+			} else {
+				return false;
+			}
+		}
+
+		function redirectAfterLogin(path) {
+			if (path)
+				$state.go(path);
+			else
+				$state.go('participate.index');		
+		}
+
+		function logout() {
+
+			function empty(key) {
+				return localStorageService.remove(key);
+			}
+
+
+			empty('access_token');
+			empty('refresh_token');
+			empty('username');
+			empty('user_lat');
+			empty('user_lng');
+			$rootScope.currentUser = {};
+			$state.go('home');
+		}
+
+		function hastoken() {
+			if (localStorageService.get('access_token') && localStorageService.get('refresh_token'))
+				return true;
+			else
+				return false;
+		}
+
 	};
 
 })();

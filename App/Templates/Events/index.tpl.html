@@ -1,18 +1,23 @@
-﻿<article class="event" ng-hide="{{event.hideInMenu}}" ng-repeat="event in vm.index">
+﻿<article class="event" ng-hide="{{::event.hideInMenu}}" ng-repeat="event in vm.index">
 	<div class="event-photo">
-		<img ng-src="{{event.thumbFacebookMetaTag}}" />
+		<img ng-src="{{::event.thumbFacebookMetaTag}}" />
 	</div>
 	<div class="event-details">
 		<header>
-			<time class="event-time">{{event.publishDate | date:'MMMM'}} <span>{{event.publishDate | date:'d'}}</span></time>
+			<time class="event-time">{{::event.publishDate | date:'MMMM'}} <span>{{::event.publishDate | date:'d'}}</span></time>
 		</header>
 		<div class="event-content">
-			<a class="event-directions" href="{{event.address}}">
+			<a class="event-directions" href="{{::event.address}}" target="_blank">
 				Directions
 			</a>
-			<h1 class="event-title">{{event.title}}</h1>
+			<h1 class="event-title">{{::event.title}}</h1>
 			<div class="event-meta" ng-bind-html="event.synopsis | unsafe"></div>
-			<div class="event-body" ng-bind-html="event.content | unsafe"></div>
+			{{::event.urlAlias}}
+			<div class="share-box">
+				<div fb-like="event.urlAlias" fb-photo="event.thumbFacebookMetaTag"></div>
+				<div tweet="event.title" tweet-url="event.urlAlias"></div>
+			</div>
+			<div class="event-body" compile="event.content"></div>
 		</div>
 	</div>
 </article>

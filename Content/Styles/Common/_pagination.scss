@@ -1,0 +1,32 @@
+﻿.pagination {
+    list-style-type: none;
+    margin: 1em 0;
+    text-align: center;
+}
+
+.pagination li {
+    display: inline-block;
+    span, a {
+        border: 1px solid white;
+        color: white;
+        padding: 4px 7px;
+        margin: 0 10px 0 0;
+        font-weight: bold;
+        font-size: 16px;
+    }
+    a {
+        cursor: pointer;
+        background: transparent;
+        transition: background .35s, color .35s;
+        &:hover {
+            color: $blueDark;
+            background: white;
+            text-decoration:none;
+        }
+    }
+}
+
+.pagination li:last-child span, 
+.pagination li:last-child a {
+    margin-right: 0;
+}

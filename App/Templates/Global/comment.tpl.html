@@ -1,0 +1,44 @@
+﻿<div class="row">
+	<div class="col-sm-6 comment-responseBtn">
+		<strong>{{::vm.content.comments.length}} {{::vm.content.comments.length == 1 ? 'Response' : 'Responses'}}</strong> <i class="dn-icon-arrow-down"></i>
+	</div>
+	<div class="col-sm-6">
+		<a class="btn btn-cancel btn-smaller" ng-click="vm.addResponse();"><i class="dn-icon-plus"></i> Add a Response</a>
+	</div>
+</div>
+
+<div class="row" ng-show="vm.isResponding">
+	<div class="col-md-12">
+		<form ng-submit="vm.submitResponse(vm.content.id)">
+			<div class="row">
+				<div class="col-md-12">
+					<textarea name="response" rows="10" cols="50" class="form-control" placeholder="What's on your mind?" ng-model="vm.response"></textarea>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6 col-md-offset-6">
+					<button type="submit" class="btn">Submit</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+
+<div class="row comment-list" ng-hide="{{vm.content.comments.length == 0}}">
+	<div class="col-md-12 comment" ng-repeat="comment in vm.content.comments | orderBy : comment.created:true" ng-show="comment.active">
+		<div class="comment-tools">
+			<i class="dn-icon-other" ng-click="vm.commentTools[comment.id] = true"></i>
+			<div class="comment-tools-flyout" ng-hide="!vm.commentTools[comment.id]">
+				<span class="comment-tools-close" ng-click="vm.commentTools[comment.id] = false"><i class="dn-icon-mobilise-close"><span class="path1"></span><span class="path2"></span></i></span>
+				<a class="comment-report" ng-click="vm.reportComment(comment.id, vm.content.id)">Report Comment</a>
+				<a class="comment-delete" ng-click="vm.removeComment(comment.id, vm.content.id)" ng-hide="(vm.loggedInUsername !== vm.content.username) && !currentUser.isAdmin">Delete Comment</a>
+			</div>
+		</div>
+		<div class="comment-header">
+			<strong>{{::comment.user}}</strong> <span class="comment-time">{{::comment.created | date: 'dd/MM/yyyy'}}</span>
+		</div>
+		<div class="comment-body">
+			{{::comment.body}}
+		</div>
+	</div>
+</div>

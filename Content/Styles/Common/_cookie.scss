@@ -1,0 +1,97 @@
+﻿.twwmCookie-container {
+    position:relative;
+    text-align:center;
+    width: 100%;
+    padding: 1em 0;
+    overflow:hidden;
+    z-index:200;
+   // display:none;
+    &:after {
+        background:rgba(255,255,255,.75);
+        filter: blur(2px);
+        width:100%;
+        height:100%;
+        position:absolute;
+        left:0;
+        top:0;
+        content:"";
+        z-index:1999;
+    }
+
+    .bumped & {
+        top:55px;
+    }
+
+    .home & {
+       // position:relative;
+        @media (min-width:$screen-sm-min){
+        //    position:absolute;
+        }
+    }
+}
+
+.twwmCookie-content {
+    filter:none;
+    position:relative;
+    z-index:2001;
+    font-family:$sans-serif-alt;
+    color:black;
+    font-size:12px;
+    @media (min-width:$screen-sm-min){
+        font-size:16px;
+    }
+     img {
+        max-height:42px;
+        width:auto;
+        display:inline-block;
+        vertical-align:middle;
+        margin:5px;
+        max-width:26% !important;
+        @media (min-width:$screen-sm-min){
+            margin:0 5px;
+            max-width:100% !important;
+        }
+        &:first-of-type {
+            margin-left:15px;
+        }
+    }
+     span {
+         display:block;
+         @media (min-width:$screen-sm-min){
+             display:inline;
+         }
+     }
+}
+
+.twwmCookie-content > a, 
+.twwmCookie-content > a:visited, 
+.dn-icon-mobilise-close .path2:before {
+    color: white;
+    transition:color .35s;
+}
+
+.twwmCookie-content > a:hover {
+    text-decoration:none;
+}
+
+
+.twwmCookie-content > a:hover .dn-icon-mobilise-close .path2:before {
+    color:$blue;
+}
+
+.twwmCookie-content .dn-icon-mobilise-close .path2:before {
+    font-size: 45px;
+    margin: 0;
+    transition:color .35s;
+}
+
+.twwmCookie-icon {
+    display:none;
+    @media (min-width:$screen-sm-min){
+        position: absolute;
+        right: 5px;
+        top: -12px;
+        display:block;
+        cursor:pointer;
+    }
+}

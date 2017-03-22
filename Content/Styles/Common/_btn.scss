@@ -1,1 +1,93 @@
-﻿
+﻿.btn {
+    display:block;
+    border:none;
+    background-color:rgba(#4B3F4E, .8);
+    color:white;
+    font-size:16px;
+    font-weight:200;
+    padding:18px;
+    width:100%;
+    transition:background-color .35s;
+    text-align:center;
+    cursor:pointer;
+    &:hover {
+        background-color:$blue;
+        text-decoration:none;
+    }
+    .flyout & {
+        font-weight:bold;
+        padding:10px 15px;
+    }
+    .newActivity__single & {
+        font-size: 14px;
+        font-weight: normal;
+        padding: 10px;
+    }
+}
+
+a.btn {
+    color:white;
+}
+
+.btn-cancel {
+    background-color:transparent;
+    .flyout & {
+        border:1px solid rgba(75, 63, 78, 0.8);
+        color:rgba(75, 63, 78, 0.8);
+        &:hover {
+            color:black;
+            background-color:transparent;
+        }
+    }
+}
+
+.btn-delete {
+    background-color:$red;
+}
+
+.btn-transparent {
+    border:2px solid white;
+    background-color:transparent;
+    &:active,
+    &:hover {
+        color:white;
+        background-color:$green;
+        border-color:transparent;
+    }
+}
+
+.btn-selected {
+    border:2px solid transparent;
+    background-color:$green;
+    /*&:hover {
+        background-color:transparent;;
+        border-color:white;
+    }*/
+}
+
+.btn-smaller {
+    font-size:14px;
+    padding:6px;
+    .newActivity__single & {
+        font-size: 12px;
+        padding: 6px;
+    }
+}
+
+.facebook-shareBtn {
+    background: #4267b2;
+    color: white;
+    border-radius: 3px;
+    padding: 4px 7px 4px 7px;
+    font-weight: bold;
+    font-size: 11px;
+    line-height: 20px;
+    font-family: Helvetica, Arial, sans-serif;
+    transition:background .35s;
+    cursor:pointer;
+    &:hover {
+        color:white;
+        text-decoration:none;
+        background-color:#365899;
+    }
+}

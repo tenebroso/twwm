@@ -14,7 +14,6 @@
 						if ($state.current.name === "home") {
 							vm.isShown = false;
 							angular.element('body').addClass('home');
-							console.log(vm);
 						} else {
 							angular.element('body').removeClass('home');
 						}

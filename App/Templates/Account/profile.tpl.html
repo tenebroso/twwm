@@ -1,13 +1,100 @@
-﻿<div id="wrapper">
-	<h1>Hi {{vm.user.firstName}}!</h1>
-	<p>You're logged in!!</p>
-	<h3>All registered users:</h3>
-	<ul>
-		<li ng-repeat="user in vm.allUsers">
-			{{user.username}} ({{user.firstName}} {{user.lastName}})
-			- <a href="#" ng-click="vm.deleteUser(user.id)">Delete</a>
-		</li>
-	</ul>
-	<p>&nbsp;</p>
-	<p><a href="#/login" class="btn btn-primary">Logout</a></p>
+﻿<div class="wrapper entry">
+
+	<main class="content profile-content">
+
+		<!--<a class="profile-photo">
+			<img ng-src="{{vm.user.photoUrl}}" alt="{{profile.name}}" />
+		</a>-->
+
+		<ul class="dashboard-tabs">
+			<li>
+				<a ui-sref="activities">My Activities</a>
+			</li>
+			<li class="active">
+				<a ui-sref="profile">My Profile</a>
+			</li>
+			<li>
+				<a ng-click="vm.logout()">Logout</a>
+			</li>
+		</ul>
+
+		<!--  Description Tab's Content  -->
+		<div class="dashboard-tabContent">
+			<div class="row margin-bottom-xl padding-bottom-xl">
+				<form class="col-md-12 form-horizontal" role="form" ng-submit="vm.updateUser()">
+
+					<div class="row">
+						<div class="col-md-4 profile-photoContainer">
+							<button class="profile-photo profile-updatePhoto" type="file" ngf-select="vm.uploadPhoto($file)" accept="image/*" ngf-max-height="1000" ngf-max-size="1MB" ngf-fix-orientation="true">
+								<img ng-src="{{vm.user.photoUrl}}" alt="{{vm.user.firstName}} {{vm.user.lastName}}" />
+								<i class="dn-icon-camera" ng-hide="vm.user.photoUrl !== 'string'"></i>
+							</button>
+							<input id="ngf-uploadBtn" style="height:150px;position:relative;top:-160px;left:0px;width:100%;visibility:visible;opacity:0.01" type="file" ngf-select="vm.uploadPhoto($file)" ngf-multiple="true" ngf-max-size="2MB" ngf-fix-orientation="true" accept="image/*">
+						</div>
+						<div class="col-md-8">
+							<div class="form-group">
+								<label for="firstName" class="control-label u-hidden">First Name</label>
+								<input type="text" class="form-control" id="firstName" placeholder="First Name" ng-model="vm.user.firstName" required>
+							</div>
+
+							<div class="form-group">
+								<label for="lastName" class="control-label u-hidden">Last Name</label>
+								<input type="text" class="form-control" id="lastName" placeholder="Last Name" ng-model="vm.user.lastName" required>
+							</div>
+
+							<div class="form-group">
+								<label for="email" class="control-label control-label-icon">Email <span><i class="dn-icon-mail"></i></span></label>
+								<input type="email" class="form-control" id="email" placeholder="Email" ng-model="vm.user.username" disabled>
+							</div>
+								
+							<!--<div class="form-group">
+								<label for="password" class="control-label control-label-icon">Password <span><i class="dn-icon-password"></i></span></label>
+								<input type="password" class="form-control" id="password" placeholder="Password" ng-model="vm.user.password" required>
+							</div>-->
+						</div>
+					</div>
+
+					<div class="row">
+						<!--<div class="col-md-5">
+							<div class="form-group">
+								<select class="form-control" ng-model="vm.user.languagePreference">
+									<option value="">Language Preference</option>
+									<option value="en">English</option>
+									<option value="es">Spanish</option>
+									<option value="fr">French</option>
+									<option value="ge">German</option>
+								</select>
+							</div>
+						</div>-->
+						<div class="col-md-12">
+							<div class="form-group">
+								<select class="form-control" ng-model="vm.user.locationSharing" ng-options="o.v as o.n for o in [{ n: 'Location Not Safe to Share', v: false }, { n: 'Location Safe to Share', v: true }]"></select>
+								<!--<select class="form-control" ng-model="vm.user.locationSharing">
+									<option value="">Location Safe to Share</option>
+									<option value="true">Share</option>
+									<option value="false">Do Not Share</option>
+								</select>-->
+							</div>
+						</div>
+						<div class="col-md-12">
+							<div class="form-group">
+								<select class="form-control" ng-model="vm.user.territoryCode" required>
+									<option value="">Select Your Salvation Army Territory</option>
+									<option value="{{t.shortCode}}" ng-repeat="t in vm.territories">{{t.name}}</option>
+								</select>
+								<!--<a class="btn btn-transparent" ng-class="vm.user.locationSharing ? 'btn-selected' : ''" data-preference="locationSharing" ng-click="vm.setPreference('locationSharing')">Share</a>-->
+							</div>
+						</div>
+						<div class="col-md-4 col-md-offset-8 u-textRight">
+							<button type="submit" class="btn">Save</button>
+						</div>
+					</div>
+
+				</form>
+			</div>
+		</div>
+
+
+		</main>
+
 </div>

@@ -26,9 +26,24 @@ b {
 	font-weight: 600;
 }
 
-.content {
+.content,
+.entry {
     color:#747474;
     p {
         margin: 0 0 1.3em;
     }
+}
+
+.page-content {
+    p {
+        margin:0 0 1.3em;
+    }
+    ul {
+        padding-left:2em;
+    }
+}
+
+.error-text {
+    font-family:monospace;
+    word-wrap:break-word;
 }

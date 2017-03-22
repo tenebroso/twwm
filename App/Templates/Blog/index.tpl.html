@@ -1,10 +1,17 @@
-﻿<article ng-show="{{post.noResults}}" class="blogPost">
-	{{post.content}}
+﻿<article ng-show="{{::post.noResults}}" class="blogPost">
+	{{::post.content}}
 </article>
-<article class="blogPost" ng-hide="{{post.hideInMenu}}" ng-repeat="post in vm.index" ng-show="{{post.published}}">
-	<header>
-		<h1 class="blogPost-title">{{post.title}}</h1>
-		<time class="blogPost-meta"><i class="dn-icon-calendar"></i> {{post.publishDate | date:'longDate'}} <span ng-hide="{{post.hideAuthor}}">by <span>{{post.author}}</span></span></time>
-	</header>
-	<div class="blogPost-content" ng-bind-html="post.content | unsafe"></div>
-</article>
+<div infinite-scroll="vm.increaseLimit();" ng-init="vm.limit=1;">
+	<article class="blogPost" ng-hide="{{::post.hideInMenu}}" ng-repeat="post in vm.index | limitTo:vm.limit" ng-show="{{::post.published}}">
+		<header>
+			<h1 class="blogPost-title">{{::post.title}}</h1>
+			<time class="blogPost-meta"><i class="dn-icon-calendar"></i> {{::post.publishDate | date: 'dd/MM/yyyy'}} <span ng-hide="{{::post.hideAuthor}}">by <span>{{::post.author}}</span></span></time>
+		</header>
+
+		<div class="share-box">
+			<div fb-like="post.urlAlias" fb-photo="post.thumbFacebookMetaTag"></div>
+			<div tweet="post.title" tweet-url="post.urlAlias"></div>
+		</div>
+		<div class="blogPost-content" compile="post.content"></div>
+	</article>
+</div>

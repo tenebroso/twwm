@@ -1,4 +1,21 @@
-﻿input[type="text"],
+﻿@mixin optional-at-root($sel) {
+  @at-root #{if(not &, $sel, selector-append(&, $sel))} {
+    @content;
+  }
+}
+
+@mixin placeholder {
+  &::-webkit-input-placeholder {@content}
+  &:-moz-placeholder           {@content}
+  &::-moz-placeholder          {@content}
+  &:-ms-input-placeholder      {@content}  
+}
+
+@include placeholder {
+    color: $white;
+}
+
+input[type="text"],
 input[type="password"],
 input[type="email"],
 input[type="tel"],
@@ -8,7 +25,12 @@ select {
 }
 
 label {
-
+    .newActivity & {
+        color: rgba(0,0,0,.75);
+        font-size: 12px;
+        font-weight: normal;
+        line-height: 1.2;
+    }
 }
 
 .search-input {
@@ -22,6 +44,7 @@ label {
     border-radius:0;
     font-size:13px;
     font-weight:bold;
+    color:black;
     &:focus {
         box-shadow:0 0 0;
         -webkit-box-shadow:0 0 0;
@@ -59,7 +82,7 @@ label {
 }
 
 .search {
-    position:rel
+    position:relative;
 }
 
 .search-clear {
@@ -68,5 +91,228 @@ label {
     top: 10px;
     .path1:before {
         color:black;
+    }
+}
+
+.control-label {
+    font-size:0;
+    .newActivity & {
+        display:none;
+    }
+}
+
+.form-group {
+    position: relative;
+    margin-bottom:30px;
+    color:white;
+    font-weight:400;
+    > hr {
+        margin:0;
+    }
+    a:not(.btn) {
+        color:white;
+        transition:color .35s;
+        cursor:pointer;
+        &:hover {
+            color:$grey;
+        }
+    }
+    .dialog-hasInput .ng-submitted & {
+        margin-bottom:0;
+    }
+
+    .newActivity & {
+        margin:10px 0;
+    }
+}
+
+.form-group-checkboxes {
+    padding-left:20px;
+}
+
+.form-horizontal .checkbox {
+    padding-top:0;
+    margin:0 0 15px;
+}
+
+
+.form-control {
+    border-top-color:transparent;
+    border-left-color:transparent;
+    border-right-color:transparent;
+    padding-left:0;
+    padding-right:0;
+    @include box-shadow(inset 0 0 0 rgba(0,0,0,0));
+    @include placeholder {
+      color: $white;
+    }
+    font-family:$sans-serif;
+    font-weight:400;
+    font-size:16px;
+    @media (min-width:$screen-sm-min){
+
+    }
+    option {
+        background-color:$blue;
+        font-size:14px;
+        font-family:$sans-serif;
+        padding:10px 0;
+        .newActivity & {
+            background-color:transparent;
+            color:$black;
+        }
+    }
+    &:focus {
+        border-top-color:transparent;
+        border-left-color:transparent;
+        border-right-color:transparent;
+        border-bottom-color: rgba(255,255,255,1);
+        outline: 0;
+        @include box-shadow(inset 0 0 0 rgba(0,0,0,0));
+    }
+    .newActivity &,
+    .createPrayer & {
+        border-bottom:1px solid rgba(#95989A, .31);
+        font-size:13px;
+        color:rgba(0,0,0,.8);
+        &:focus {
+            border-bottom:1px solid rgba(#95989A, .8);
+        }
+        &.invalid {
+            border-bottom-color:$red;
+        }
+        @include placeholder {
+           color: rgba(#4B3F4E, .67);
+        }
+    }
+
+    .profile-content & {
+         @include placeholder {
+           //color:white;
+           color:rgba(255,255,255,.5);
+        }
+    }
+    &.isStatistic {
+        line-height: 1.8;
+        margin: 0 5px 5px 0;
+        max-width: 45px;
+        text-align:center;
+        display:inline-block;
+    }
+    &.invalid {
+        border-bottom-color:$red;
+    }
+}
+
+textarea.form-control,
+trix-editor.form-control {
+    border:1px solid rgba(#95989A, .31);
+    padding:10px;
+    color:rgba(0,0,0,.85);
+    font-weight:normal;
+    @include placeholder {
+        //color:white;
+        color: rgba(#4B3F4E, .67);
+    }
+    &.isWhite {
+        color:rgba(0,0,0,1);
+        background-color:white;
+    }
+    &:focus {
+        border-color:rgba(#95989A, .7);
+    }
+}
+
+trix-editor.form-control {
+    height:auto;
+    min-height:150px;
+    font-size:13px;
+}
+
+.control-label-icon + .form-control {
+    padding-left:24px;
+}
+
+.control-label-icon,
+.form-horizontal .control-label-icon {
+    position: absolute;
+    left: 2px;
+    top: 4px;
+
+    color: rgba(255,255,255,.4);
+    span {
+        font-size:12px;
+        line-height:1;
+        position: relative;
+        top: 5px;
+        @media (min-width:$screen-sm-min){
+            top:0;
+        }
+    }
+}
+
+.checkbox {
+    color:white;
+    font-family:$sans-serif;
+    position:relative;
+
+    .newActivity &,
+    .createPrayer & {
+        color: rgba(0, 0, 0, 0.85);
+        margin: 0px 0 10px 19px;
+        line-height: 1.8;
+        font-weight: normal;
+        font-size: 12px;
+    }
+
+    input[type="checkbox"] {
+        margin: 0 0 0 -19px;
+        -webkit-appearance: none;
+        border-color:transparent;
+        &:focus {
+            @include box-shadow(inset 0 0 0 rgba(0,0,0,0));
+            outline:0;
+        }
+
+        &:checked {
+            &:before {
+                background-color:$blue;
+                border-color:white;
+                content:"\e9fb";
+                font-size: 17px;
+                line-height: 4px;
+                text-align: center;
+                .newActivity &,
+                .createPrayer & {
+                    border-color:rgba(0,0,0,.25);
+                    background-color:white;
+                }
+                .createPrayer & {
+                    border-color:rgba(0,0,0,.75);
+                }
+            }
+        }
+
+        &:before {
+            content: "";
+            width: 12px;
+            height: 12px;
+            border: 1px solid rgba(255,255,255,.3);
+            display: block;
+            float: left;
+            margin: 0 6px 0 0;
+            position:absolute;
+            left:0;
+            top:5px;
+            font-family:'SA-UI-ELEMENTS' !important;
+            .newActivity &,
+            .createPrayer & {
+                border-color:rgba(0,0,0,.25);
+            }
+            .createPrayer & {
+                border-color:rgba(0,0,0,.75);
+            }
+        }
+
     }
 }

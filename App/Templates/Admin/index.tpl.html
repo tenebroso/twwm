@@ -1,0 +1,29 @@
+﻿<div class="wrapper">
+
+	<main class="content admin-content">
+
+		<ul class="admin-tabs">
+			<li ui-sref="admin.index" ui-sref-active="{'active':'admin.index'}">
+				<a>Error Logs</a>
+			</li>
+			<li ui-sref="admin.read" ui-sref-active="{'active':'admin.read'}">
+				<a>Read Content</a>
+			</li>
+			<li ui-sref="admin.reach" ui-sref-active="{'active':'admin.reach'}">
+				<a>Reach Content</a>
+			</li>
+			<!--<li ng-class="{'active':vm.activeTab === 'activities'}">
+				<a ng-click="vm.activeTab = 'activities'">Activities</a>
+			</li>
+			<li ng-class="{'active':vm.activeTab === 'prayers'}">
+				<a ng-click="vm.activeTab = 'prayers'">Prayers</a>
+			</li>-->
+		</ul>
+
+
+		<div class="admin-tabContent">
+			<ui-view></ui-view>
+		</div>
+
+	</main>
+</div>

@@ -3,7 +3,7 @@
 
 	angular
 		.module('app')
-		.directive('twwmFooter', function ($cookies) {
+		.directive('twwmFooter', ['$cookies', function ($cookies) {
 			return {
 				restrict: "E",
 				templateUrl: "App/Templates/Global/footer.tpl.html",
@@ -24,5 +24,5 @@
 					})
 				}
 			}
-		});
+		}]);
 })();

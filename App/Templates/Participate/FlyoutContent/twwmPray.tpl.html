@@ -1,0 +1,68 @@
+﻿<ul class="participatePosts-list" ng-if="!prayVm.isCreating">
+
+	<li ng-repeat="pray in prayVm.archives track by $index" class="participatePost" ng-hide="pray.reported && !currentUser.isAdmin">
+		<a class="participatePost-link" ui-sref="participate.prayer({prayerId:pray.id})" ng-class="{'reported' : pray.reported}">
+			<div class="participatePost-personDetails">
+				<img ng-src="{{::pray.photoUrl}}" ng-if="pray.photoUrl && !pray.anonymous" /><i ng-if="!pray.photoUrl || pray.anonymous" class="dn-icon-person-solid"></i>
+				<span class="participatePost-isFlagged" ng-show="pray.urgent">!</span>
+			</div>
+			<div class="participatePost-content entry-content">
+				<div class="participatePost-stats">
+					<span class="participatePost-count">+{{::pray.actionCount}}</span>
+					<span class="participatePost-personIcon"><i class="dn-icon-person-solid"></i></span>
+					<span class="participatePost-readIcon" ng-if="::pray.actioned"><i class="dn-icon-pin-checkmark"><span class="path1"></span><span class="path2"></span></i></span>
+				</div>
+				<span class="participatePost-title">
+					<span ng-if="!pray.anonymous">{{::pray.firstName}} {{::pray.lastName | limitTo:'1'}}.</span>
+					<span ng-hide="!pray.anonymous">Anonymous</span>
+					<span class="participatePost-subtitle">{{::pray.posted | date: 'dd/MM/yyyy'}}</span>
+					<span ng-if="pray.type == 'REQUEST'" class="participatePost-isRequest">Request</span>
+				</span>
+				<span class="participatePost-synopsis" ng-bind-html="::pray.body | unsafe"></span>
+			</div>
+		</a>
+	</li>
+</ul>
+
+<div class="flyoutContent" ng-if="prayVm.isCreating">
+	<form class="createPrayer entry-content" ng-submit="prayVm.createPrayer()">
+
+		<div class="row" ng-if="currentUser.isAdmin">
+			<div class="col-xs-12">
+				<div class="form-group">
+					<input type="date" class="form-control" id="startDate" placeholder="Date (yyyy-MM-dd)" ng-model="prayVm.newPrayer.date">
+				</div>
+			</div>
+			<div class="col-xs-12">
+				<div class="form-group">
+					<input type="text" class="form-control" id="postalCode" ng-model="prayVm.postalCode" placeholder="Postal Code" twwm-getlatlongfromzip>
+				</div>
+			</div>
+		</div>
+		<trix-editor angular-trix spellcheck="true" class="trix-content form-control" ng-model="prayVm.newPrayer.body" placeholder="What's on your mind?"></trix-editor>
+		<div class="row">
+			<div class="col-xs-6">
+				<div class="form-group">
+					<label class="checkbox" for="urgentPrayer">
+						<input type="checkbox" name="urgentPrayer" id="urgentPrayer" ng-model="prayVm.newPrayer.urgent"> Mark as Urgent
+					</label>
+				</div>
+			</div>
+			<div class="col-xs-6">
+				<div class="form-group">
+					<label class="checkbox" for="anonymousPrayer">
+						<input type="checkbox" name="anonymousPrayer" id="anonymousPrayer" ng-model="prayVm.newPrayer.anonymous"> Post Anonymously
+					</label>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-6">
+				<a class="btn btn-cancel" ng-click="prayVm.stopCreating()">Cancel</a>
+			</div>
+			<div class="col-xs-6">
+				<button type="submit" class="btn">Save</button>
+			</div>
+		</div>
+	</form>
+</div>

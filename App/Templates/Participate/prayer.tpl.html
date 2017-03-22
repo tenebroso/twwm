@@ -1,0 +1,78 @@
+﻿<div class="flyoutHeader">
+	<i class="dn-icon-pray-solid flyoutHeader__icon"></i>
+
+	<span class="flyoutHeader__text">Pray</span>
+
+	<twwm-flyoutclose></twwm-flyoutclose>
+</div>
+
+<div class="flyoutNavigation">
+	<span class="flyoutNavigation__control" ui-sref="participate.pray">
+		<i class="dn-icon-arrow-back"></i>
+		Back
+	</span>
+</div>
+
+<div class="flyoutContent" ng-class="::{'reported' : vm.content.reported}">
+
+	<div class="newActivity newActivity__success newActivity__single">
+
+		<div class="row">
+			<div class="col-xs-2">
+				<span class="newActivity__icon singlePrayer__photo">
+					<img ng-if="!vm.content.anonymous" ng-src="{{::vm.content.photoUrl}}" />
+				</span>
+
+			</div>
+			<div class="col-xs-6 col-md-offset-1">
+				<p class="newActivity__title">{{vm.content.title}}</p>
+				<p class="newActivity__date">{{::vm.content.posted | date: 'dd/MM/yyyy'}}</p>
+			</div>
+			<div class="col-xs-3">
+				<span class="participatePost-count">+{{::vm.content.actionCount}}</span>
+				<span class="participatePost-personIcon"><i class="dn-icon-person-solid" ng-if="!vm.content.urgent"></i><span class="participatePost-isFlagged" ng-if="::vm.content.urgent">!</span></span>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-12">
+				<div class="newActivity_description entry-content" ng-bind-html="::vm.content.body | unsafe"></div>
+			</div>
+		</div>
+
+		<comment></comment>
+
+		<div class="row">
+			<div class="col-xs-6 share-container" data-type="prayer" data-id="{{::vm.content.id}}" twwm-share>
+				<a class="btn btn-cancel">
+					Share
+					<img src="../../../Content/Images/share-dark@2x.png" />
+				</a>
+				<div class="share-box">
+					<div fb-like="vm.fullUrl"></div>
+					<div tweet="vm.content.title" tweet-url="vm.fullUrl"></div>
+				</div>
+			</div>
+			<div class="col-xs-6">
+				<button class="btn" ng-class="{'btn-selected': vm.content.actioned === true}" ng-click="vm.toggleParticipation(vm.content.id, vm.content.actioned)">
+					{{ vm.content.actioned ? "I Prayed" : "Stop and Pray"}}
+					<i class="dn-icon-checkmark" ng-if="vm.content.actioned"></i>
+				</button>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-xs-12">
+				<a ng-if="!vm.content.reported" class="newActivity__delete" ng-click="vm.flagPrayer(vm.content.id)">Flag as Inappropriate</a>
+
+			</div>
+		</div>
+		<div class="row" ng-hide="(vm.loggedInUsername !== vm.content.username) && !currentUser.isAdmin">
+			<div class="col-xs-12">
+				<a class="newActivity__delete" ng-click="vm.removePrayer(vm.content.id)"><i class="dn-icon-trash"></i> Delete this prayer</a>
+			</div>
+		</div>
+
+	</div>
+
+</div>

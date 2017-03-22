@@ -1,0 +1,16 @@
+{
+	"version": "1.0.0",
+	"name": "twwm",
+	"private": true,
+	"devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-uglify":  "2.0.0",
+    "gulp-sass": "^3.0.0",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-jshint": "^1.9.4",
+    "gulp-concat": "~2.6.0",
+    "lazypipe": "^0.2.2",
+    "autoprefixer": "^6.5.4",
+    "gulp-postcss": "^6.2.0"
+	}
+}

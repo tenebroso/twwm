@@ -1,0 +1,22 @@
+﻿<div class="wrapper participate-wrapper">
+
+	<participate-navigation></participate-navigation>
+
+	<main class="content participate-content">
+		<div id="addActivity" twwm-newactivity ui-sref="participate.new"></div>
+	</main>
+
+	<aside class="rightSidebar flyout isClosed">
+		<div ui-view></div>
+	</aside>
+	
+	<div id="map">
+		<ng-map zoom="15" style="height:100%">
+			<custom-marker ng-repeat="pin in poi track by $index" position="[{{::pin.location.lat}}, {{::pin.location.lon}}]" id="{{::pin.identity.contentId}}" on-click="vm.clickHandler(event, pin.identity.contentId, pin.identity.contentClass)">
+				<img width="32" ng-class="::{'joined': pin.actioned, 'colored': vm.setActiveState(pin.identity.contentClass, pin.identity.contentId)}" ng-src="//mobilize-qa.s3.amazonaws.com/Content/Images/icon-{{::pin.identity.contentClass}}.svg" />
+			</custom-marker>
+		</ng-map>
+	</div>
+
+	
+</div>

@@ -1,0 +1,205 @@
+﻿<div class="flyoutHeader">
+	<i class="dn-icon-flame flyoutHeader__icon"></i>
+
+	<span class="flyoutHeader__text">Add New Activity</span>
+
+	<twwm-flyoutclose></twwm-flyoutclose>
+</div>
+
+<div class="flyoutNavigation" ng-hide="vm.step === 4">
+	<span class="flyoutNavigation__control" ng-click="vm.moveBack()" ng-hide="vm.step === 1">
+		<i class="dn-icon-arrow-back"></i>
+		Back
+	</span>
+
+	<span class="u-floatRight">Step {{vm.step}} of 3</span>
+</div>
+
+<div class="flyoutContent">
+	<form name="newActivity" novalidate>
+		<div class="newActivity" data-step="1" ng-show="vm.step === 1">
+			<p class="u-textLg">1. Select Activity Type</p>
+			<div class="newActivity__options">
+				<div class="newActivity__option" data-id="1" ng-click="vm.setActivityType($event)">
+					<i class="dn-icon-walk newActivity__icon"></i> Prayer Walk
+				</div>
+				<div class="newActivity__option" data-id="2" ng-click="vm.setActivityType($event)">
+					<i class="dn-icon-run newActivity__icon"></i> Prayer Run
+				</div>
+				<div class="newActivity__option" data-id="3" ng-click="vm.setActivityType($event)">
+					<i class="dn-icon-ride newActivity__icon"></i> Prayer Ride
+				</div>
+				<div class="newActivity__option" data-id="6" ng-click="vm.setActivityType($event)">
+					<i class="dn-icon-march newActivity__icon"></i> March of Witness
+				</div>
+				<div class="newActivity__option" data-id="4" ng-click="vm.setActivityType($event)">
+					<i class="dn-icon-outreach newActivity__icon"></i> Outreach
+				</div>
+				<div class="newActivity__option" data-id="15" ng-click="vm.setActivityType($event)">
+					<i class="dn-icon-evangelise newActivity__icon"></i> Evangelism
+				</div>
+				<div class="newActivity__option" data-id="7" ng-click="vm.setActivityType($event)">
+					<i class="dn-icon-other newActivity__icon"></i> Other
+				</div>
+			</div>
+		</div>
+
+		<div class="newActivity" data-step="2"  ng-show="vm.step === 2">
+			<div class="newActivity__option-selected u-floatRight">
+				<i class="dn-icon-walk newActivity__icon"></i> <strong>Activity:</strong> {{vm.activity.activityType.name}}
+			</div>
+			<p class="u-textLg">2. Add Activity Location</p>
+			<div class="form-group">
+				<label for="activityTitle" class="control-label">Activity Title (optional)</label>
+				<input type="text" class="form-control" id="activityTitle" ng-model="vm.activity.title" placeholder="Activity Title" required>
+			</div>
+			<div class="form-group">
+				<label for="addressLine1" class="control-label">Address Line 1</label>
+				<input type="text" class="form-control" id="addressLine1" ng-model="vm.address.line1" placeholder="Address Line 1" required>
+			</div>
+			<div class="form-group">
+				<label for="addressLine2" class="control-label">Address Line 2 (optional)</label>
+				<input type="text" class="form-control" id="addressLine2" ng-model="vm.address.line2" placeholder="Address Line 2 (optional)">
+			</div>
+			<div class="form-group">
+				<label for="postalCode" class="control-label">Postal Code</label>
+				<input type="text" class="form-control" id="postalCode" ng-model="vm.address.postalCode" placeholder="Postal Code" required twwm-geocodezip>
+			</div>
+			<div class="form-group">
+				<label for="city" class="control-label">City / Town</label>
+				<input type="text" class="form-control" id="city" ng-model="vm.address.city" placeholder="City / Town" required>
+			</div>
+			<div class="form-group">
+				<label for="state" class="control-label">Province / State / Region (optional)</label>
+				<input type="text" class="form-control" id="state" ng-model="vm.address.state" placeholder="Province / State / Region">
+			</div>
+			<div class="form-group">
+				<label for="country" class="control-label">Country</label>
+				<input type="text" class="form-control" id="country" ng-model="vm.address.country" placeholder="Country" required>
+			</div>
+		</div>
+
+		<div class="newActivity" data-step="3"  ng-show="vm.step === 3">
+			<div class="newActivity__option-selected u-floatRight">
+				<i class="dn-icon-walk newActivity__icon"></i> <strong>Activity:</strong> {{vm.activity.activityType.name}}
+			</div>
+			<p class="u-textLg">2. Set Date &amp; Time</p>
+			<div class="row">
+				<div class="col-sm-6">
+					<div class="form-group">
+						<label for="startDate" class="control-label">Set Start Date</label>
+						<input type="date" class="form-control" id="startDate" placeholder="Start Date (yyyy-MM-dd)" ng-model="vm.start.date" required>
+					</div>
+				</div>
+				<div class="col-sm-6">
+					<div class="form-group">
+						<label for="startTime" class="control-label">Set Start Time</label>
+						<input type="time" class="form-control" id="startTime" placeholder="Start Time (HH:mm:ss)" ng-model="vm.start.time" required>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<!--<div class="col-sm-6">
+					<div class="form-group">
+						<label class="checkbox" for="multipleDay">
+							<input type="checkbox" name="multipleDay" id="multipleDay" ng-model="vm.multipleDay"> Multiple Day Activity
+						</label>
+					</div>
+				</div>-->
+				<div class="col-sm-12">
+					<div class="form-group">
+						<label class="checkbox" for="privateActivity">
+							<input type="checkbox" name="privateActivity" id="privateActivity" ng-model="vm.activity.privateActivity"> Make this a Private Activity
+						</label>
+					</div>
+				</div>
+			</div>
+
+			<div class="row" ng-show="vm.isEvangelism">
+				<div class="col-sm-12">
+					<div class="form-group">
+						<select class="form-control" for="evangelismType" ng-model="vm.activity.activityType.id" required>
+							<option value="15">What type of experience did you have?</option>
+							<option value="8">One on One</option>
+							<option value="9">Scheduled Event</option>
+							<option value="10">Small Gathering</option>
+							<option value="11">Large Gathering</option>
+						</select>
+					</div>
+				</div>
+				<div class="col-sm-12">
+					<div class="form-group">
+						<label for="attendance"> 
+							<input type="number" name="attendance" id="attendance" class="form-control isStatistic" ng-model="vm.activity.attendance" min="0"> How many people attended?
+						</label>
+					</div>
+				</div>
+				<div class="col-sm-12">
+					<div class="form-group">
+						<label for="seekers">
+							<input type="number" name="seekers" id="seekers" class="form-control isStatistic" ng-model="vm.activity.seekers" min="0"> How many people accepted Jesus?
+						</label>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="form-group entry-content">
+				<trix-editor angular-trix spellcheck="true" class="trix-content form-control" ng-model="vm.activity.description" placeholder="Add a brief description for your activity (optional)"></trix-editor>
+			</div>
+		</div>
+
+
+		<div class="newActivity newActivity__success" data-step="4" ng-show="vm.step === 4">
+
+			<div class="newActivity__option-selected">
+				Success! Your activity has been created!
+			</div>
+
+			<div class="row">
+				<div class="col-md-2">
+					<span class="newActivity__icon"><i class="dn-icon-run"></i></span>
+				</div>
+				<div class="col-md-7">
+					<p class="newActivity__title">{{::vm.addedActivity.title}}</p>
+					<p class="newActivity__date">{{::vm.addedActivity.created | date:'shortDate'}}</p>
+				</div>
+				<div class="col-md-3">
+					<span class="participatePost-count">+0</span>
+					<span class="participatePost-personIcon"><i class="dn-icon-person-solid"></i></span>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-12">
+					<p class="newActivity_description">{{::vm.addedActivity.description}}</p>
+				</div>
+			</div>
+
+			<div class="row">
+
+			</div>
+
+
+
+		</div>
+
+		<div class="row" ng-hide="vm.step === 4">
+			<div class="col-sm-12">
+				<span class="flyout-warning">{{vm.validationErrorMsg}}</span>
+			</div>
+		</div>
+
+		<div class="row" ng-hide="vm.step === 4">
+			<div class="col-xs-6" ng-click="vm.clearActivityDetails();">
+				<a class="btn btn-cancel">Cancel</a>
+			</div>
+			<div class="col-xs-6">
+				<button class="btn" ng-click="vm.validateActivityStep()">Next</button>
+			</div>
+		</div>
+
+		
+	</form>
+</div>
+

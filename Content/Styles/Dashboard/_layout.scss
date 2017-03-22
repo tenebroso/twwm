@@ -1,5 +1,7 @@
 ﻿.dashboard-sidebar {
     box-shadow:6px 0px 4px rgba(0, 0, 0, 0.05);
+    background-color:white;
+    height:100%;
     @media (min-width:$screen-sm-min) {
         padding:50px 40px 80px 40px;
         min-width:240px;
@@ -14,6 +16,7 @@
 
 .dashboard-sidebarContent {
     background:rgba(40,171,205,1);
+    height:100%;
 }
 
 .dashboard-header {

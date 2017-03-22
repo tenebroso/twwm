@@ -1,0 +1,85 @@
+﻿.comment-responseBtn {
+    cursor:pointer;
+    transition:opacity .35s;
+    opacity:1;
+    [class^=dn-icon] {
+        font-size: 10px;
+        margin-left: 5px;
+    }
+    &:hover {
+        opacity: .75;
+    }
+}
+
+.comment-list {
+    .comment:last-child {
+        border-bottom:0;
+    }
+}
+
+.comment {
+    border-bottom:1px solid rgba(0,0,0,.25);
+    padding-bottom:1em;
+    margin-bottom:1em;
+}
+
+.comment-time {
+    color:rgba(0,0,0,.5);
+    font-size:11px;
+}
+
+.comment-tools {
+    float:right;
+    cursor:pointer;
+    position:relative;
+    [class^=dn-icon] {
+        transform:rotate(90deg);
+        color:rgba(0,0,0,.5);
+        transition:color .35s;
+    }
+    &:hover {
+        [class^=dn-icon] {
+            color:rgba(0,0,0,1);
+        }
+    }
+}
+
+.comment-tools-flyout {
+    position: absolute;
+    right: 0;
+    top: 0;
+    background: white;
+    padding: 10px 10px 10px 10px;
+    font-size: 11px;
+    box-shadow: 0 0 5px #ccc;
+    min-width: 140px;
+    a {
+        display: block;
+        
+        line-height: 1.2;
+        text-decoration: none;
+        color: rgba(0,0,0,.8);
+        font-weight: bold;
+        transition:color .35s;
+        &:hover {
+            color:rgba(0,0,0,1);
+        }
+        + .ng-hide {
+            border-color:transparent;
+        }
+        &:last-child {
+            border-top: 1px solid rgba(0, 0, 0, 0.25);
+            padding:7px 0 0;
+            margin: 7px 0 0;
+        }
+    }
+}
+
+.comment-tools-close {
+    float:right;
+    line-height:1;
+    .dn-icon-mobilise-close .path1:before,
+    .dn-icon-mobilise-close .path1:after {
+        color:$red;
+    }
+}

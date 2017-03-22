@@ -1,20 +1,21 @@
-﻿<div id="wrapper">
+﻿<div class="wrapper">
 	<dashboard-navigation></dashboard-navigation>
 
 	<main class="content dashboard-content">
 
-		<a class="profile-photo" ui-sref="myaccount">
-			<img ng-src="http://www.fillmurray.com/85/85" alt="{{profile.name}}" />
+		<a ui-sref="profile" class="profile-photo">
+			<img ng-src="{{::currentUser.photoUrl}}" alt="{{::profile.name}}" />
 		</a>
+
 		<ul class="dashboard-tabs">
-			<li class="active">
-				<a href="#">Today</a>
+			<li>
+				<a ui-sref="activities">My Activities</a>
 			</li>
 			<li>
-				<a href="#">Month</a>
+				<a ui-sref="profile">My Profile</a>
 			</li>
 			<li>
-				<a href="#">Year</a>
+				<a ng-click="vm.logout()">Logout</a>
 			</li>
 		</ul>
 
@@ -23,29 +24,29 @@
 			<div class="row margin-bottom-xl padding-bottom-xl">
 				<div class="col-md-6">
 					<div class="dashboard-stat">
-						<span class="dashboard-statFigure">36</span>
+						<span class="dashboard-statFigure">{{::vm.dashboardDetails.prayersPrayed}}</span>
 						<span class="dashboard-statLabel"><i class="dn-icon-pray-outlined"></i> Prayers Prayed</span>
 					</div>
 					<div class="dashboard-stat">
-						<span class="dashboard-statFigure">12</span>
+						<span class="dashboard-statFigure">{{::vm.dashboardDetails.completedActivities}}</span>
 						<span class="dashboard-statLabel"><i class="dn-icon-flame"></i> Mobilisation Completed</span>
 					</div>
 					<div class="dashboard-stat">
-						<span class="dashboard-statFigure">28</span>
+						<span class="dashboard-statFigure">{{::vm.dashboardDetails.entriesRead}}</span>
 						<span class="dashboard-statLabel"><i class="dn-icon-read-outlined"></i> Entries Read</span>
 					</div>
 				</div>
 				<div class="col-md-6">
 					<div class="dashboard-stat">
-						<span class="dashboard-statFigure">5</span>
+						<span class="dashboard-statFigure">{{::vm.dashboardDetails.peopleReached}}</span>
 						<span class="dashboard-statLabel"><i class="dn-icon-map"></i> People Reached</span>
 					</div>
 					<div class="dashboard-stat">
-						<span class="dashboard-statFigure isSmaller">34.4mi <span>55.3km</span></span>
+						<span class="dashboard-statFigure isSmaller">{{::vm.dashboardDetails.kmDistance * 0.621371}}mi <span>{{vm.dashboardDetails.kmDistance}}km</span></span>
 						<span class="dashboard-statLabel"><i class="dn-icon-march"></i> Distance Traveled</span>
 					</div>
 					<div class="dashboard-stat">
-						<span class="dashboard-statFigure">16:23:52</span>
+						<span class="dashboard-statFigure">{{::vm.dashboardDetails.hoursActive}}</span>
 						<span class="dashboard-statLabel"><i class="dn-icon-stopwatch"></i> Overall Time Active</span>
 					</div>
 				</div>

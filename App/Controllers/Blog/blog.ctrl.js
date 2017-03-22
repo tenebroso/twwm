@@ -1,7 +1,7 @@
 ﻿(function () {
 	'use strict';
 
-	var BlogCtrl = function ($scope, $state, ReadService, SearchService) {
+	var BlogCtrl = function ($scope, $state, BlogService, SearchService) {
 		var vm = this;
 
 		vm.getDetail = getDetail;
@@ -10,6 +10,21 @@
 		vm.postUrl;
 		vm.resetSearch = resetSearch;
 		vm.submitSearch = submitSearch;
+		vm.totalCount = 0;
+		vm.limit = 1;
+		vm.increaseLimit = function () {
+			if (vm.limit < vm.totalCount) {
+				vm.limit += 1;
+			}
+		};
+
+		//vm.currentPage = '0';
+		//vm.pageSize = '5';
+		
+		//vm.totalPages = 0;
+		//vm.getNumber = function (num) {
+		//	return new Array(num);
+		//};
 
 		function resetSearch() {
 			vm.hasTerm = false;
@@ -31,17 +46,31 @@
 		}
 
 		function getIndex() {
-			ReadService('blog')
+			//if (_.isUndefined(qty)) {
+			//	qty = vm.pageSize;
+			//}
+
+			//if (_.isUndefined(page)) {
+			//	page = vm.currentPage;
+			//} else if (typeof page === "number") {
+			//	page = page.toString();
+			//	vm.currentPage = page;
+			//}
+
+			BlogService('blog')
 				.then(readSuccess)
 				.then(function (collection) {
 					$scope.featured = collection;
 					vm.index = collection;
 				})
-				.then($scope.hideLoading);
+				.then($scope.hideLoading)
+				.catch(function (err) {
+					console.log(err);
+				});
 		};
 
 		function getDetail() {
-			ReadService('blog')
+			BlogService('blog')
 				.then(readSuccess)
 				.then(function (collection) {
 					$scope.featured = collection;
@@ -55,6 +84,21 @@
 				.then($scope.hideLoading);
 		};
 
+		function readSuccess(response) {
+
+			vm.totalCount = response.data.totalCount;
+
+			$.each(response.data.news, function (i, v) {
+				var postPublishDate = moment(v.publishDate, moment.ISO_8601);
+				if (moment(new Date(), moment.ISO_8601).isBefore(postPublishDate)) {
+					response.data.news[i].published = false;
+				}
+			});
+
+			return response.data.news;
+
+		}
+
 		$scope.$on('$stateChangeSuccess', function () {
 			vm.postUrl = $state.params.postUrl;
 			$scope.$wrapperClass = 'wrapper';
@@ -67,20 +111,7 @@
 
 	};
 
-	function readSuccess(response) {
-
-		$.each(response.data.news, function (i, v) {
-			var postPublishDate = moment(v.publishDate, moment.ISO_8601);
-			if (moment(new Date(), moment.ISO_8601).isBefore(postPublishDate)) {
-				response.data.news[i].published = false;
-			}
-		});
-
-		return response.data.news;
-
-	}
-
-	BlogCtrl.$inject = ['$scope', '$state', 'ReadService', 'SearchService'];
+	BlogCtrl.$inject = ['$scope', '$state', 'BlogService', 'SearchService'];
 
 	angular
         .module('app')

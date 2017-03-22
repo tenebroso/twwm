@@ -1,0 +1,21 @@
+﻿participate-navigation {
+    position:relative;
+    z-index:20;
+    max-height:93vh;
+}
+
+.participate-sidebar {
+    @extend .dashboard-sidebar;
+}
+
+.participate-nav {
+    @extend .dashboard-nav;
+}
+
+.participate-navLink {
+    @extend .dashboard-navLink;
+}
+
+.participate-navItem {
+    @extend .dashboard-navItem;
+}
